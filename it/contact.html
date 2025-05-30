@@ -778,9 +778,10 @@
                     <p class="section-description">
                         Ricevi notifiche quando nuove opere vengono rilasciate. Aggiornamenti rari, solo per i drop.
                     </p>
-                    <form class="newsletter-form" id="newsletterForm">
+                    <form class="newsletter-form" id="newsletterForm" data-netlify="true" name="newsletter-it" method="POST">
                         <input 
                             type="email" 
+                            name="email"
                             placeholder="tua@email.com" 
                             class="newsletter-input"
                             required
