@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Speaking Wall - Process & Details - P.Ricaldone</title>
+    <style>
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables */
+        :root {
+            --text-primary: #fff;
+            --text-secondary: #aaa;
+            --text-tertiary: #666;
+            --bg: #0a0a0a;
+            --accent: #fff;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-out: cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        /* Light mode colors */
+        [data-theme="light"] {
+            --text-primary: #000;
+            --text-secondary: #666;
+            --text-tertiary: #999;
+            --bg: #fafafa;
+            --accent: #000;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.6s var(--transition-smooth),
+                        color 0.6s var(--transition-smooth);
+        }
+
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+
+        a, button {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s var(--transition-smooth),
+                       opacity 0.15s var(--transition-smooth);
+        }
+
+        [data-theme="light"] .cursor-dot {
+            background: #000;
+            mix-blend-mode: normal;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 2rem 3rem;
+            background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 80%, transparent 100%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .logo {
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .lang-toggle button {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            padding: 0.25rem 0.5rem;
+            transition: color 0.3s ease;
+            font-family: inherit;
+            letter-spacing: inherit;
+            text-transform: uppercase;
+        }
+
+        .lang-toggle button:hover {
+            color: var(--text-secondary);
+        }
+
+        .lang-toggle button.active {
+            color: var(--text-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--text-tertiary);
+            width: 44px;
+            height: 24px;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-ball {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: transform 0.3s var(--transition-smooth);
+        }
+
+        [data-theme="light"] .theme-toggle-ball {
+            transform: translateX(20px);
+        }
+
+        /* Main Container */
+        .container {
+            padding: 8rem 3rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .breadcrumb a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb span {
+            margin: 0 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Work Header */
+        .work-header {
+            margin-bottom: 6rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            position: relative;
+        }
+
+        .work-number {
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+            transition: all 0.3s ease;
+        }
+
+        .work-header:hover .work-number {
+            color: var(--text-secondary);
+            letter-spacing: 0.4em;
+        }
+
+        .work-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 200;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeInLeft 1.2s ease 0.4s forwards;
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .work-header:hover .work-title {
+            letter-spacing: 0.02em;
+        }
+
+        .work-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            font-style: italic;
+            opacity: 0;
+            animation: fadeInRight 1.2s ease 0.5s forwards;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Subtle underline on subtitle */
+        .work-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-tertiary);
+            transition: width 0.6s var(--transition-smooth);
+        }
+
+        .work-header:hover .work-subtitle {
+            color: var(--text-primary);
+        }
+
+        .work-header:hover .work-subtitle::after {
+            width: 100%;
+        }
+
+        /* Main Video Section */
+        .video-section {
+            margin-bottom: 8rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            perspective: 1200px;
+            perspective-origin: center 60%;
+        }
+
+        .video-container {
+            position: relative;
+            background: #111;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 2px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInRotate3D 1.5s ease 0.6s forwards;
+            transition: all 0.5s var(--transition-smooth);
+            transform-style: preserve-3d;
+            transform-origin: center bottom;
+        }
+
+        @keyframes fadeInRotate3D {
+            from {
+                opacity: 0;
+                transform: rotateX(45deg) scale(0.95);
+                box-shadow: 0 20px 40px rgba(0,0,0,0);
+            }
+            to {
+                opacity: 1;
+                transform: rotateX(0) scale(0.98);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+        }
+
+        .video-container:hover {
+            transform: scale(1) rotateX(5deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Quality Badge */
+        .quality-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .quality-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: var(--text-tertiary);
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .video-placeholder .preview-text {
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            opacity: 0.7;
+        }
+
+        .video-container:hover .video-placeholder {
+            background: linear-gradient(135deg, #0f0f0f 0%, #222 100%);
+            color: var(--text-secondary);
+        }
+
+        /* HD Notice on Hover */
+        .hd-notice {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .video-container:hover .hd-notice {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hd-notice h3 {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .hd-notice p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .view-hd-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .view-hd-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .view-hd-btn::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .view-hd-btn:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* The Work Section */
+        .process-section {
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            margin-bottom: 6rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 1.2s ease 0.5s forwards;
+        }
+
+        /* Remove underlines for The Story & Details sections */
+        .process-section .section-title::after,
+        .tech-section .section-title::after {
+            display: none;
+        }
+
+        .process-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 4.5rem;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease 0.7s forwards;
+            transition: all 0.5s var(--transition-smooth);
+            position: relative;
+            padding-left: 0;
+        }
+
+        /* Text block hover effect */
+        .process-text::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--text-tertiary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .process-section:hover .process-text {
+            color: var(--text-primary);
+            transform: translateX(0.5rem);
+        }
+
+        .process-section:hover .process-text::before {
+            opacity: 0.5;
+        }
+
+        .process-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+            opacity: 0;
+            animation: fadeInRight 1.2s ease forwards;
+            animation-delay: calc(0.9s + var(--delay) * 0.15s);
+            transition: transform 0.8s var(--transition-smooth);
+            transform-origin: left center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .process-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0;
+            width: 1px;
+            height: 0;
+            background: var(--text-tertiary);
+            transition: height 0.6s var(--transition-smooth);
+        }
+
+        .process-item:hover {
+            transform: scale(1.05);
+        }
+
+        .process-item:hover::before {
+            height: 100%;
+        }
+
+        .process-item h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Underline animation on hover */
+        .process-item h4::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-primary);
+            transition: width 0.6s var(--transition-smooth);
+        }
+
+        .process-item:hover h4::after {
+            width: 100%;
+        }
+
+        .process-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            transition: all 0.3s ease;
+            padding-left: 0;
+            transition: padding-left 0.8s var(--transition-smooth), color 0.3s ease;
+        }
+
+        .process-item:hover p {
+            color: var(--text-primary);
+            padding-left: 0.5rem;
+        }
+
+        /* Video Info Bar with Benefits */
+        .video-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.8s forwards;
+            max-width: 900px;
+            margin: 0 auto 6rem;
+            gap: 2.5rem;
+        }
+
+        /* Benefits Line */
+        .benefits-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .benefits-label {
+            color: var(--text-secondary);
+            text-transform: none;
+            letter-spacing: 0.02em;
+            margin-right: 0.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .benefit-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            color: var(--text-secondary);
+        }
+
+        .benefit-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .benefit-icon {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .benefit-item:hover .benefit-icon {
+            opacity: 1;
+        }
+
+        /* Button primary (from collection page) */
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-top: 0.5rem;
+        }
+
+        /* Subtle glow effect */
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s ease;
+            opacity: 0;
+        }
+
+        /* Gentle pulse animation */
+        @keyframes gentlePulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(255,255,255,0.12);
+            }
+            50% { 
+                box-shadow: 0 0 25px 8px rgba(255,255,255,0.08);
+            }
+        }
+
+        .btn-primary {
+            animation: gentlePulse 3s ease-in-out infinite;
+        }
+
+        .btn-primary:hover {
+            background: var(--text-primary);
+            color: var(--bg);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+            animation: none;
+            box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+        }
+
+        .btn-primary:hover::before {
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 1;
+        }
+
+        [data-theme="light"] .btn-primary {
+            border-color: rgba(0,0,0,0.2);
+            color: var(--text-secondary);
+            animation: gentlePulseDark 3s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulseDark {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(0,0,0,0.12);
+            }
+            50% { 
+                box-shadow: 0 0 25px 8px rgba(0,0,0,0.08);
+            }
+        }
+
+        [data-theme="light"] .btn-primary:hover {
+            background: var(--text-primary);
+            color: var(--bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Frame Previews */
+        .frames-section {
+            margin-bottom: 10rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .frames-section .section-title {
+            opacity: 0;
+            animation: fadeInLeft 1.2s ease 0.9s forwards;
+            padding-bottom: 1rem;
+        }
+
+        .frames-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .frame-item {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #111;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease forwards;
+            animation-delay: calc(1.2s + var(--frame-delay) * 0.15s);
+        }
+
+        .frame-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .frame-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            transition: all 0.5s ease;
+        }
+
+        .frame-item:hover .frame-placeholder {
+            filter: brightness(1.2);
+        }
+
+        .frame-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .frame-item:hover .frame-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Technical Details */
+        .tech-section {
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            margin-top: 6rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-section .section-title {
+            opacity: 0;
+            animation: fadeInLeft 1.2s ease 0.7s forwards;
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 0.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--text-tertiary) transparent;
+        }
+
+        .tech-grid::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .tech-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .tech-grid::-webkit-scrollbar-thumb {
+            background: var(--text-tertiary);
+            border-radius: 3px;
+        }
+
+        .tech-item {
+            padding: 0.5rem 0.75rem;
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease forwards;
+            animation-delay: calc(1s + var(--tech-delay) * 0.1s);
+            transform-origin: center;
+            min-width: 0;
+            white-space: nowrap;
+        }
+
+        [data-theme="light"] .tech-item {
+            background: rgba(0,0,0,0.01);
+            border-color: rgba(0,0,0,0.03);
+        }
+
+        .tech-item:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.08);
+            transform: translateY(-1px) scale(1.01);
+        }
+
+        [data-theme="light"] .tech-item:hover {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.08);
+        }
+
+        .tech-label {
+            font-size: 0.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 0.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .tech-value {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tech-item:hover .tech-label {
+            color: var(--text-secondary);
+        }
+
+        .tech-item:hover .tech-value {
+            transform: translateX(3px);
+            color: var(--text-primary);
+        }
+
+        /* Action Section */
+        .action-section {
+            text-align: center;
+            padding: 8rem 0 4rem;
+            margin-top: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        /* Navigation */
+        .back-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            gap: 0.75rem;
+        }
+
+        .nav-link.prev::before {
+            content: '←';
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link.prev:hover::before {
+            transform: translateX(-3px);
+        }
+
+        .nav-link.next::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link.next:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Highlight words */
+        .highlight {
+            color: #b5b5b5;
+            font-weight: 400;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] .highlight {
+            color: #4a4a4a;
+        }
+
+        .process-text:hover .highlight {
+            color: #bbb;
+        }
+
+        [data-theme="light"] .process-text:hover .highlight {
+            color: #3a3a3a;
+        }
+
+        /* Underline animation on hover for highlights */
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #bbb;
+            transition: width 0.6s var(--transition-smooth);
+            transition-delay: 0.2s;
+        }
+
+        [data-theme="light"] .highlight::after {
+            background: #3a3a3a;
+        }
+
+        .process-text:hover .highlight::after {
+            width: 100%;
+        }
+
+        /* Subtle floating element */
+        .float-element {
+            position: fixed;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--text-tertiary), transparent);
+            opacity: 0;
+            top: 50%;
+            right: 5%;
+            animation: 
+                fadeInFloat 2s ease forwards 2s,
+                float 10s infinite ease-in-out 2s;
+        }
+
+        @keyframes fadeInFloat {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-30px) translateX(-20px);
+            }
+        }
+
+        /* Modal per HD Preview */
+        .hd-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .hd-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg);
+            padding: 3rem;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            border-color: rgba(255,255,255,0.4);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .benefits-line {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: center;
+            }
+            
+            .benefit-item {
+                font-size: 0.7rem;
+            }
+
+            .frames-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .float-element {
+                display: none;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem;
+            }
+
+            .container {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .work-title {
+                font-size: 2.5rem;
+            }
+
+            .benefits-line {
+                flex-wrap: wrap;
+                gap: 1rem;
+                font-size: 0.7rem;
+                justify-content: center;
+            }
+
+            .benefit-item {
+                font-size: 0.7rem;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+                margin-top: 0;
+            }
+
+            .frames-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .tech-label {
+                font-size: 0.5rem;
+            }
+
+            .tech-value {
+                font-size: 0.65rem;
+            }
+
+            .video-container {
+                max-width: 100%;
+            }
+            
+            .hd-notice {
+                padding: 1.5rem;
+            }
+        }
+
+        /* No selection for decorative elements */
+        .logo, button, .float-element, .spec-label, .tech-label {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+
+    <!-- Floating accent element -->
+    <div class="float-element"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <div class="theme-toggle-ball"></div>
+                </button>
+                <a href="../../../../../index.html" class="logo">P. RICALDONE</a>
+            </div>
+            <div class="nav-right">
+                <div class="lang-toggle">
+                    <button class="active">EN</button>
+                    <button onclick="window.location.href='work-01_it.html'">IT</button>
+                </div>
+                <div class="nav-links">
+                    <a href="../../../../works.html">Works</a>
+                    <a href="../../../../about.html">About</a>
+                    <a href="../../../../contact.html">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="../../../../works.html">Works</a>
+            <span>/</span>
+            <a href="#">Collections</a>
+            <span>/</span>
+            <a href="../../">The Stage</a>
+            <span>/</span>
+            The Speaking Wall
+        </div>
+
+        <!-- Work Header -->
+        <div class="work-header">
+            <div class="work-number">ACT I</div>
+            <h1 class="work-title">The Speaking Wall</h1>
+            <p class="work-subtitle">Where silence carves its own language</p>
+        </div>
+
+        <!-- Main Video -->
+        <div class="video-section">
+            <div class="video-container">
+                <!-- Quality Badge -->
+                <div class="quality-badge">PREVIEW 720p</div>
+                
+                <!-- Video Placeholder -->
+                <div class="video-placeholder">
+                    <span>Video Preview</span>
+                    <span class="preview-text">Full 4K available for collectors</span>
+                </div>
+                
+                <!-- HD Notice on Hover -->
+                <div class="hd-notice">
+                    <h3>View in Full 4K Resolution</h3>
+                    <p>Experience the complete artwork as intended by the artist</p>
+                    <a href="#" class="view-hd-btn" onclick="showHDModal(event)">Unlock HD Version</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Work -->
+        <div class="process-section">
+            <h2 class="section-title">The Work</h2>
+            <p class="process-text">
+                In "The Speaking Wall," words emerge from stone itself—an <span class="highlight">impossible dialogue</span> between the permanent and the ephemeral.<br>This piece explores how <span class="highlight">silence</span> can become a language more powerful than speech.
+            </p>
+
+            <div class="process-item" style="--delay: 1; margin-top: 1rem;">
+                <h4>Visual Language</h4>
+                <p>Letters carved in real-time, each character a small violence against stillness. The typography breathes, shifts, reforms—never settling into meaning.</p>
+            </div>
+
+            <div class="process-item" style="--delay: 2">
+                <h4>Sound Design</h4>
+                <p>The absence of sound becomes presence. Only the faintest whisper of stone moving, almost below perception.</p>
+            </div>
+
+            <div class="process-item" style="--delay: 3">
+                <h4>Emotional Core</h4>
+                <p>That moment when you have everything to say but no words come. The wall speaks what we cannot.</p>
+            </div>
+
+            <div class="process-item" style="--delay: 4">
+                <h4>Technical Approach</h4>
+                <p>Filmed over 48 hours using time-lapse and real-time capture. Each frame manually adjusted to create the breathing effect.</p>
+            </div>
+        </div>
+
+        <!-- Video Info Bar with Benefits and Button -->
+        <div class="video-info">
+            <div class="benefits-line">
+                <span class="benefits-label">Collector exclusive:</span>
+                <div class="benefit-item">
+                    <span class="benefit-icon">◆</span>
+                    <span>4K Original</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">◆</span>
+                    <span>Uncompressed</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">◆</span>
+                    <span>Download Rights</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">◆</span>
+                    <span>Certificate</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Acquire on Foundation</a>
+        </div>
+
+        <!-- Frame Previews -->
+        <div class="frames-section">
+            <h2 class="section-title">Key Frames</h2>
+            <div class="frames-grid">
+                <div class="frame-item" style="--frame-delay: 0">
+                    <div class="frame-placeholder">Frame 00:15</div>
+                    <div class="frame-caption">The first letter emerges</div>
+                </div>
+                <div class="frame-item" style="--frame-delay: 1">
+                    <div class="frame-placeholder">Frame 01:23</div>
+                    <div class="frame-caption">Words begin to overlap</div>
+                </div>
+                <div class="frame-item" style="--frame-delay: 2">
+                    <div class="frame-placeholder">Frame 02:41</div>
+                    <div class="frame-caption">Final dissolution</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Details -->
+        <div class="tech-section">
+            <h2 class="section-title">Details</h2>
+            <div class="tech-grid">
+                <div class="tech-item" style="--tech-delay: 0">
+                    <div class="tech-label">Duration</div>
+                    <div class="tech-value">2:47</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 1">
+                    <div class="tech-label">Preview Quality</div>
+                    <div class="tech-value">720p</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 2">
+                    <div class="tech-label">Original Quality</div>
+                    <div class="tech-value">4K HDR</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 3">
+                    <div class="tech-label">Edition</div>
+                    <div class="tech-value">1/1</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 4">
+                    <div class="tech-label">Resolution</div>
+                    <div class="tech-value">3840 × 2160 (4K)</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 5">
+                    <div class="tech-label">Frame Rate</div>
+                    <div class="tech-value">30fps</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 6">
+                    <div class="tech-label">Codec</div>
+                    <div class="tech-value">H.264 / MP4</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 7">
+                    <div class="tech-label">Color Space</div>
+                    <div class="tech-value">sRGB</div>
+                </div>
+                <div class="tech-item" style="--tech-delay: 8">
+                    <div class="tech-label">Smart Contract</div>
+                    <div class="tech-value">ERC-721</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Section -->
+        <div class="action-section">
+            <!-- Navigation -->
+            <div class="back-nav">
+                <a href="../../" class="nav-link prev"><span>The Stage Collection</span></a>
+                <a href="work-02.html" class="nav-link next"><span>Next: Dead Weight</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal HD -->
+    <div class="hd-modal" id="hdModal">
+        <button class="modal-close" onclick="closeHDModal()">×</button>
+        <div class="modal-content">
+            <h2 style="font-size: 2rem; font-weight: 300; margin-bottom: 1.5rem;">
+                Unlock the Full Experience
+            </h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8;">
+                The full 4K version of "The Speaking Wall" is exclusively available to the NFT owner. 
+                Acquire this unique 1/1 piece to access the complete, uncompressed artwork in its 
+                highest quality.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="#" class="btn-primary">Acquire on Foundation</a>
+                <button class="btn btn-secondary" onclick="closeHDModal()" 
+                    style="padding: 1rem 2.5rem; background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease;">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseout', (e) => {
+            if (!e.relatedTarget) {
+                cursor.style.opacity = '0';
+            }
+        });
+
+        document.addEventListener('mouseover', () => {
+            cursor.style.opacity = '1';
+        });
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('a, button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+
+        // Start with dark theme
+        html.setAttribute('data-theme', 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+        });
+
+        // HD Modal functions
+        function showHDModal(e) {
+            e.preventDefault();
+            const modal = document.getElementById('hdModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeHDModal() {
+            const modal = document.getElementById('hdModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal with ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeHDModal();
+            }
+        });
+
+        // Close modal clicking outside
+        document.getElementById('hdModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeHDModal();
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.style.animation) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('.frames-section, .action-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Subtle parallax on mouse move
+        let ticking = false;
+        function updateParallax() {
+            const floatElement = document.querySelector('.float-element');
+            if (floatElement) {
+                const x = (mouseX / window.innerWidth - 0.5) * 20;
+                const y = (mouseY / window.innerHeight - 0.5) * 20;
+                floatElement.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            }
+            ticking = false;
+        }
+
+        document.addEventListener('mousemove', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Prevent text selection on decorative elements
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.matches('.float-element, button, .spec-label, .tech-label')) {
+                e.preventDefault();
+            }
+        });
+
+        // Simulate loading video preview after 2 seconds
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const placeholder = document.querySelector('.video-placeholder');
+                if (placeholder) {
+                    // In production, replace with actual video
+                    placeholder.innerHTML = `
+                        <span>Video Preview Playing</span>
+                        <span class="preview-text">720p Preview Mode</span>
+                    `;
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

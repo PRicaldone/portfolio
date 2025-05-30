@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - P.Ricaldone</title>
+    <style>
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables */
+        :root {
+            --text-primary: #fff;
+            --text-secondary: #aaa;
+            --text-tertiary: #666;
+            --bg: #0a0a0a;
+            --accent: #fff;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-out: cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        /* Light mode colors */
+        [data-theme="light"] {
+            --text-primary: #000;
+            --text-secondary: #666;
+            --text-tertiary: #999;
+            --bg: #fafafa;
+            --accent: #000;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.6s var(--transition-smooth),
+                        color 0.6s var(--transition-smooth);
+        }
+
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+
+        a, button {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s var(--transition-smooth),
+                       opacity 0.15s var(--transition-smooth);
+        }
+
+        [data-theme="light"] .cursor-dot {
+            background: #000;
+            mix-blend-mode: normal;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 2rem 3rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .lang-toggle button {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            padding: 0.25rem 0.5rem;
+            transition: color 0.3s ease;
+            font-family: inherit;
+            letter-spacing: inherit;
+            text-transform: uppercase;
+        }
+
+        .lang-toggle button:hover {
+            color: var(--text-secondary);
+        }
+
+        .lang-toggle button.active {
+            color: var(--text-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--text-tertiary);
+            width: 44px;
+            height: 24px;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle-ball {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: transform 0.3s var(--transition-smooth);
+        }
+
+        [data-theme="light"] .theme-toggle-ball {
+            transform: translateX(20px);
+        }
+
+        /* Main Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem;
+        }
+
+        /* Contact Layout */
+        .contact-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1px 2fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        /* Left Side - Direct Contact */
+        .contact-direct {
+            opacity: 0;
+            animation: fadeInLeft 1.2s ease forwards;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 200;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        /* Contact Items */
+        .contact-item {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-primary);
+            transition: width 0.3s var(--transition-smooth);
+        }
+
+        .contact-link:hover {
+            color: var(--text-primary);
+        }
+
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hover reveal info */
+        .contact-item .hover-info {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            margin-top: 0.5rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            font-style: italic;
+        }
+
+        .contact-item:hover .contact-label {
+            color: var(--text-secondary);
+        }
+
+        .contact-item:hover .hover-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Vertical Separator */
+        .separator {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                var(--text-tertiary) 20%, 
+                var(--text-tertiary) 80%, 
+                transparent);
+            opacity: 0.2;
+        }
+
+        /* Right Side - Other Contacts */
+        .contact-sections {
+            display: grid;
+            gap: 4rem;
+            opacity: 0;
+            animation: fadeInRight 1.2s ease 0.3s forwards;
+        }
+
+        .contact-section {
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            transition: transform 0.5s var(--transition-smooth);
+        }
+
+        [data-theme="light"] .contact-section {
+            border-bottom-color: rgba(0,0,0,0.05);
+        }
+
+        .contact-section:last-child {
+            border-bottom: none;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 2px;
+            height: 0;
+            background: var(--text-tertiary);
+            opacity: 0.3;
+            transition: height 0.6s var(--transition-smooth);
+        }
+
+        .contact-section:hover::before {
+            height: 100%;
+        }
+
+        .contact-section:hover {
+            transform: translateX(10px);
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .section-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link::before {
+            content: '↗';
+            opacity: 0;
+            transform: translate(-5px, 5px);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            transform: translate(3px, -3px);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* Commission Note */
+        .commission-note {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-left: 2px solid var(--text-tertiary);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        [data-theme="light"] .commission-note {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .contact-section:hover .commission-note {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--text-tertiary);
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-bottom-color: var(--text-secondary);
+        }
+
+        .newsletter-input:focus::placeholder {
+            opacity: 0.5;
+        }
+
+        .newsletter-submit {
+            background: transparent;
+            border: 1px solid var(--text-tertiary);
+            padding: 0.75rem 2rem;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-submit:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.03);
+        }
+
+        [data-theme="light"] .newsletter-submit:hover {
+            background: rgba(0,0,0,0.03);
+        }
+
+        .submit-text,
+        .submit-success {
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .submit-success {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(20px);
+            opacity: 0;
+            color: #4CAF50;
+        }
+
+        .newsletter-form.success .submit-text {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .newsletter-form.success .submit-success {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+        }
+
+        .newsletter-form.success .newsletter-submit {
+            border-color: #4CAF50;
+            pointer-events: none;
+        }
+
+        .newsletter-note {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-section:hover .newsletter-note {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Newsletter shake animation for error */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .newsletter-form.error {
+            animation: shake 0.5s ease;
+        }
+
+        .newsletter-form.error .newsletter-input {
+            border-bottom-color: #f44336;
+        }
+
+        /* Floating elements */
+        .float-accent {
+            position: absolute;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--text-tertiary), transparent);
+            opacity: 0.3;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .float-accent-1 {
+            top: 20%;
+            right: -100px;
+        }
+
+        .float-accent-2 {
+            bottom: 30%;
+            left: -80px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .separator {
+                display: none;
+            }
+
+            .contact-section::before {
+                display: none;
+            }
+
+            .contact-section:hover {
+                transform: none;
+            }
+
+            .float-accent {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-right {
+                gap: 1.5rem;
+            }
+
+            .logo {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .contact-link {
+                font-size: 1.125rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .commission-note {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-submit {
+                width: 100%;
+            }
+
+            .newsletter-note {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* No selection for decorative elements */
+        .logo, button, .float-accent, .contact-label {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="../index.html" class="logo">P. RICALDONE</a>
+            <div class="nav-right">
+                <div class="lang-toggle">
+                    <button onclick="window.location.href='../contact.html'">EN</button>
+                    <button class="active">IT</button>
+                </div>
+                <div class="nav-links">
+                    <a href="works.html">Opere</a>
+                    <a href="about.html">Chi sono</a>
+                    <a href="contact.html" class="active">Contatti</a>
+                </div>
+                <button class="theme-toggle" aria-label="Cambia tema">
+                    <div class="theme-toggle-ball"></div>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="contact-content">
+            <!-- Left: Direct Contact -->
+            <div class="contact-direct">
+                <h1 class="section-title">Contattami</h1>
+                
+                <div class="contact-item" style="--delay: 1">
+                    <div class="contact-label">Per Collezionisti</div>
+                    <a href="mailto:collect@p.ricaldone.art" class="contact-link">collect@p.ricaldone.art</a>
+                    <div class="hover-info">Richieste per opere disponibili e acquisizioni</div>
+                </div>
+
+                <div class="contact-item" style="--delay: 2">
+                    <div class="contact-label">Collaborazioni</div>
+                    <a href="mailto:studio@p.ricaldone.art" class="contact-link">studio@p.ricaldone.art</a>
+                    <div class="hover-info">Progetti creativi ed esposizioni</div>
+                </div>
+
+                <div class="contact-item" style="--delay: 3">
+                    <div class="contact-label">Generale</div>
+                    <a href="mailto:hello@p.ricaldone.art" class="contact-link">hello@p.ricaldone.art</a>
+                    <div class="hover-info">Tutto il resto</div>
+                </div>
+            </div>
+
+            <!-- Separator -->
+            <div class="separator"></div>
+
+            <!-- Right: Sections -->
+            <div class="contact-sections">
+                <!-- NFT Marketplaces -->
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Marketplace NFT</h2>
+                    <p class="section-description">
+                        Visualizza e colleziona le mie video opere 1/1 sulle principali piattaforme NFT.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://foundation.app/@p.ricaldone" class="social-link">Foundation</a>
+                        <a href="https://superrare.com/p.ricaldone" class="social-link">SuperRare</a>
+                        <a href="https://objkt.com/profile/p.ricaldone" class="social-link">Objkt</a>
+                    </div>
+                </div>
+
+                <!-- Social Presence -->
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Presenza Social</h2>
+                    <p class="section-description">
+                        Segui per aggiornamenti sui nuovi drop e anteprime work-in-progress.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/p_ricaldone" class="social-link">Twitter / X</a>
+                        <a href="https://instagram.com/p.ricaldone.art" class="social-link">Instagram</a>
+                    </div>
+                </div>
+
+                <!-- Commissions -->
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Commissioni Personalizzate</h2>
+                    <p class="section-description">
+                        Occasionalmente accetto commissioni per video opere su misura che si allineano con la mia visione artistica.
+                    </p>
+                    <div class="commission-note">
+                        Ogni commissione è un'esplorazione unica. Includi il tuo concept e le tempistiche quando mi contatti.
+                    </div>
+                </div>
+
+                <!-- Press -->
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Stampa & Media</h2>
+                    <p class="section-description">
+                        Per interviste, articoli o utilizzo delle opere in pubblicazioni, contattami direttamente via email.
+                    </p>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Notifiche Drop</h2>
+                    <p class="section-description">
+                        Ricevi notifiche quando nuove opere vengono rilasciate. Aggiornamenti rari, solo per i drop.
+                    </p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input 
+                            type="email" 
+                            placeholder="tua@email.com" 
+                            class="newsletter-input"
+                            required
+                        >
+                        <button type="submit" class="newsletter-submit">
+                            <span class="submit-text">Avvisami</span>
+                            <span class="submit-success">✓ Iscritto</span>
+                        </button>
+                    </form>
+                    <div class="newsletter-note">
+                        Nessuno spam. Cancellati quando vuoi.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating accents -->
+            <div class="float-accent float-accent-1"></div>
+            <div class="float-accent float-accent-2"></div>
+        </div>
+    </div>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseout', (e) => {
+            if (!e.relatedTarget) {
+                cursor.style.opacity = '0';
+            }
+        });
+
+        document.addEventListener('mouseover', () => {
+            cursor.style.opacity = '1';
+        });
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('a, button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+
+        // Start with dark theme
+        html.setAttribute('data-theme', 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+        });
+
+        // Language Toggle functionality is handled inline
+
+        // Subtle parallax on floating elements
+        let ticking = false;
+        function updateParallax() {
+            const floatElements = document.querySelectorAll('.float-accent');
+            floatElements.forEach((el, index) => {
+                const x = (mouseX / window.innerWidth - 0.5) * 30 * (index + 1);
+                const y = (mouseY / window.innerHeight - 0.5) * 30 * (index + 1);
+                el.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            ticking = false;
+        }
+
+        document.addEventListener('mousemove', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Prevent text selection on decorative elements
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.matches('.float-accent, button, .contact-label')) {
+                e.preventDefault();
+            }
+        });
+
+        // Newsletter form handling
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const emailInput = newsletterForm.querySelector('.newsletter-input');
+                const email = emailInput.value;
+                
+                // Basic email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    newsletterForm.classList.add('error');
+                    setTimeout(() => {
+                        newsletterForm.classList.remove('error');
+                    }, 500);
+                    return;
+                }
+                
+                // Simulate subscription success
+                newsletterForm.classList.add('success');
+                emailInput.disabled = true;
+                
+                // In production, you would send the email to your backend here
+                console.log('Newsletter subscription for:', email);
+                
+                // Optional: Reset form after delay
+                setTimeout(() => {
+                    newsletterForm.classList.remove('success');
+                    emailInput.disabled = false;
+                    emailInput.value = '';
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
