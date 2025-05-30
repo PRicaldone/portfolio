@@ -893,40 +893,7 @@
             }
         });
 
-        // Newsletter form handling
-        const newsletterForm = document.getElementById('newsletterForm');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const emailInput = newsletterForm.querySelector('.newsletter-input');
-                const email = emailInput.value;
-                
-                // Basic email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    newsletterForm.classList.add('error');
-                    setTimeout(() => {
-                        newsletterForm.classList.remove('error');
-                    }, 500);
-                    return;
-                }
-                
-                // Simulate subscription success
-                newsletterForm.classList.add('success');
-                emailInput.disabled = true;
-                
-                // In production, you would send the email to your backend here
-                console.log('Newsletter subscription for:', email);
-                
-                // Optional: Reset form after delay
-                setTimeout(() => {
-                    newsletterForm.classList.remove('success');
-                    emailInput.disabled = false;
-                    emailInput.value = '';
-                }, 3000);
-            });
-        }
+        // Newsletter form handling - Disabled for Netlify
     </script>
 </body>
 </html>
