@@ -89,17 +89,27 @@
         }
 
         .logo {
-            font-size: 0.875rem;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s var(--transition-smooth);
+            opacity: 0.8;
         }
 
         .logo:hover {
-            color: var(--text-primary);
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        .logo img {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        /* Logo adapts to theme */
+        [data-theme="light"] .logo img {
+            filter: invert(1);
         }
 
         .nav-right {
@@ -474,8 +484,9 @@
                 gap: 1.5rem;
             }
 
-            .logo {
-                font-size: 0.75rem;
+            .logo img {
+                width: 20px;
+                height: 20px;
             }
 
             .text-line {
@@ -505,7 +516,9 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="index.html" class="logo">P. RICALDONE</a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="P." />
+            </a>
             <div class="nav-right">
                 <div class="lang-toggle">
                     <button class="active">EN</button>
