@@ -1,188 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - P.Ricaldone</title>
+    <title>Contatti - P.Ricaldone</title>
+    <script>const t=localStorage.getItem('pricaldone-theme');if(t)document.documentElement.setAttribute('data-theme',t);</script>
+    <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* Reset and Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* CSS Variables */
-        :root {
-            --text-primary: #fff;
-            --text-secondary: #aaa;
-            --text-tertiary: #666;
-            --bg: #0a0a0a;
-            --accent: #fff;
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-out: cubic-bezier(0, 0, 0.2, 1);
-        }
-
-        /* Light mode colors */
-        [data-theme="light"] {
-            --text-primary: #000;
-            --text-secondary: #666;
-            --text-tertiary: #999;
-            --bg: #fafafa;
-            --accent: #000;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.6s var(--transition-smooth),
-                        color 0.6s var(--transition-smooth);
-        }
-
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        a, button {
-            cursor: none;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: transform 0.15s var(--transition-smooth),
-                       opacity 0.15s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .cursor-dot {
-            background: #000;
-            mix-blend-mode: normal;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 2rem 3rem;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 0.875rem;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .logo:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .lang-toggle button {
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            padding: 0.25rem 0.5rem;
-            transition: color 0.3s ease;
-            font-family: inherit;
-            letter-spacing: inherit;
-            text-transform: uppercase;
-        }
-
-        .lang-toggle button:hover {
-            color: var(--text-secondary);
-        }
-
-        .lang-toggle button.active {
-            color: var(--text-primary);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--text-tertiary);
-            width: 44px;
-            height: 24px;
-            border-radius: 12px;
-            position: relative;
-            transition: all 0.3s ease;
-            margin-left: 1rem;
-        }
-
-        .theme-toggle-ball {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 16px;
-            height: 16px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            transition: transform 0.3s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .theme-toggle-ball {
-            transform: translateX(20px);
-        }
-
-        /* Main Container */
+        /* Contact Layout */
         .container {
             min-height: 100vh;
             display: flex;
@@ -191,7 +16,6 @@
             padding: 8rem 2rem;
         }
 
-        /* Contact Layout */
         .contact-content {
             max-width: 1200px;
             width: 100%;
@@ -260,7 +84,6 @@
             width: 100%;
         }
 
-        /* Hover reveal info */
         .contact-item .hover-info {
             font-size: 0.875rem;
             color: var(--text-tertiary);
@@ -284,10 +107,10 @@
         .separator {
             width: 1px;
             height: 100%;
-            background: linear-gradient(to bottom, 
-                transparent, 
-                var(--text-tertiary) 20%, 
-                var(--text-tertiary) 80%, 
+            background: linear-gradient(to bottom,
+                transparent,
+                var(--text-tertiary) 20%,
+                var(--text-tertiary) 80%,
                 transparent);
             opacity: 0.2;
         }
@@ -369,7 +192,7 @@
         }
 
         .social-link::before {
-            content: '↗';
+            content: '\2197';
             opacity: 0;
             transform: translate(-5px, 5px);
             transition: all 0.3s ease;
@@ -454,6 +277,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .newsletter-submit:hover {
@@ -511,7 +335,6 @@
             transform: translateY(0);
         }
 
-        /* Newsletter shake animation for error */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-10px); }
@@ -533,7 +356,7 @@
             height: 1px;
             background: linear-gradient(to right, transparent, var(--text-tertiary), transparent);
             opacity: 0.3;
-            animation: float 8s infinite ease-in-out;
+            animation: floatAccent 8s infinite ease-in-out;
         }
 
         .float-accent-1 {
@@ -547,44 +370,12 @@
             animation-delay: 4s;
         }
 
-        @keyframes float {
+        @keyframes floatAccent {
             0%, 100% {
                 transform: translateY(0) translateX(0);
             }
             50% {
                 transform: translateY(-20px) translateX(10px);
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
             }
         }
 
@@ -613,22 +404,6 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 1.5rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .nav-right {
-                gap: 1.5rem;
-            }
-
-            .logo {
-                font-size: 0.75rem;
-            }
-
             .section-title {
                 font-size: 2rem;
             }
@@ -666,7 +441,7 @@
         }
 
         /* No selection for decorative elements */
-        .logo, button, .float-accent, .contact-label {
+        .contact-label {
             user-select: none;
             -webkit-user-select: none;
         }
@@ -679,18 +454,18 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="index.html" class="logo">P. RICALDONE</a>
+            <a href="index.html" class="logo"><img src="../logo2.svg" alt="P.Ricaldone" /></a>
             <div class="nav-right">
                 <div class="lang-toggle">
-                    <button class="active">EN</button>
-                    <button>IT</button>
+                    <a href="../contact.html">EN</a>
+                    <a class="active">IT</a>
                 </div>
                 <div class="nav-links">
-                    <a href="works.html">Works</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html" class="active">Contact</a>
+                    <a href="works.html">Opere</a>
+                    <a href="about.html">Chi Sono</a>
+                    <a href="contact.html" class="active">Contatti</a>
                 </div>
-                <button class="theme-toggle" aria-label="Toggle theme">
+                <button class="theme-toggle" title="Cambia tema">
                     <div class="theme-toggle-ball"></div>
                 </button>
             </div>
@@ -703,7 +478,7 @@
             <!-- Left: Direct Contact -->
             <div class="contact-direct">
                 <h1 class="section-title">Get in Touch</h1>
-                
+
                 <div class="contact-item" style="--delay: 1">
                     <div class="contact-label">For Collectors</div>
                     <a href="mailto:collect@p.ricaldone.art" class="contact-link">collect@p.ricaldone.art</a>
@@ -742,17 +517,17 @@
                 </div>
 
                 <!-- Social Presence -->
-<div class="contact-section">
-    <h2 class="section-subtitle">Social Presence</h2>
-    <p class="section-description">
-        Follow for updates on new drops and work-in-progress previews.
-    </p>
-    <div class="social-links">
-        <a href="https://twitter.com/p_ricaldone" class="social-link">Twitter / X</a>
-        <a href="https://instagram.com/p.ricaldone.art" class="social-link">Instagram</a>
-        <a href="https://paragraph.xyz/@0x540ac29d0e4f354c24b940eb177804215bf0002f" class="social-link">Paragraph</a>
-    </div>
-</div>
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Social Presence</h2>
+                    <p class="section-description">
+                        Follow for updates on new drops and work-in-progress previews.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/p_ricaldone" class="social-link">Twitter / X</a>
+                        <a href="https://instagram.com/p.ricaldone.art" class="social-link">Instagram</a>
+                        <a href="https://paragraph.xyz/@0x540ac29d0e4f354c24b940eb177804215bf0002f" class="social-link">Paragraph</a>
+                    </div>
+                </div>
 
                 <!-- Commissions -->
                 <div class="contact-section">
@@ -773,127 +548,54 @@
                     </p>
                 </div>
 
-<!-- Newsletter -->
-<div class="contact-section">
-    <h2 class="section-subtitle">Follow</h2>
-    <form class="newsletter-form" id="newsletterForm" data-netlify="true" name="newsletter" method="POST">
-        <input 
-            type="email" 
-            name="email"
-            placeholder="your@email.com" 
-            class="newsletter-input" 
-            required
-        >
-        <button type="submit" class="newsletter-submit">
-            <span class="submit-text">→</span>
-        </button>
-    </form>
-</div>
-</div>
+                <!-- Newsletter -->
+                <div class="contact-section">
+                    <h2 class="section-subtitle">Follow</h2>
+                    <form class="newsletter-form" id="newsletterForm" data-netlify="true" name="newsletter" method="POST">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="your@email.com"
+                            class="newsletter-input"
+                            required
+                        >
+                        <button type="submit" class="newsletter-submit">
+                            <span class="submit-text">&rarr;</span>
+                        </button>
+                    </form>
+                </div>
             </div>
-
-            <!-- Floating accents -->
-            <div class="float-accent float-accent-1"></div>
-            <div class="float-accent float-accent-2"></div>
         </div>
+
+        <!-- Floating accents -->
+        <div class="float-accent float-accent-1"></div>
+        <div class="float-accent float-accent-2"></div>
     </div>
 
+    <script src="../js/main.js"></script>
     <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor-dot');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
+        // Contact page: parallax on floating elements
+        (function() {
+            let mouseX = 0, mouseY = 0;
+            let ticking = false;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Hide cursor when leaving window
-        document.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget) {
-                cursor.style.opacity = '0';
-            }
-        });
-
-        document.addEventListener('mouseover', () => {
-            cursor.style.opacity = '1';
-        });
-
-        // Hover effects
-        const hoverElements = document.querySelectorAll('a, button');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-            });
-        });
-
-        // Theme toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const html = document.documentElement;
-
-        // Start with dark theme
-        html.setAttribute('data-theme', 'dark');
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-        });
-
-        // Language Toggle functionality
-        const langButtons = document.querySelectorAll('.lang-toggle button');
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const lang = button.textContent;
-                if (lang === 'IT') {
-                    window.location.href = 'it/contact.html';
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const floatElements = document.querySelectorAll('.float-accent');
+                        floatElements.forEach((el, index) => {
+                            const x = (mouseX / window.innerWidth - 0.5) * 30 * (index + 1);
+                            const y = (mouseY / window.innerHeight - 0.5) * 30 * (index + 1);
+                            el.style.transform = `translate(${x}px, ${y}px)`;
+                        });
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
             });
-        });
-
-        // Subtle parallax on floating elements
-        let ticking = false;
-        function updateParallax() {
-            const floatElements = document.querySelectorAll('.float-accent');
-            floatElements.forEach((el, index) => {
-                const x = (mouseX / window.innerWidth - 0.5) * 30 * (index + 1);
-                const y = (mouseY / window.innerHeight - 0.5) * 30 * (index + 1);
-                el.style.transform = `translate(${x}px, ${y}px)`;
-            });
-            ticking = false;
-        }
-
-        document.addEventListener('mousemove', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
-
-        // Prevent text selection on decorative elements
-        document.addEventListener('selectstart', (e) => {
-            if (e.target.matches('.float-accent, button, .contact-label')) {
-                e.preventDefault();
-            }
-        });
-
-        // Newsletter form handling - Disabled for Netlify
+        })();
     </script>
 </body>
 </html>
