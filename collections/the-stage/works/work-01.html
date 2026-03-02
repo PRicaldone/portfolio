@@ -4,187 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Speaking Wall - Process & Details - P.Ricaldone</title>
+    <meta name="description" content="The Speaking Wall - Where silence carves its own language. Video art by Paolo Ricaldone from The Stage collection.">
+    <meta name="author" content="Paolo Ricaldone">
+    <meta property="og:title" content="The Speaking Wall - P.Ricaldone">
+    <meta property="og:description" content="The Speaking Wall - Where silence carves its own language. Video art from The Stage collection.">
+    <meta property="og:type" content="website">
+    <script>const t=localStorage.getItem('pricaldone-theme');if(t)document.documentElement.setAttribute('data-theme',t);</script>
+    <link rel="stylesheet" href="../../../css/style.css">
     <style>
-        /* Reset and Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* CSS Variables */
-        :root {
-            --text-primary: #fff;
-            --text-secondary: #aaa;
-            --text-tertiary: #666;
-            --bg: #0a0a0a;
-            --accent: #fff;
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-out: cubic-bezier(0, 0, 0.2, 1);
-        }
-
-        /* Light mode colors */
-        [data-theme="light"] {
-            --text-primary: #000;
-            --text-secondary: #666;
-            --text-tertiary: #999;
-            --bg: #fafafa;
-            --accent: #000;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.6s var(--transition-smooth),
-                        color 0.6s var(--transition-smooth);
-        }
-
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        a, button {
-            cursor: none;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: transform 0.15s var(--transition-smooth),
-                       opacity 0.15s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .cursor-dot {
-            background: #000;
-            mix-blend-mode: normal;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
-        }
-
-        /* Header */
+        /* Header gradient overlay */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 2rem 3rem;
             background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 80%, transparent 100%);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .logo {
-            font-size: 0.875rem;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .logo:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .lang-toggle button {
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            padding: 0.25rem 0.5rem;
-            transition: color 0.3s ease;
-            font-family: inherit;
-            letter-spacing: inherit;
-            text-transform: uppercase;
-        }
-
-        .lang-toggle button:hover {
-            color: var(--text-secondary);
-        }
-
-        .lang-toggle button.active {
-            color: var(--text-primary);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--text-tertiary);
-            width: 44px;
-            height: 24px;
-            border-radius: 12px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle-ball {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 16px;
-            height: 16px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            transition: transform 0.3s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .theme-toggle-ball {
-            transform: translateX(20px);
         }
 
         /* Main Container */
@@ -449,7 +279,7 @@
         }
 
         .view-hd-btn::after {
-            content: '→';
+            content: '\2192';
             transition: transform 0.3s ease;
         }
 
@@ -578,9 +408,8 @@
             font-size: 0.875rem;
             color: var(--text-secondary);
             line-height: 1.7;
-            transition: all 0.3s ease;
-            padding-left: 0;
             transition: padding-left 0.8s var(--transition-smooth), color 0.3s ease;
+            padding-left: 0;
         }
 
         .process-item:hover p {
@@ -691,10 +520,10 @@
 
         /* Gentle pulse animation */
         @keyframes gentlePulse {
-            0%, 100% { 
+            0%, 100% {
                 box-shadow: 0 0 0 0 rgba(255,255,255,0.12);
             }
-            50% { 
+            50% {
                 box-shadow: 0 0 25px 8px rgba(255,255,255,0.08);
             }
         }
@@ -724,10 +553,10 @@
         }
 
         @keyframes gentlePulseDark {
-            0%, 100% { 
+            0%, 100% {
                 box-shadow: 0 0 0 0 rgba(0,0,0,0.12);
             }
-            50% { 
+            50% {
                 box-shadow: 0 0 25px 8px rgba(0,0,0,0.08);
             }
         }
@@ -944,7 +773,7 @@
         }
 
         .nav-link.prev::before {
-            content: '←';
+            content: '\2190';
             transition: transform 0.3s ease;
         }
 
@@ -953,7 +782,7 @@
         }
 
         .nav-link.next::after {
-            content: '→';
+            content: '\2192';
             transition: transform 0.3s ease;
         }
 
@@ -961,46 +790,7 @@
             transform: translateX(3px);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
+        /* Page-specific keyframes */
         @keyframes fadeInScale {
             from {
                 opacity: 0;
@@ -1063,7 +853,7 @@
             opacity: 0;
             top: 50%;
             right: 5%;
-            animation: 
+            animation:
                 fadeInFloat 2s ease forwards 2s,
                 float 10s infinite ease-in-out 2s;
         }
@@ -1145,7 +935,7 @@
                 gap: 1.5rem;
                 justify-content: center;
             }
-            
+
             .benefit-item {
                 font-size: 0.7rem;
             }
@@ -1212,7 +1002,7 @@
             .video-container {
                 max-width: 100%;
             }
-            
+
             .hd-notice {
                 padding: 1.5rem;
             }
@@ -1235,22 +1025,22 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="nav-left">
+            <a href="../../../index.html" class="logo">
+                <img src="../../../logo2.svg" alt="P.Ricaldone" />
+            </a>
+            <div class="nav-right">
+                <div class="lang-toggle">
+                    <a class="active">EN</a>
+                    <a href="work-01_it.html">IT</a>
+                </div>
+                <div class="nav-links">
+                    <a href="../../../works.html" class="active">Works</a>
+                    <a href="../../../about.html">About</a>
+                    <a href="../../../contact.html">Contact</a>
+                </div>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     <div class="theme-toggle-ball"></div>
                 </button>
-                <a href="../../../../../index.html" class="logo">P. RICALDONE</a>
-            </div>
-            <div class="nav-right">
-                <div class="lang-toggle">
-                    <button class="active">EN</button>
-                    <button onclick="window.location.href='work-01_it.html'">IT</button>
-                </div>
-                <div class="nav-links">
-                    <a href="../../../../works.html">Works</a>
-                    <a href="../../../../about.html">About</a>
-                    <a href="../../../../contact.html">Contact</a>
-                </div>
             </div>
         </nav>
     </header>
@@ -1259,11 +1049,9 @@
     <div class="container">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <a href="../../../../works.html">Works</a>
+            <a href="../../../works.html">Works</a>
             <span>/</span>
-            <a href="#">Collections</a>
-            <span>/</span>
-            <a href="../../">The Stage</a>
+            <a href="../index.html">The Stage</a>
             <span>/</span>
             The Speaking Wall
         </div>
@@ -1280,13 +1068,13 @@
             <div class="video-container">
                 <!-- Quality Badge -->
                 <div class="quality-badge">PREVIEW 720p</div>
-                
+
                 <!-- Video Placeholder -->
                 <div class="video-placeholder">
                     <span>Video Preview</span>
                     <span class="preview-text">Full 4K available for collectors</span>
                 </div>
-                
+
                 <!-- HD Notice on Hover -->
                 <div class="hd-notice">
                     <h3>View in Full 4K Resolution</h3>
@@ -1329,19 +1117,19 @@
             <div class="benefits-line">
                 <span class="benefits-label">Collector exclusive:</span>
                 <div class="benefit-item">
-                    <span class="benefit-icon">◆</span>
+                    <span class="benefit-icon">&#9670;</span>
                     <span>4K Original</span>
                 </div>
                 <div class="benefit-item">
-                    <span class="benefit-icon">◆</span>
+                    <span class="benefit-icon">&#9670;</span>
                     <span>Uncompressed</span>
                 </div>
                 <div class="benefit-item">
-                    <span class="benefit-icon">◆</span>
+                    <span class="benefit-icon">&#9670;</span>
                     <span>Download Rights</span>
                 </div>
                 <div class="benefit-item">
-                    <span class="benefit-icon">◆</span>
+                    <span class="benefit-icon">&#9670;</span>
                     <span>Certificate</span>
                 </div>
             </div>
@@ -1389,7 +1177,7 @@
                 </div>
                 <div class="tech-item" style="--tech-delay: 4">
                     <div class="tech-label">Resolution</div>
-                    <div class="tech-value">3840 × 2160 (4K)</div>
+                    <div class="tech-value">3840 &times; 2160 (4K)</div>
                 </div>
                 <div class="tech-item" style="--tech-delay: 5">
                     <div class="tech-label">Frame Rate</div>
@@ -1414,7 +1202,7 @@
         <div class="action-section">
             <!-- Navigation -->
             <div class="back-nav">
-                <a href="../../" class="nav-link prev"><span>The Stage Collection</span></a>
+                <a href="../index.html" class="nav-link prev"><span>The Stage Collection</span></a>
                 <a href="work-02.html" class="nav-link next"><span>Next: Dead Weight</span></a>
             </div>
         </div>
@@ -1422,19 +1210,19 @@
 
     <!-- Modal HD -->
     <div class="hd-modal" id="hdModal">
-        <button class="modal-close" onclick="closeHDModal()">×</button>
+        <button class="modal-close" onclick="closeHDModal()">&#215;</button>
         <div class="modal-content">
             <h2 style="font-size: 2rem; font-weight: 300; margin-bottom: 1.5rem;">
                 Unlock the Full Experience
             </h2>
             <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8;">
-                The full 4K version of "The Speaking Wall" is exclusively available to the NFT owner. 
-                Acquire this unique 1/1 piece to access the complete, uncompressed artwork in its 
+                The full 4K version of "The Speaking Wall" is exclusively available to the NFT owner.
+                Acquire this unique 1/1 piece to access the complete, uncompressed artwork in its
                 highest quality.
             </p>
             <div style="display: flex; gap: 1rem; justify-content: center;">
                 <a href="#" class="btn-primary">Acquire on Foundation</a>
-                <button class="btn btn-secondary" onclick="closeHDModal()" 
+                <button class="btn btn-secondary" onclick="closeHDModal()"
                     style="padding: 1rem 2.5rem; background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease;">
                     Close
                 </button>
@@ -1442,151 +1230,6 @@
         </div>
     </div>
 
-    <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor-dot');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Hide cursor when leaving window
-        document.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget) {
-                cursor.style.opacity = '0';
-            }
-        });
-
-        document.addEventListener('mouseover', () => {
-            cursor.style.opacity = '1';
-        });
-
-        // Hover effects
-        const hoverElements = document.querySelectorAll('a, button');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-            });
-        });
-
-        // Theme toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const html = document.documentElement;
-
-        // Start with dark theme
-        html.setAttribute('data-theme', 'dark');
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-        });
-
-        // HD Modal functions
-        function showHDModal(e) {
-            e.preventDefault();
-            const modal = document.getElementById('hdModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeHDModal() {
-            const modal = document.getElementById('hdModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Close modal with ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeHDModal();
-            }
-        });
-
-        // Close modal clicking outside
-        document.getElementById('hdModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                closeHDModal();
-            }
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.style.animation) {
-                    entry.target.style.opacity = '0';
-                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        // Observe sections
-        document.querySelectorAll('.frames-section, .action-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Subtle parallax on mouse move
-        let ticking = false;
-        function updateParallax() {
-            const floatElement = document.querySelector('.float-element');
-            if (floatElement) {
-                const x = (mouseX / window.innerWidth - 0.5) * 20;
-                const y = (mouseY / window.innerHeight - 0.5) * 20;
-                floatElement.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            }
-            ticking = false;
-        }
-
-        document.addEventListener('mousemove', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
-
-        // Prevent text selection on decorative elements
-        document.addEventListener('selectstart', (e) => {
-            if (e.target.matches('.float-element, button, .spec-label, .tech-label')) {
-                e.preventDefault();
-            }
-        });
-
-        // Simulate loading video preview after 2 seconds
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const placeholder = document.querySelector('.video-placeholder');
-                if (placeholder) {
-                    // In production, replace with actual video
-                    placeholder.innerHTML = `
-                        <span>Video Preview Playing</span>
-                        <span class="preview-text">720p Preview Mode</span>
-                    `;
-                }
-            }, 2000);
-        });
-    </script>
+    <script src="../../../js/main.js" defer></script>
 </body>
 </html>

@@ -3,220 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavori - P.Ricaldone</title>
+    <title>Opere - P.Ricaldone</title>
+    <script>const t=localStorage.getItem('pricaldone-theme');if(t)document.documentElement.setAttribute('data-theme',t);</script>
+    <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* Reset and Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* CSS Variables */
-        :root {
-            --text-primary: #fff;
-            --text-secondary: #aaa;
-            --text-tertiary: #666;
-            --bg: #0a0a0a;
-            --accent: #fff;
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-out: cubic-bezier(0, 0, 0.2, 1);
-        }
-
-        /* Light mode colors */
-        [data-theme="light"] {
-            --text-primary: #000;
-            --text-secondary: #666;
-            --text-tertiary: #999;
-            --bg: #fafafa;
-            --accent: #000;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.6s var(--transition-smooth),
-                        color 0.6s var(--transition-smooth);
-        }
-
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        a, button {
-            cursor: none;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: transform 0.15s var(--transition-smooth),
-                       opacity 0.15s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .cursor-dot {
-            background: #000;
-            mix-blend-mode: normal;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
-        }
-
-        /* Loading Animation */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s var(--transition-smooth);
-        }
-
-        .page-loader.loaded {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-text {
-            font-size: 0.875rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            opacity: 0;
-            animation: pulseText 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseText {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Header */
+        /* Works page: header with gradient background */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 2rem 3rem;
             background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 80%, transparent 100%);
             opacity: 0;
             transform: translateY(-20px);
             animation: fadeInDown 0.8s ease 0.5s forwards;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 0.875rem;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .logo:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .lang-toggle button {
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            padding: 0.25rem 0.5rem;
-            transition: color 0.3s ease;
-            font-family: inherit;
-            letter-spacing: inherit;
-            text-transform: uppercase;
-        }
-
-        .lang-toggle button:hover {
-            color: var(--text-secondary);
-        }
-
-        .lang-toggle button.active {
-            color: var(--text-primary);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--text-tertiary);
-            width: 44px;
-            height: 24px;
-            border-radius: 12px;
-            position: relative;
-            transition: all 0.3s ease;
-            margin-left: 1rem;
-        }
-
-        .theme-toggle-ball {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 16px;
-            height: 16px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            transition: transform 0.3s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .theme-toggle-ball {
-            transform: translateX(20px);
         }
 
         /* Main Container */
@@ -261,7 +57,6 @@
             position: relative;
         }
 
-        /* Grid background effect */
         .works-grid::before {
             content: '';
             position: absolute;
@@ -330,7 +125,6 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
 
-        /* Collections Card - Spans 2 columns */
         .work-card.collections {
             grid-column: span 2;
         }
@@ -376,10 +170,10 @@
             font-size: 1.125rem;
             overflow: hidden;
             opacity: 0;
-            animation: fadeInLeft 0.5s ease calc(var(--card-index) * 0.15s + 1.5s + var(--link-index) * 0.1s) forwards;
+            animation: fadeInLeftCard 0.5s ease calc(var(--card-index) * 0.15s + 1.5s + var(--link-index) * 0.1s) forwards;
         }
 
-        @keyframes fadeInLeft {
+        @keyframes fadeInLeftCard {
             from {
                 opacity: 0;
                 transform: translateX(-20px);
@@ -397,26 +191,26 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
+            background: linear-gradient(90deg,
+                transparent,
                 rgba(255,255,255,0.05) 20%,
-                rgba(255,255,255,0.1) 50%, 
+                rgba(255,255,255,0.1) 50%,
                 rgba(255,255,255,0.05) 80%,
                 transparent);
             transition: left 1.2s var(--transition-smooth);
         }
 
         [data-theme="light"] .work-link::before {
-            background: linear-gradient(90deg, 
-                transparent, 
+            background: linear-gradient(90deg,
+                transparent,
                 rgba(0,0,0,0.03) 20%,
-                rgba(0,0,0,0.05) 50%, 
+                rgba(0,0,0,0.05) 50%,
                 rgba(0,0,0,0.03) 80%,
                 transparent);
         }
 
         .work-link::after {
-            content: '→';
+            content: '\2192';
             position: absolute;
             right: 1.5rem;
             top: 1.5rem;
@@ -477,17 +271,17 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255,255,255,0.1) 50%, 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255,255,255,0.1) 50%,
                 transparent);
             transition: left 1.2s var(--transition-smooth);
         }
 
         [data-theme="light"] .view-all::before {
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0,0,0,0.05) 50%, 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(0,0,0,0.05) 50%,
                 transparent);
         }
 
@@ -500,70 +294,10 @@
             gap: 1.5rem;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--text-tertiary);
-            opacity: 0;
-            animation: floatParticle 20s linear infinite;
-        }
-
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+        /* No selection */
+        .card-label {
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         /* Responsive */
@@ -574,10 +308,6 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 1.5rem;
-            }
-
             .container {
                 padding: 8rem 1.5rem 4rem;
             }
@@ -588,18 +318,6 @@
 
             .page-title h1 {
                 font-size: 2.5rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .nav-right {
-                gap: 1.5rem;
-            }
-
-            .logo {
-                font-size: 0.75rem;
             }
 
             .works-grid {
@@ -625,18 +343,12 @@
                 padding: 1.25rem 0;
             }
         }
-
-        /* No selection */
-        .card-label, .logo, button {
-            user-select: none;
-            -webkit-user-select: none;
-        }
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader">
-        <div class="loader-text">Caricamento</div>
+    <!-- Loading -->
+    <div class="loading">
+        <p class="loading-text">Caricamento</p>
     </div>
 
     <!-- Background Particles -->
@@ -648,17 +360,18 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="../index.html" class="logo">P. RICALDONE</a>
+            <a href="index.html" class="logo"><img src="../logo2.svg" alt="P.Ricaldone" /></a>
             <div class="nav-right">
                 <div class="lang-toggle">
-                    <button>EN</button>
-                    <button class="active">IT</button>
+                    <a href="../works.html">EN</a>
+                    <a class="active">IT</a>
                 </div>
                 <div class="nav-links">
-                    <a href="chi-sono.html">Chi Sono</a>
+                    <a href="works.html" class="active">Opere</a>
+                    <a href="about.html">Chi Sono</a>
                     <a href="contact.html">Contatti</a>
                 </div>
-                <button class="theme-toggle" aria-label="Cambia tema">
+                <button class="theme-toggle" title="Cambia tema">
                     <div class="theme-toggle-ball"></div>
                 </button>
             </div>
@@ -681,7 +394,7 @@
                     <h2 class="card-title">Serie Curate</h2>
                 </div>
                 <div class="card-works">
-                    <a href="../collections/the-stage/index.html" class="work-link" style="--link-index: 0">
+                    <a href="../collections/the-stage/index_it.html" class="work-link" style="--link-index: 0">
                         Il Palcoscenico – Atti di Silenzio Lucido
                         <div class="work-description">Una collezione di gesti, oggetti e silenzi sospesi al confine dell'invisibile.</div>
                     </a>
@@ -721,101 +434,6 @@
         </div>
     </div>
 
-    <script>
-        // Page loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelector('.page-loader').classList.add('loaded');
-            }, 800);
-        });
-
-        // Create background particles
-        const particlesContainer = document.querySelector('.particles');
-        const particleCount = 15;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 20}s`;
-            particle.style.animationDuration = `${20 + Math.random() * 10}s`;
-            particlesContainer.appendChild(particle);
-        }
-
-        // Custom cursor
-        const cursor = document.querySelector('.cursor-dot');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Hide cursor when leaving window
-        document.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget) {
-                cursor.style.opacity = '0';
-            }
-        });
-
-        document.addEventListener('mouseover', () => {
-            cursor.style.opacity = '1';
-        });
-
-        // Hover effects
-        const hoverElements = document.querySelectorAll('a, button');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-            });
-        });
-
-        // Theme toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const html = document.documentElement;
-
-        // Start with dark theme
-        html.setAttribute('data-theme', 'dark');
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-        });
-
-        // Language Toggle functionality
-        const langButtons = document.querySelectorAll('.lang-toggle button');
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const lang = button.textContent;
-                if (lang === 'EN') {
-                    window.location.href = '../works.html';
-                }
-            });
-        });
-
-        // Prevent text selection on decorative elements
-        document.addEventListener('selectstart', (e) => {
-            if (e.target.matches('.card-label, button')) {
-                e.preventDefault();
-            }
-        });
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

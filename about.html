@@ -4,193 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - P.Ricaldone</title>
+    <meta name="description" content="About Paolo Ricaldone. 1/1 NFT video artworks born from lived emotions.">
+    <meta name="author" content="Paolo Ricaldone">
+    <meta property="og:title" content="About - P.Ricaldone">
+    <meta property="og:description" content="About Paolo Ricaldone. 1/1 NFT video artworks born from lived emotions.">
+    <meta property="og:type" content="website">
+    <script>const t=localStorage.getItem('pricaldone-theme');if(t)document.documentElement.setAttribute('data-theme',t);</script>
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Reset and Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* CSS Variables */
-        :root {
-            --text-primary: #fff;
-            --text-secondary: #aaa;
-            --text-tertiary: #666;
-            --bg: #0a0a0a;
-            --accent: #fff;
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-out: cubic-bezier(0, 0, 0.2, 1);
-        }
-
-        /* Light mode colors */
-        [data-theme="light"] {
-            --text-primary: #000;
-            --text-secondary: #666;
-            --text-tertiary: #999;
-            --bg: #fafafa;
-            --accent: #000;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.6s var(--transition-smooth),
-                        color 0.6s var(--transition-smooth);
-        }
-
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        a, button {
-            cursor: none;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: transform 0.15s var(--transition-smooth),
-                       opacity 0.15s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .cursor-dot {
-            background: #000;
-            mix-blend-mode: normal;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 2rem 3rem;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.3s var(--transition-smooth);
-            opacity: 0.8;
-        }
-
-        .logo:hover {
-            opacity: 1;
-            transform: translateY(-1px);
-        }
-
-        .logo img {
-            width: 24px;
-            height: 24px;
-            transition: all 0.3s var(--transition-smooth);
-        }
-
-        /* Logo adapts to theme */
-        [data-theme="light"] .logo img {
-            filter: invert(1);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .lang-toggle button {
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            padding: 0.25rem 0.5rem;
-            transition: color 0.3s ease;
-            font-family: inherit;
-            letter-spacing: inherit;
-            text-transform: uppercase;
-        }
-
-        .lang-toggle button:hover {
-            color: var(--text-secondary);
-        }
-
-        .lang-toggle button.active {
-            color: var(--text-primary);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--text-tertiary);
-            width: 44px;
-            height: 24px;
-            border-radius: 12px;
-            position: relative;
-            transition: all 0.3s ease;
-            margin-left: 1rem;
-        }
-
-        .theme-toggle-ball {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 16px;
-            height: 16px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            transition: transform 0.3s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .theme-toggle-ball {
-            transform: translateX(20px);
-        }
+        /* ============================================
+           About page-specific styles
+           ============================================ */
 
         /* Main Container */
         .container {
@@ -278,7 +102,7 @@
 
         /* Highlight words */
         .highlight {
-            color: #b5b5b5;  /* Noticeably brighter than normal text (#aaa) but not too much */
+            color: #b5b5b5;
             font-weight: 400;
             position: relative;
             display: inline-block;
@@ -286,7 +110,7 @@
         }
 
         [data-theme="light"] .highlight {
-            color: #4a4a4a;  /* Noticeably darker than normal text (#666) */
+            color: #4a4a4a;
         }
 
         /* On hover, highlight words match the rest of the text */
@@ -375,18 +199,14 @@
             opacity: 0;
             top: 50%;
             right: -120px;
-            animation: 
+            animation:
                 fadeInFloat 2s ease forwards 2s,
                 float 10s infinite ease-in-out 2s;
         }
 
         @keyframes fadeInFloat {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 0.3;
-            }
+            from { opacity: 0; }
+            to { opacity: 0.3; }
         }
 
         @keyframes float {
@@ -398,39 +218,7 @@
             }
         }
 
-        /* Animations */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive */
+        /* Responsive — Tablet */
         @media (max-width: 968px) {
             .about-content {
                 grid-template-columns: 1fr;
@@ -471,24 +259,8 @@
             }
         }
 
+        /* Responsive — Mobile */
         @media (max-width: 768px) {
-            header {
-                padding: 1.5rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .nav-right {
-                gap: 1.5rem;
-            }
-
-            .logo img {
-                width: 20px;
-                height: 20px;
-            }
-
             .text-line {
                 font-size: 1.125rem;
             }
@@ -501,12 +273,6 @@
                 margin-top: 4rem;
             }
         }
-
-        /* No selection for decorative elements */
-        .logo, button, .float-element {
-            user-select: none;
-            -webkit-user-select: none;
-        }
     </style>
 </head>
 <body>
@@ -517,19 +283,19 @@
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="P." />
+                <img src="logo2.svg" alt="P.Ricaldone" />
             </a>
             <div class="nav-right">
                 <div class="lang-toggle">
-                    <button class="active">EN</button>
-                    <button>IT</button>
+                    <a class="active">EN</a>
+                    <a href="it/about.html">IT</a>
                 </div>
                 <div class="nav-links">
                     <a href="works.html">Works</a>
                     <a href="about.html" class="active">About</a>
                     <a href="contact.html">Contact</a>
                 </div>
-                <button class="theme-toggle" aria-label="Toggle theme">
+                <button class="theme-toggle" title="Toggle theme">
                     <div class="theme-toggle-ball"></div>
                 </button>
             </div>
@@ -546,7 +312,7 @@
                     Ricaldone
                 </h1>
             </div>
-            
+
             <!-- Right: Text -->
             <div class="text-section">
                 <div class="text-block">
@@ -555,134 +321,64 @@
                         but from <span class="highlight">emotions</span> that have passed through me.
                     </span>
                 </div>
-                
+
                 <div class="text-block">
                     <span class="text-line">
                         I create digital art to let these inner moments<br>
                         resonate as <span class="highlight">visual experiences</span>.
                     </span>
                 </div>
-                
+
                 <div class="text-block">
                     <span class="text-line">
                         I seek eyes willing to be <span class="highlight">touched</span>.
                     </span>
                 </div>
-                
+
                 <div class="text-block">
                     <span class="text-line">
                         I need to feel. When that stops happening,<br>
                         I shift direction — it's a <span class="highlight">sincere restlessness</span>.
                     </span>
                 </div>
-                
+
                 <div class="text-block">
                     <span class="text-line">
                         My 1/1 NFT video works are<br>
                         <span class="highlight">handcrafted with care</span>.
                     </span>
                 </div>
-                
+
                 <div class="signature">No AI</div>
-                
+
                 <div class="float-element"></div>
             </div>
         </div>
     </div>
 
+    <script src="js/main.js" defer></script>
     <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor-dot');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
+        // About page-specific: parallax on .float-element
+        document.addEventListener('DOMContentLoaded', () => {
+            let mouseX = 0, mouseY = 0;
+            let ticking = false;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Hide cursor when leaving window
-        document.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget) {
-                cursor.style.opacity = '0';
-            }
-        });
-
-        document.addEventListener('mouseover', () => {
-            cursor.style.opacity = '1';
-        });
-
-        // Hover effects
-        const hoverElements = document.querySelectorAll('a, button');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-            });
-        });
-
-        // Theme toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const html = document.documentElement;
-
-        // Start with dark theme
-        html.setAttribute('data-theme', 'dark');
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-        });
-
-        // Language Toggle functionality
-        const langButtons = document.querySelectorAll('.lang-toggle button');
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const lang = button.textContent;
-                if (lang === 'IT') {
-                    window.location.href = 'it/about.html';
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const floatElement = document.querySelector('.float-element');
+                        if (floatElement) {
+                            const x = (mouseX / window.innerWidth - 0.5) * 20;
+                            const y = (mouseY / window.innerHeight - 0.5) * 20;
+                            floatElement.style.transform = `translateX(${x}px) translateY(${y}px)`;
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
             });
-        });
-
-        // Subtle parallax on mouse move
-        let ticking = false;
-        function updateParallax() {
-            const floatElement = document.querySelector('.float-element');
-            if (floatElement) {
-                const x = (mouseX / window.innerWidth - 0.5) * 20;
-                const y = (mouseY / window.innerHeight - 0.5) * 20;
-                floatElement.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            }
-            ticking = false;
-        }
-
-        document.addEventListener('mousemove', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
-
-        // Prevent text selection on decorative elements
-        document.addEventListener('selectstart', (e) => {
-            if (e.target.matches('.float-element, button')) {
-                e.preventDefault();
-            }
         });
     </script>
 </body>
