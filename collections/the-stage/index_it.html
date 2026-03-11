@@ -260,6 +260,17 @@
             filter: blur(2px);
         }
 
+        .work-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .work-visual:hover img {
+            filter: blur(2px);
+        }
+
         /* Work Info */
         .work-info {
             display: flex;
@@ -570,7 +581,7 @@
             <!-- Work 1 -->
             <div class="work-item" style="--index: 0">
                 <div class="work-visual">
-                    <div class="video-placeholder">Anteprima Video</div>
+                    <img src="works/media/act-i-still.jpg" alt="I Have To — Act I" loading="lazy">
                 </div>
                 <div class="work-info">
                     <div class="work-number">ATTO I</div>
