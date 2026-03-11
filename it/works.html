@@ -238,6 +238,20 @@
             padding-left: 1.5rem;
         }
 
+        div.work-link {
+            cursor: default;
+        }
+
+        div.work-link::before,
+        div.work-link::after {
+            display: none;
+        }
+
+        div.work-link:hover {
+            color: var(--text-secondary);
+            padding-left: 0;
+        }
+
         .work-description {
             font-size: 0.875rem;
             color: var(--text-tertiary);
@@ -387,48 +401,50 @@
         </div>
 
         <div class="works-grid">
-            <!-- Collections -->
+            <!-- Latest Drop — Opera in Evidenza -->
             <div class="work-card collections" style="--card-index: 0">
+                <div>
+                    <div class="card-label">In Evidenza</div>
+                    <h2 class="card-title">Ultima Uscita</h2>
+                </div>
+                <div class="card-works">
+                    <a href="../collections/the-stage/works/work-01_it.html" class="work-link" style="--link-index: 0">
+                        Atto I — I Have To
+                        <div class="work-description">Il primo atto di The Stage. Una confessione muta che fugge prima che arrivino le parole.</div>
+                    </a>
+                    <a href="https://foundation.app/mint/eth/0xD4670E009095aBe0dF7a254C26FE502B590D87d3/4" class="view-all" target="_blank" rel="noopener">Colleziona su Foundation →</a>
+                </div>
+            </div>
+
+            <!-- Collezioni -->
+            <div class="work-card" style="--card-index: 1">
                 <div>
                     <div class="card-label">Collezioni</div>
                     <h2 class="card-title">Serie Curate</h2>
                 </div>
                 <div class="card-works">
                     <a href="../collections/the-stage/index_it.html" class="work-link" style="--link-index: 0">
-                        Il Palcoscenico – Atti di Silenzio Lucido
-                        <div class="work-description">Una collezione di gesti, oggetti e silenzi sospesi al confine dell'invisibile.</div>
+                        The Stage — Atti di Silenzio Lucido
+                        <div class="work-description">Una trilogia di video muti su Ethereum. Gesti, oggetti e silenzi sospesi al confine dell'invisibile.</div>
                     </a>
-                    <a href="../collections/one-voice-once/" class="work-link" style="--link-index: 1">
-                        Una Voce, Una Volta
-                        <div class="work-description">Opere nate da emozioni vissute una sola volta — mai replicate, mai ripetute.</div>
-                    </a>
-                    <a href="../collections/" class="view-all">Vedi tutte le collezioni →</a>
                 </div>
             </div>
 
-            <!-- Standalone Works -->
-            <div class="work-card" style="--card-index: 1">
-                <div>
-                    <div class="card-label">Autonome</div>
-                    <h2 class="card-title">Opere Singole</h2>
-                </div>
-                <div class="card-works">
-                    <a href="../standalone/isolated-visions/" class="work-link" style="--link-index: 0">
-                        Visioni Isolate
-                        <div class="work-description">Impulsi singolari. Frammenti che non appartengono a nessun coro.</div>
-                    </a>
-                    <a href="../standalone/" class="view-all">Esplora tutte →</a>
-                </div>
-            </div>
-
-            <!-- Coming Soon / Featured -->
+            <!-- Prossimamente -->
             <div class="work-card" style="--card-index: 2">
                 <div>
-                    <div class="card-label">In Evidenza</div>
-                    <h2 class="card-title">Ultima Uscita</h2>
+                    <div class="card-label">Prossimamente</div>
+                    <h2 class="card-title">In Lavorazione</h2>
                 </div>
                 <div class="card-works">
-                    <a href="../featured/" class="view-all">Prossimamente →</a>
+                    <div class="work-link" style="--link-index: 0; cursor: default;">
+                        Atto II — I Could
+                        <div class="work-description">Il secondo atto di The Stage. In produzione.</div>
+                    </div>
+                    <div class="work-link" style="--link-index: 1; cursor: default;">
+                        Atto III — Everything's Fine
+                        <div class="work-description">L'atto finale di The Stage. In produzione.</div>
+                    </div>
                 </div>
             </div>
         </div>

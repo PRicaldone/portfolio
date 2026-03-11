@@ -234,6 +234,20 @@
             padding-left: 1.5rem;
         }
 
+        div.work-link {
+            cursor: default;
+        }
+
+        div.work-link::before,
+        div.work-link::after {
+            display: none;
+        }
+
+        div.work-link:hover {
+            color: var(--text-secondary);
+            padding-left: 0;
+        }
+
         .work-description {
             font-size: 0.875rem;
             color: var(--text-tertiary);
@@ -383,48 +397,50 @@
         </div>
 
         <div class="works-grid">
-            <!-- Collections -->
+            <!-- Latest Drop — Featured Work -->
             <div class="work-card collections" style="--card-index: 0">
+                <div>
+                    <div class="card-label">Featured</div>
+                    <h2 class="card-title">Latest Drop</h2>
+                </div>
+                <div class="card-works">
+                    <a href="collections/the-stage/works/work-01.html" class="work-link" style="--link-index: 0">
+                        Act I — I Have To
+                        <div class="work-description">The first act of The Stage. A mute confession that escapes before words arrive.</div>
+                    </a>
+                    <a href="https://foundation.app/mint/eth/0xD4670E009095aBe0dF7a254C26FE502B590D87d3/4" class="view-all" target="_blank" rel="noopener">Collect on Foundation &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Collections -->
+            <div class="work-card" style="--card-index: 1">
                 <div>
                     <div class="card-label">Collections</div>
                     <h2 class="card-title">Curated Series</h2>
                 </div>
                 <div class="card-works">
                     <a href="collections/the-stage/index.html" class="work-link" style="--link-index: 0">
-                        The Stage – Acts of Lucid Silence
-                        <div class="work-description">A collection of gestures, objects and silences suspended at the edge of the invisible.</div>
+                        The Stage — Acts of Lucid Silence
+                        <div class="work-description">A trilogy of mute video works on Ethereum. Gestures, objects and silences suspended at the edge of the invisible.</div>
                     </a>
-                    <a href="collections/one-voice-once/" class="work-link" style="--link-index: 1">
-                        One Voice, Once
-                        <div class="work-description">Works born from emotions lived only once — never replicated, never repeated.</div>
-                    </a>
-                    <a href="collections/" class="view-all">View all collections &rarr;</a>
                 </div>
             </div>
 
-            <!-- Standalone Works -->
-            <div class="work-card" style="--card-index: 1">
-                <div>
-                    <div class="card-label">Standalone</div>
-                    <h2 class="card-title">Individual Works</h2>
-                </div>
-                <div class="card-works">
-                    <a href="standalone/isolated-visions/" class="work-link" style="--link-index: 0">
-                        Isolated Visions
-                        <div class="work-description">Singular impulses. Fragments that belong to no chorus.</div>
-                    </a>
-                    <a href="standalone/" class="view-all">Explore all &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Coming Soon / Featured -->
+            <!-- Coming Soon -->
             <div class="work-card" style="--card-index: 2">
                 <div>
-                    <div class="card-label">Featured</div>
-                    <h2 class="card-title">Latest Drop</h2>
+                    <div class="card-label">Coming Soon</div>
+                    <h2 class="card-title">In Progress</h2>
                 </div>
                 <div class="card-works">
-                    <a href="/featured/" class="view-all">Coming soon &rarr;</a>
+                    <div class="work-link" style="--link-index: 0; cursor: default;">
+                        Act II — I Could
+                        <div class="work-description">The second act of The Stage. In production.</div>
+                    </div>
+                    <div class="work-link" style="--link-index: 1; cursor: default;">
+                        Act III — Everything's Fine
+                        <div class="work-description">The final act of The Stage. In production.</div>
+                    </div>
                 </div>
             </div>
         </div>
