@@ -182,10 +182,11 @@ nav {
     width: 24px;
     height: 24px;
     transition: all 0.3s var(--transition-smooth);
+    filter: invert(1);
 }
 
 [data-theme="light"] .logo img {
-    filter: invert(1);
+    filter: none;
 }
 
 .nav-right {
