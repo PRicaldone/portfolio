@@ -547,81 +547,6 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
-        /* Frame Previews */
-        .frames-section {
-            margin-bottom: 10rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1s forwards;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .frames-section .section-title {
-            opacity: 0;
-            animation: fadeInLeft 1.2s ease 0.9s forwards;
-            padding-bottom: 1rem;
-        }
-
-        .frames-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .frame-item {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            background: #111;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            opacity: 0;
-            animation: fadeInScale 0.8s ease forwards;
-            animation-delay: calc(1.2s + var(--frame-delay) * 0.15s);
-        }
-
-        .frame-item:hover {
-            transform: scale(1.05);
-            z-index: 10;
-        }
-
-        .frame-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: var(--text-tertiary);
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            transition: all 0.5s ease;
-        }
-
-        .frame-item:hover .frame-placeholder {
-            filter: brightness(1.2);
-        }
-
-        .frame-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-
-        .frame-item:hover .frame-caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Technical Details */
         .tech-section {
             opacity: 0;
@@ -920,10 +845,6 @@
                 font-size: 0.7rem;
             }
 
-            .frames-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .float-element {
                 display: none;
             }
@@ -961,10 +882,6 @@
                 width: 100%;
                 text-align: center;
                 margin-top: 0;
-            }
-
-            .frames-grid {
-                grid-template-columns: 1fr;
             }
 
             .tech-grid {
@@ -1113,25 +1030,6 @@
                 </div>
             </div>
             <a href="https://foundation.app/mint/eth/0xD4670E009095aBe0dF7a254C26FE502B590D87d3/4" class="btn-primary" target="_blank" rel="noopener">Acquista su Foundation</a>
-        </div>
-
-        <!-- Frame Previews -->
-        <div class="frames-section">
-            <h2 class="section-title">Fotogrammi Chiave</h2>
-            <div class="frames-grid">
-                <div class="frame-item" style="--frame-delay: 0">
-                    <div class="frame-placeholder">Fotogramma 00:15</div>
-                    <div class="frame-caption">La prima lettera emerge</div>
-                </div>
-                <div class="frame-item" style="--frame-delay: 1">
-                    <div class="frame-placeholder">Fotogramma 01:23</div>
-                    <div class="frame-caption">Le parole iniziano a sovrapporsi</div>
-                </div>
-                <div class="frame-item" style="--frame-delay: 2">
-                    <div class="frame-placeholder">Fotogramma 02:41</div>
-                    <div class="frame-caption">Dissoluzione finale</div>
-                </div>
-            </div>
         </div>
 
         <!-- Technical Details -->
