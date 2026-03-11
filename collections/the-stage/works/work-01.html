@@ -131,8 +131,8 @@
 
         .video-container {
             position: relative;
-            background: #111;
-            aspect-ratio: 16 / 9;
+            background: #000;
+            aspect-ratio: 970 / 720;
             overflow: hidden;
             border-radius: 2px;
             max-width: 900px;
@@ -196,31 +196,11 @@
             50% { opacity: 1; }
         }
 
-        .video-placeholder {
+        .video-container video {
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: var(--text-tertiary);
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.5s ease;
-            position: relative;
-        }
-
-        .video-placeholder .preview-text {
-            font-size: 0.875rem;
-            margin-top: 1rem;
-            opacity: 0.7;
-        }
-
-        .video-container:hover .video-placeholder {
-            background: linear-gradient(135deg, #0f0f0f 0%, #222 100%);
-            color: var(--text-secondary);
+            object-fit: cover;
+            display: block;
         }
 
         /* HD Notice on Hover */
@@ -1069,11 +1049,10 @@
                 <!-- Quality Badge -->
                 <div class="quality-badge">PREVIEW 720p</div>
 
-                <!-- Video Placeholder -->
-                <div class="video-placeholder">
-                    <span>Video Preview</span>
-                    <span class="preview-text">Full 4K available for collectors</span>
-                </div>
+                <!-- Video -->
+                <video autoplay muted loop playsinline>
+                    <source src="media/PRicaldone_TheStage_ActI_WEB_970x720_25p_H264.mp4" type="video/mp4">
+                </video>
 
                 <!-- HD Notice on Hover -->
                 <div class="hd-notice">
