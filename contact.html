@@ -28,11 +28,12 @@
             display: grid;
             grid-template-columns: 1fr 1px 2fr;
             gap: 6rem;
-            align-items: start;
+            align-items: center;
         }
 
         /* Left Side - Direct Contact */
         .contact-direct {
+            text-align: right;
             opacity: 0;
             animation: fadeInLeft 1.2s ease forwards;
         }
@@ -40,30 +41,13 @@
         .section-title {
             font-size: 2.5rem;
             font-weight: 200;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             letter-spacing: -0.02em;
             color: var(--text-primary);
         }
 
-        /* Contact Items */
-        .contact-item {
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-            animation-delay: calc(var(--delay) * 0.2s);
-        }
-
-        .contact-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            margin-bottom: 0.75rem;
-            transition: color 0.3s ease;
-        }
-
         .contact-link {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.3s ease;
@@ -90,26 +74,6 @@
             width: 100%;
         }
 
-        /* Hover reveal info */
-        .contact-item .hover-info {
-            font-size: 0.875rem;
-            color: var(--text-tertiary);
-            margin-top: 0.5rem;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            font-style: italic;
-        }
-
-        .contact-item:hover .contact-label {
-            color: var(--text-secondary);
-        }
-
-        .contact-item:hover .hover-info {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Vertical Separator */
         .separator {
             width: 1px;
@@ -122,27 +86,17 @@
             opacity: 0.2;
         }
 
-        /* Right Side - Other Contacts */
+        /* Right Side - Links */
         .contact-sections {
             display: grid;
-            gap: 4rem;
+            gap: 3rem;
             opacity: 0;
             animation: fadeInRight 1.2s ease 0.3s forwards;
         }
 
         .contact-section {
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
             position: relative;
             transition: transform 0.5s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .contact-section {
-            border-bottom-color: rgba(0,0,0,0.05);
-        }
-
-        .contact-section:last-child {
-            border-bottom: none;
         }
 
         .contact-section::before {
@@ -166,83 +120,52 @@
         }
 
         .section-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 300;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
         }
 
         .section-description {
-            font-size: 1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 1.7;
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
         }
 
         /* Social Links */
         .social-links {
             display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
+            gap: 1.5rem;
+            align-items: center;
         }
 
         .social-link {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
             transition: all 0.3s ease;
-            position: relative;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
         }
 
-        .social-link::before {
-            content: '\2197';
-            opacity: 0;
-            transform: translate(-5px, 5px);
+        .social-link svg {
+            width: 22px;
+            height: 22px;
             transition: all 0.3s ease;
         }
 
         .social-link:hover {
             color: var(--text-primary);
-            transform: translate(3px, -3px);
         }
 
-        .social-link:hover::before {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
-
-        /* Commission Note */
-        .commission-note {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.02);
-            border-left: 2px solid var(--text-tertiary);
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.5s ease;
-        }
-
-        [data-theme="light"] .commission-note {
-            background: rgba(0,0,0,0.02);
-        }
-
-        .contact-section:hover .commission-note {
-            opacity: 1;
-            transform: translateX(0);
+        .social-link:hover svg {
+            transform: translateY(-2px);
         }
 
         /* Newsletter Form */
         .newsletter-form {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
             position: relative;
         }
 
@@ -268,10 +191,6 @@
             border-bottom-color: var(--text-secondary);
         }
 
-        .newsletter-input:focus::placeholder {
-            opacity: 0.5;
-        }
-
         .newsletter-submit {
             background: transparent;
             border: 1px solid var(--text-tertiary);
@@ -281,9 +200,8 @@
             text-transform: uppercase;
             color: var(--text-secondary);
             font-family: inherit;
+            cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .newsletter-submit:hover {
@@ -296,107 +214,15 @@
             background: rgba(0,0,0,0.03);
         }
 
-        .submit-text,
-        .submit-success {
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .submit-success {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) translateY(20px);
-            opacity: 0;
-            color: #4CAF50;
-        }
-
-        .newsletter-form.success .submit-text {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        .newsletter-form.success .submit-success {
-            opacity: 1;
-            transform: translate(-50%, -50%) translateY(0);
-        }
-
-        .newsletter-form.success .newsletter-submit {
-            border-color: #4CAF50;
-            pointer-events: none;
-        }
-
-        .newsletter-note {
-            margin-top: 0.75rem;
-            font-size: 0.75rem;
-            color: var(--text-tertiary);
-            font-style: italic;
-            opacity: 0;
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-        }
-
-        .contact-section:hover .newsletter-note {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Newsletter shake animation for error */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        .newsletter-form.error {
-            animation: shake 0.5s ease;
-        }
-
-        .newsletter-form.error .newsletter-input {
-            border-bottom-color: #f44336;
-        }
-
-        /* Floating elements */
-        .float-accent {
-            position: absolute;
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--text-tertiary), transparent);
-            opacity: 0.3;
-            animation: float 8s infinite ease-in-out;
-        }
-
-        .float-accent-1 {
-            top: 20%;
-            right: -100px;
-        }
-
-        .float-accent-2 {
-            bottom: 30%;
-            left: -80px;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-            }
-            50% {
-                transform: translateY(-20px) translateX(10px);
-            }
-        }
-
-        /* No selection for decorative elements */
-        .contact-label {
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
         /* Responsive */
         @media (max-width: 968px) {
             .contact-content {
                 grid-template-columns: 1fr;
                 gap: 4rem;
+            }
+
+            .contact-direct {
+                text-align: center;
             }
 
             .separator {
@@ -410,10 +236,6 @@
             .contact-section:hover {
                 transform: none;
             }
-
-            .float-accent {
-                display: none;
-            }
         }
 
         @media (max-width: 768px) {
@@ -421,22 +243,9 @@
                 font-size: 2rem;
             }
 
-            .section-subtitle {
-                font-size: 1.25rem;
-            }
-
-            .contact-link {
-                font-size: 1.125rem;
-            }
-
             .social-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .commission-note {
-                transform: translateX(0);
-                opacity: 1;
+                flex-wrap: wrap;
+                gap: 1.25rem;
             }
 
             .newsletter-form {
@@ -445,11 +254,6 @@
 
             .newsletter-submit {
                 width: 100%;
-            }
-
-            .newsletter-note {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
     </style>
@@ -485,120 +289,70 @@
             <!-- Left: Direct Contact -->
             <div class="contact-direct">
                 <h1 class="section-title">Get in Touch</h1>
-
-                <div class="contact-item" style="--delay: 1">
-                    <div class="contact-label">For Collectors</div>
-                    <a href="mailto:collect@p.ricaldone.art" class="contact-link">collect@p.ricaldone.art</a>
-                    <div class="hover-info">Inquiries about available works and acquisitions</div>
-                </div>
-
-                <div class="contact-item" style="--delay: 2">
-                    <div class="contact-label">Collaborations</div>
-                    <a href="mailto:studio@p.ricaldone.art" class="contact-link">studio@p.ricaldone.art</a>
-                    <div class="hover-info">Creative projects and exhibitions</div>
-                </div>
-
-                <div class="contact-item" style="--delay: 3">
-                    <div class="contact-label">General</div>
-                    <a href="mailto:hello@p.ricaldone.art" class="contact-link">hello@p.ricaldone.art</a>
-                    <div class="hover-info">Everything else</div>
-                </div>
+                <a href="mailto:pricaldone.art@gmail.com" class="contact-link">pricaldone.art@gmail.com</a>
             </div>
 
             <!-- Separator -->
             <div class="separator"></div>
 
-            <!-- Right: Sections -->
+            <!-- Right: Links -->
             <div class="contact-sections">
                 <!-- NFT Marketplaces -->
                 <div class="contact-section">
-                    <h2 class="section-subtitle">NFT Marketplaces</h2>
-                    <p class="section-description">
-                        View and collect my 1/1 video artworks on leading NFT platforms.
-                    </p>
+                    <h2 class="section-subtitle">Collect</h2>
                     <div class="social-links">
-                        <a href="https://foundation.app/@p.ricaldone" class="social-link">Foundation</a>
-                        <a href="https://superrare.com/p.ricaldone" class="social-link">SuperRare</a>
-                        <a href="https://objkt.com/profile/p.ricaldone" class="social-link">Objkt</a>
+                        <a href="https://foundation.app/@p.ricaldone" class="social-link" target="_blank" rel="noopener">Foundation</a>
                     </div>
                 </div>
 
                 <!-- Social Presence -->
                 <div class="contact-section">
-                    <h2 class="section-subtitle">Social Presence</h2>
-                    <p class="section-description">
-                        Follow for updates on new drops and work-in-progress previews.
-                    </p>
+                    <h2 class="section-subtitle">Follow</h2>
                     <div class="social-links">
-                        <a href="https://twitter.com/p_ricaldone" class="social-link">Twitter / X</a>
-                        <a href="https://instagram.com/p.ricaldone.art" class="social-link">Instagram</a>
-                        <a href="https://paragraph.xyz/@0x540ac29d0e4f354c24b940eb177804215bf0002f" class="social-link">Paragraph</a>
+                        <a href="https://instagram.com/p.ricaldone.art" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        </a>
+                        <a href="https://twitter.com/p_ricaldone" class="social-link" target="_blank" rel="noopener" aria-label="X">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pricaldone/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 110-4.128 2.064 2.064 0 010 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Farcaster">
+                            <svg viewBox="0 0 1000 1000" fill="currentColor"><path d="M257.778 155.556H742.222V844.445H671.111V528.889H670.414C662.554 441.677 589.258 373.333 500 373.333C410.742 373.333 337.446 441.677 329.586 528.889H328.889V844.445H257.778V155.556Z"/><path d="M128.889 253.333L157.778 155.556H842.222L871.111 253.333H128.889Z"/><path d="M128.889 253.333H200V844.445H128.889V253.333Z"/><path d="M800 253.333H871.111V844.445H800V253.333Z"/></svg>
+                        </a>
+                        <a href="https://hey.xyz/u/pricaldone" class="social-link" target="_blank" rel="noopener" aria-label="Lens">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.71c.17.05.34.09.51.13C9.5 20.22 12 21 15 21c3.87 0 7-3.13 7-7 0-5.43-2.61-8.46-3.82-9.64L17 3l-1.18 1.36C14.61 5.54 12 8.57 12 14c0 .73.13 1.42.36 2.06C11.17 15.23 10 14.32 10 12c0-3.62 3-6.93 7-8z"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@pricaldone.art" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                        </a>
+                        <a href="https://paragraph.com/pricaldone.eth" class="social-link" target="_blank" rel="noopener" aria-label="Paragraph">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 2c-3.31 0-6 2.69-6 6s2.69 6 6 6v8h2V4h2v18h2V4h2V2H10zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4v8z"/></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Commissions -->
                 <div class="contact-section">
-                    <h2 class="section-subtitle">Custom Commissions</h2>
+                    <h2 class="section-subtitle">Commissions</h2>
                     <p class="section-description">
-                        I occasionally accept commissions for bespoke video artworks that align with my artistic vision.
-                    </p>
-                    <div class="commission-note">
-                        Each commission is a unique exploration. Please include your concept and timeline when reaching out.
-                    </div>
-                </div>
-
-                <!-- Press -->
-                <div class="contact-section">
-                    <h2 class="section-subtitle">Press &amp; Media</h2>
-                    <p class="section-description">
-                        For interviews, features, or use of works in publications, please contact directly via email.
+                        Open to bespoke video artworks that align with my artistic vision.
                     </p>
                 </div>
 
                 <!-- Newsletter -->
                 <div class="contact-section">
-                    <h2 class="section-subtitle">Follow</h2>
+                    <h2 class="section-subtitle">Newsletter</h2>
                     <form class="newsletter-form" id="newsletterForm" data-netlify="true" name="newsletter" method="POST">
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="your@email.com"
-                            class="newsletter-input"
-                            required
-                        >
-                        <button type="submit" class="newsletter-submit">
-                            <span class="submit-text">&rarr;</span>
-                        </button>
+                        <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-submit">&rarr;</button>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- Floating accents -->
-        <div class="float-accent float-accent-1"></div>
-        <div class="float-accent float-accent-2"></div>
     </div>
 
     <script src="js/main.js" defer></script>
-    <script>
-        // Contact-specific: parallax on floating accents
-        document.addEventListener('DOMContentLoaded', () => {
-            let mouseX = 0, mouseY = 0, ticking = false;
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX; mouseY = e.clientY;
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        document.querySelectorAll('.float-accent').forEach((el, i) => {
-                            const x = (mouseX / window.innerWidth - 0.5) * 30 * (i + 1);
-                            const y = (mouseY / window.innerHeight - 0.5) * 30 * (i + 1);
-                            el.style.transform = `translate(${x}px, ${y}px)`;
-                        });
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-        });
-    </script>
 </body>
 </html>
