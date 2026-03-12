@@ -183,95 +183,10 @@
         }
 
         .work-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
             margin-bottom: 8rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards;
             animation-delay: calc(var(--index) * 0.1s + 0.4s);
-        }
-
-        .work-item:nth-child(even) {
-            direction: rtl;
-        }
-
-        .work-item:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        /* Video Preview Container */
-        .work-visual {
-            position: relative;
-            background: #111;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            border-radius: 2px;
-            transition: transform 0.5s var(--transition-smooth);
-        }
-
-        .work-item:hover .work-visual {
-            transform: scale(0.98);
-        }
-
-        .work-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.02) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 1.5s ease;
-        }
-
-        .work-visual:hover::before {
-            transform: translateX(100%);
-        }
-
-        /* Play button overlay */
-        .work-visual::after {
-            content: '\25B6';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            font-size: 2rem;
-            color: rgba(255,255,255,0.8);
-            transition: transform 0.3s ease;
-        }
-
-        .work-visual:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .video-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: var(--text-tertiary);
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.5s ease;
-        }
-
-        .work-visual:hover .video-placeholder {
-            background: linear-gradient(135deg, #0f0f0f 0%, #222 100%);
-            color: var(--text-secondary);
-            filter: blur(2px);
-        }
-
-        .work-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.5s ease;
-        }
-
-        .work-visual:hover img {
-            filter: blur(2px);
         }
 
         /* Work Info */
@@ -481,21 +396,6 @@
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
-            .work-item {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .work-item:nth-child(even) {
-                direction: ltr;
-            }
-
-            .work-visual {
-                order: -1;
-            }
-        }
-
         @media (max-width: 768px) {
             header {
                 padding: 1.5rem;
@@ -583,9 +483,6 @@
 
             <!-- Work 1 -->
             <div class="work-item" style="--index: 0">
-                <div class="work-visual">
-                    <div class="video-placeholder">Video Preview</div>
-                </div>
                 <div class="work-info">
                     <div class="work-number">ACT I</div>
                     <h3 class="work-title">I Have To</h3>
@@ -600,9 +497,6 @@
 
             <!-- Work 2 -->
             <div class="work-item" style="--index: 1">
-                <div class="work-visual">
-                    <div class="video-placeholder">Video Preview</div>
-                </div>
                 <div class="work-info">
                     <div class="work-number">ACT II</div>
                     <h3 class="work-title">I Could</h3>
@@ -614,9 +508,6 @@
 
             <!-- Work 3 -->
             <div class="work-item" style="--index: 2">
-                <div class="work-visual">
-                    <div class="video-placeholder">Video Preview</div>
-                </div>
                 <div class="work-info">
                     <div class="work-number">ACT III</div>
                     <h3 class="work-title">Everything's Fine</h3>
