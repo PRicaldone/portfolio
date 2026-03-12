@@ -66,8 +66,8 @@
 
         // Smooth animation loop
         function animate() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
+            cursorX += (mouseX - cursorX) * 0.5;
+            cursorY += (mouseY - cursorY) * 0.5;
             cursor.style.left = cursorX + 'px';
             cursor.style.top = cursorY + 'px';
             requestAnimationFrame(animate);
