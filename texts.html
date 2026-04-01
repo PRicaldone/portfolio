@@ -172,6 +172,42 @@
             font-style: italic;
         }
 
+        /* Hover effects on text body */
+        .entry-body {
+            position: relative;
+            padding-left: 0;
+            transition: all 0.5s var(--transition-smooth);
+        }
+
+        .entry-body::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--text-tertiary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .text-panel:hover .entry-body {
+            transform: translateX(0.5rem);
+        }
+
+        .text-panel:hover .entry-body::before {
+            opacity: 0.3;
+        }
+
+        /* Title hover */
+        .entry-title {
+            transition: transform 0.3s ease, letter-spacing 0.3s ease;
+        }
+
+        .text-panel:hover .entry-title {
+            transform: translateX(5px);
+        }
+
         .entry-body .voice {
             display: block;
             padding-left: 1.5rem;
@@ -255,6 +291,9 @@
     <div class="loading"><p class="loading-text">Loading</p></div>
     <div class="particles"></div>
     <div class="cursor-dot"></div>
+    <div class="glow"></div>
+    <div class="corner-detail top-left"></div>
+    <div class="corner-detail bottom-right"></div>
 
     <header>
         <nav>

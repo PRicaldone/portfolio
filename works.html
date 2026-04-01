@@ -82,6 +82,73 @@
             background: rgba(0,0,0,0.08);
         }
 
+        /* Hover highlight on text blocks */
+        .work-details {
+            position: relative;
+            padding-left: 0;
+            transition: all 0.5s var(--transition-smooth);
+        }
+
+        .work-details::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--text-tertiary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-block:hover .work-details {
+            color: var(--text-primary);
+            transform: translateX(0.5rem);
+        }
+
+        .work-block:hover .work-details::before {
+            opacity: 0.5;
+        }
+
+        /* Collection description hover */
+        .collection-description {
+            position: relative;
+            padding-left: 0;
+            transition: all 0.5s ease;
+        }
+
+        .collection-description::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--text-tertiary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .collection-header:hover .collection-description {
+            color: var(--text-primary);
+            transform: translateX(1rem);
+        }
+
+        .collection-header:hover .collection-description::before {
+            opacity: 0.5;
+        }
+
+        /* Title hover */
+        .work-block:hover .work-title {
+            transform: translateX(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .collection-header:hover .collection-title {
+            letter-spacing: 0.04em;
+            transition: letter-spacing 0.3s ease;
+        }
+
         /* Work Block */
         .work-block {
             margin-bottom: 5rem;
@@ -206,6 +273,13 @@
 
     <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
+
+    <!-- Subtle glow -->
+    <div class="glow"></div>
+
+    <!-- Corner Details -->
+    <div class="corner-detail top-left"></div>
+    <div class="corner-detail bottom-right"></div>
 
     <!-- Header -->
     <header>
