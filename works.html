@@ -9,13 +9,12 @@
     <meta property="og:title" content="Works - P.Ricaldone">
     <meta property="og:description" content="Selected video works by P.Ricaldone. 1/1 video art, crafted with care, on Ethereum.">
     <meta property="og:type" content="website">
-    <script>const t=localStorage.getItem('pricaldone-theme');if(t)document.documentElement.setAttribute('data-theme',t);</script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Page-specific: header gradient overlay */
+        /* Header gradient overlay */
         header {
             background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 80%, transparent 100%);
             opacity: 0;
@@ -27,13 +26,13 @@
         .container {
             min-height: 100vh;
             padding: 8rem 3rem 6rem;
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         /* Page Title */
         .page-title {
-            margin-bottom: 1.5rem;
+            margin-bottom: 4rem;
             opacity: 0;
             animation: fadeInUp 1s ease 0.8s forwards;
         }
@@ -46,313 +45,152 @@
             color: var(--text-primary);
         }
 
-        .page-subtitle {
+        /* Collection Header */
+        .collection-header {
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+        }
+
+        .collection-title {
+            font-size: 1.5rem;
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .collection-description {
             font-size: 1rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            position: relative;
-            display: inline-block;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 700px;
         }
 
-        /* Grid Layout */
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4px;
-            max-width: 100%;
+        /* Separator */
+        .separator {
             width: 100%;
-            position: relative;
-        }
-
-        /* Grid background effect */
-        .works-grid::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin-bottom: 4rem;
             opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
-            pointer-events: none;
+            animation: fadeIn 1s ease 1.2s forwards;
         }
 
-        [data-theme="light"] .works-grid::before {
-            background: linear-gradient(45deg, transparent 30%, rgba(0,0,0,0.03) 50%, transparent 70%);
+        [data-theme="light"] .separator {
+            background: rgba(0,0,0,0.08);
         }
 
-        /* Work Card */
-        .work-card {
-            background: var(--bg);
-            padding: 5rem 4rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s var(--transition-smooth);
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
+        /* Work Block */
+        .work-block {
+            margin-bottom: 5rem;
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            animation: cardReveal 0.8s var(--transition-smooth) forwards;
-            animation-delay: calc(var(--card-index) * 0.15s + 1s);
+            animation: fadeInUp 1s ease forwards;
         }
 
-        @keyframes cardReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+        .work-block:nth-child(1) { animation-delay: 1.3s; }
+        .work-block:nth-child(2) { animation-delay: 1.5s; }
+        .work-block:nth-child(3) { animation-delay: 1.7s; }
 
-        .work-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        [data-theme="light"] .work-card::before {
-            background: radial-gradient(circle at center, rgba(0,0,0,0.03) 0%, transparent 70%);
-        }
-
-        .work-card:hover::before {
-            opacity: 1;
-        }
-
-        .work-card:hover {
-            transform: translateY(0) scale(1.03);
-            z-index: 10;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        [data-theme="light"] .work-card:hover {
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        /* Collections Card - Spans 2 columns */
-        .work-card.collections {
-            grid-column: span 2;
-        }
-
-        /* Card Content */
-        .card-label {
+        .work-act {
             font-size: 0.7rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--text-tertiary);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeIn 0.5s ease calc(var(--card-index) * 0.15s + 1.3s) forwards;
+            margin-bottom: 0.5rem;
         }
 
-        .card-title {
-            font-size: 2.25rem;
-            font-weight: 100;
-            line-height: 1.2;
+        .work-title {
+            font-size: 2rem;
+            font-weight: 200;
             margin-bottom: 2rem;
             color: var(--text-primary);
-            transition: transform 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 0.5s ease calc(var(--card-index) * 0.15s + 1.4s) forwards;
+            line-height: 1.3;
         }
 
-        .work-card:hover .card-title {
-            transform: translateY(-5px);
-        }
-
-        .card-works {
-            margin-top: 2rem;
-        }
-
-        .work-link {
-            display: block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 1.5rem 0;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-            font-size: 1.125rem;
+        /* Vimeo Embed */
+        .video-embed {
+            margin-bottom: 2rem;
+            background: #000;
+            border-radius: 2px;
             overflow: hidden;
-            opacity: 0;
-            animation: fadeInLeft 0.5s ease calc(var(--card-index) * 0.15s + 1.5s + var(--link-index) * 0.1s) forwards;
         }
 
-        .work-link::before {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(255,255,255,0.05) 20%,
-                rgba(255,255,255,0.1) 50%,
-                rgba(255,255,255,0.05) 80%,
-                transparent);
-            transition: left 1.2s var(--transition-smooth);
-        }
-
-        [data-theme="light"] .work-link::before {
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(0,0,0,0.03) 20%,
-                rgba(0,0,0,0.05) 50%,
-                rgba(0,0,0,0.03) 80%,
-                transparent);
-        }
-
-        .work-link::after {
-            content: '\2192';
-            position: absolute;
-            right: 1.5rem;
-            top: 1.5rem;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
+        /* Technical Details */
+        .work-details {
+            font-size: 0.85rem;
+            line-height: 1.8;
             color: var(--text-secondary);
+            font-weight: 300;
         }
 
-        .work-link:hover::before {
-            left: 100%;
+        .work-details p {
+            margin: 0;
         }
 
-        .work-link:hover::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        [data-theme="light"] .work-link {
-            border-top-color: rgba(0,0,0,0.08);
-        }
-
-        .work-link:hover {
-            color: var(--text-primary);
-            padding-left: 1.5rem;
-        }
-
-        div.work-link {
-            cursor: default;
-        }
-
-        div.work-link::before,
-        div.work-link::after {
-            display: none;
-        }
-
-        div.work-link:hover {
-            color: var(--text-secondary);
-            padding-left: 0;
-        }
-
-        .work-description {
-            font-size: 0.95rem;
+        .work-details .fruition {
+            margin-top: 1rem;
+            font-style: italic;
             color: var(--text-tertiary);
-            margin-top: 0.5rem;
-            line-height: 1.6;
         }
 
-        /* View All Link */
-        .view-all {
-            margin-top: 3rem;
+        /* Collect Link */
+        .collect-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            padding: 1rem 2rem 1rem 0;
-            opacity: 0;
-            animation: fadeIn 0.5s ease calc(var(--card-index) * 0.15s + 1.8s) forwards;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-        .view-all::before {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(255,255,255,0.1) 50%,
-                transparent);
-            transition: left 1.2s var(--transition-smooth);
+        [data-theme="light"] .collect-link {
+            border-bottom-color: rgba(0,0,0,0.08);
         }
 
-        [data-theme="light"] .view-all::before {
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(0,0,0,0.05) 50%,
-                transparent);
-        }
-
-        .view-all:hover::before {
-            left: 100%;
-        }
-
-        .view-all:hover {
+        .collect-link:hover {
             color: var(--text-primary);
-            gap: 1.5rem;
+            gap: 0.75rem;
         }
 
-        /* No selection */
-        .card-label {
-            user-select: none;
-            -webkit-user-select: none;
+        .collect-link::after {
+            content: '\2192';
+            transition: transform 0.3s ease;
+        }
+
+        .collect-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-style: italic;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .work-card {
-                padding: 4rem 3rem;
-            }
-        }
-
         @media (max-width: 768px) {
             .container {
                 padding: 8rem 1.5rem 4rem;
-            }
-
-            .page-title {
-                margin-bottom: 1.5rem;
             }
 
             .page-title h1 {
                 font-size: 2.5rem;
             }
 
-            .works-grid {
-                grid-template-columns: 1fr;
-                gap: 2px;
+            .collection-title {
+                font-size: 1.25rem;
             }
 
-            .work-card.collections {
-                grid-column: span 1;
-            }
-
-            .work-card {
-                padding: 3rem 2rem;
-                min-height: 300px;
-            }
-
-            .card-title {
-                font-size: 1.75rem;
-            }
-
-            .work-link {
-                font-size: 1rem;
-                padding: 1.25rem 0;
+            .work-title {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -384,9 +222,6 @@
                     <a href="about.html">About</a>
                     <a href="contact.html">Contact</a>
                 </div>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    <div class="theme-toggle-ball"></div>
-                </button>
             </div>
         </nav>
     </header>
@@ -396,58 +231,50 @@
         <!-- Page Title -->
         <div class="page-title">
             <h1>Works</h1>
-            <div class="page-subtitle">Selected Projects</div>
         </div>
 
-        <div class="works-grid">
-            <!-- Latest Drop — Featured Work -->
-            <div class="work-card collections" style="--card-index: 0">
-                <div>
-                    <div class="card-label">Featured</div>
-                    <h2 class="card-title">Latest Drop</h2>
+        <!-- Collection Header -->
+        <div class="collection-header">
+            <h2 class="collection-title">The Stage — Acts of a Lucid Silence</h2>
+            <p class="collection-description">A trilogy of video works built around the conscious unspoken — and the ambiguity it creates in the eyes of the observer.</p>
+        </div>
+
+        <div class="separator"></div>
+
+        <!-- Works -->
+        <div class="works-list">
+            <!-- Act I -->
+            <div class="work-block" id="act-i">
+                <div class="work-act">Act I</div>
+                <h3 class="work-title">I Have To</h3>
+                <div class="video-embed">
+                    <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1179249583?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="I Have To"></iframe></div>
                 </div>
-                <div class="card-works">
-                    <a href="collections/the-stage/works/work-01.html" class="work-link" style="--link-index: 0">
-                        Act I — I Have To
-                        <div class="work-description">A word that is hard to say carries the full weight of the gesture. It does not clarify. It silences.</div>
-                    </a>
+                <div class="work-details">
+                    <p>Silent video, single-channel, 01:18, 1/1</p>
+                    <p>CGI, 2025</p>
+                    <p class="fruition">Best experienced on a large screen in a quiet space</p>
                 </div>
+                <a href="https://foundation.app/mint/eth/0xD4670E009095aBe0dF7a254C26FE502B590D87d3/4" class="collect-link" target="_blank" rel="noopener">Collect on Foundation</a>
             </div>
 
-            <!-- Collections -->
-            <div class="work-card" style="--card-index: 1">
-                <div>
-                    <div class="card-label">Collections</div>
-                    <h2 class="card-title">Curated Series</h2>
-                </div>
-                <div class="card-works">
-                    <a href="collections/the-stage/index.html" class="work-link" style="--link-index: 0">
-                        The Stage — Acts of a Lucid Silence
-                        <div class="work-description">A trilogy of video works built around the conscious unspoken — and the ambiguity it creates in the eyes of the observer.</div>
-                    </a>
-                </div>
+            <!-- Act II -->
+            <div class="work-block">
+                <div class="work-act">Act II</div>
+                <h3 class="work-title">I Could</h3>
+                <p class="coming-soon">Coming soon</p>
             </div>
 
-            <!-- Coming Soon -->
-            <div class="work-card" style="--card-index: 2">
-                <div>
-                    <div class="card-label">Coming Soon</div>
-                    <h2 class="card-title">In Progress</h2>
-                </div>
-                <div class="card-works">
-                    <div class="work-link" style="--link-index: 0; cursor: default;">
-                        Act II — I Could
-                        <div class="work-description">The second act of The Stage. In production.</div>
-                    </div>
-                    <div class="work-link" style="--link-index: 1; cursor: default;">
-                        Act III — Everything's Fine
-                        <div class="work-description">The final act of The Stage. In production.</div>
-                    </div>
-                </div>
+            <!-- Act III -->
+            <div class="work-block">
+                <div class="work-act">Act III</div>
+                <h3 class="work-title">Everything's Fine</h3>
+                <p class="coming-soon">Coming soon</p>
             </div>
         </div>
     </div>
 
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="js/main.js" defer></script>
 </body>
 </html>

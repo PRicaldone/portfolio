@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testi - P.Ricaldone</title>
-    <meta name="description" content="Scritti selezionati di P.Ricaldone. Manifesto, note di progetto, artist statement.">
+    <meta name="description" content="Scritti selezionati di P.Ricaldone su visione, emozione e lavoro.">
     <meta name="author" content="Paolo Ricaldone">
     <meta property="og:title" content="Testi - P.Ricaldone">
-    <meta property="og:description" content="Scritti selezionati di P.Ricaldone. Manifesto, note di progetto, artist statement.">
+    <meta property="og:description" content="Scritti selezionati di P.Ricaldone su visione, emozione e lavoro.">
     <meta property="og:type" content="website">
-    <script>const t=localStorage.getItem('pricaldone-theme');if(t)document.documentElement.setAttribute('data-theme',t);</script>
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* Main Container */
+        header {
+            background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 80%, transparent 100%);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s ease 0.5s forwards;
+        }
+
         .container {
             min-height: 100vh;
             padding: 8rem 3rem 6rem;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Page Title */
         .page-title {
             margin-bottom: 4rem;
             opacity: 0;
@@ -34,68 +38,93 @@
             font-size: clamp(3rem, 6vw, 5rem);
             font-weight: 150;
             letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
             color: var(--text-primary);
         }
 
-        .page-subtitle {
-            font-size: 1rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
+        .texts-layout {
+            display: flex;
+            gap: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
         }
 
-        /* Text Entries */
-        .texts-list {
+        .texts-sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 8rem;
+            align-self: flex-start;
             display: flex;
             flex-direction: column;
-            gap: 0;
         }
 
-        .text-entry {
-            padding: 3rem 0;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            position: relative;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            transition: transform 0.5s var(--transition-smooth);
+        .sidebar-item {
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        [data-theme="light"] .text-entry {
-            border-top-color: rgba(0,0,0,0.08);
+        .sidebar-item:first-child {
+            border-top: 1px solid rgba(255,255,255,0.04);
         }
 
-        .text-entry:nth-child(1) { animation-delay: 1s; }
-        .text-entry:nth-child(2) { animation-delay: 1.15s; }
-        .text-entry:nth-child(3) { animation-delay: 1.3s; }
-        .text-entry:nth-child(4) { animation-delay: 1.45s; }
-
-        .text-entry::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 3rem;
-            width: 2px;
-            height: 0;
-            background: var(--text-tertiary);
-            opacity: 0.3;
-            transition: height 0.6s var(--transition-smooth);
+        .sidebar-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
         }
 
-        .text-entry:hover::before {
-            height: calc(100% - 6rem);
+        .sidebar-title {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-tertiary);
+            line-height: 1.4;
+            transition: color 0.3s ease;
         }
 
-        .text-entry:hover {
-            transform: translateX(10px);
+        .sidebar-item:hover .sidebar-title {
+            color: var(--text-secondary);
         }
 
-        /* Entry Header */
+        .sidebar-item.active .sidebar-label {
+            color: var(--text-secondary);
+        }
+
+        .sidebar-item.active .sidebar-title {
+            color: var(--text-primary);
+        }
+
+        .sidebar-item.active {
+            border-left: 2px solid rgba(255,255,255,0.15);
+            padding-left: 1rem;
+        }
+
+        .texts-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 650px;
+        }
+
+        .text-panel {
+            display: none;
+        }
+
+        .text-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
         .entry-meta {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .entry-label {
@@ -103,107 +132,64 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--text-tertiary);
-            user-select: none;
-            -webkit-user-select: none;
         }
 
         .entry-date {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 0.1em;
             color: var(--text-tertiary);
         }
 
-        /* Entry Title */
         .entry-title {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 200;
             line-height: 1.3;
             color: var(--text-primary);
-            margin-bottom: 1rem;
-            transition: color 0.3s ease;
+            margin-bottom: 2.5rem;
         }
 
-        /* Entry Excerpt */
-        .entry-excerpt {
-            font-size: 0.95rem;
-            line-height: 1.7;
+        .entry-body {
+            font-size: 1.05rem;
+            line-height: 2;
             color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .entry-body p {
             margin-bottom: 1.5rem;
-            max-width: 600px;
         }
 
-        /* Read Link */
-        .entry-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        .entry-body p:last-child {
+            margin-bottom: 0;
         }
 
-        .entry-link::before {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(255,255,255,0.1) 50%,
-                transparent);
-            transition: left 1.2s var(--transition-smooth);
+        .entry-body em {
+            color: var(--text-primary);
+            font-weight: 300;
+            font-style: italic;
         }
 
-        [data-theme="light"] .entry-link::before {
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(0,0,0,0.05) 50%,
-                transparent);
+        .entry-body .voice {
+            display: block;
+            padding-left: 1.5rem;
+            border-left: 1px solid rgba(255,255,255,0.08);
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 2.2;
         }
 
-        .entry-link:hover::before {
-            left: 100%;
-        }
-
-        .entry-link:hover {
-            color: var(--text-secondary);
-            gap: 1rem;
-        }
-
-        .entry-link .arrow {
-            transition: transform 0.3s ease;
-        }
-
-        .entry-link:hover .arrow {
-            transform: translateX(3px);
-        }
-
-        /* Micro Footer */
         .texts-footer {
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            opacity: 0;
-            animation: fadeIn 0.8s ease 1.8s forwards;
-        }
-
-        [data-theme="light"] .texts-footer {
-            border-top-color: rgba(0,0,0,0.08);
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
 
         .texts-footer a {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
             color: var(--text-tertiary);
             text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
             transition: color 0.3s ease;
         }
 
@@ -211,51 +197,32 @@
             color: var(--text-secondary);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 8rem 1.5rem 4rem;
+            .container { padding: 8rem 1.5rem 4rem; }
+            .page-title h1 { font-size: 2.5rem; }
+            .texts-layout { flex-direction: column; gap: 2rem; }
+            .texts-sidebar {
+                width: 100%;
+                position: static;
+                display: flex;
+                flex-direction: row;
+                gap: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                padding-bottom: 1rem;
             }
-
-            .page-title h1 {
-                font-size: 2.5rem;
-            }
-
-            .text-entry {
-                padding: 2rem 0;
-            }
-
-            .text-entry::before {
-                display: none;
-            }
-
-            .text-entry:hover {
-                transform: none;
-            }
-
-            .entry-title {
-                font-size: 1.25rem;
-            }
-
-            .entry-meta {
-                gap: 1rem;
-            }
+            .sidebar-item { border: none; padding: 0.5rem 1rem 0.5rem 0; }
+            .sidebar-item:first-child { border-top: none; }
+            .sidebar-item.active { border-left: none; padding-left: 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+            .entry-title { font-size: 1.4rem; }
+            .entry-body { font-size: 1rem; line-height: 1.85; }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading">
-        <p class="loading-text">Caricamento</p>
-    </div>
-
-    <!-- Background Particles -->
+    <div class="loading"><p class="loading-text">Loading</p></div>
     <div class="particles"></div>
-
-    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
 
-    <!-- Header -->
     <header>
         <nav>
             <a href="index.html" class="logo"><img src="../logo2.svg" alt="P.Ricaldone" /></a>
@@ -267,75 +234,92 @@
                 <div class="nav-links">
                     <a href="works.html">Opere</a>
                     <a href="texts.html" class="active">Testi</a>
-                    <a href="about.html">Chi Sono</a>
+                    <a href="about.html">Chi sono</a>
                     <a href="contact.html">Contatti</a>
                 </div>
-                <button class="theme-toggle" aria-label="Cambia tema">
-                    <div class="theme-toggle-ball"></div>
-                </button>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
         <div class="page-title">
             <h1>Testi</h1>
-            <div class="page-subtitle">Scritti selezionati</div>
         </div>
 
-        <div class="texts-list">
-            <!-- Entry 1: Manifesto -->
-            <div class="text-entry">
-                <div class="entry-meta">
-                    <span class="entry-label">Manifesto</span>
-                    <span class="entry-date">Mar 2026</span>
-                </div>
-                <h2 class="entry-title">Non solo per riconoscersi. Anche per dichiararsi.</h2>
-                <p class="entry-excerpt">Dal flusso emotivo che guida il lavoro al desiderio di un ponte diretto tra mondi interiori.</p>
-                <a href="https://paragraph.com/@pricaldone/not-only-to-recognize-oneself-also-to-declare-oneself-1" class="entry-link" target="_blank" rel="noopener">Leggi su Paragraph <span class="arrow">&rarr;</span></a>
-            </div>
+        <div class="texts-layout">
+            <nav class="texts-sidebar">
+                <a class="sidebar-item active" data-target="statement">
+                    <div class="sidebar-label">Artist Statement</div>
+                    <div class="sidebar-title">Dove vive questo lavoro</div>
+                </a>
+                <a class="sidebar-item" data-target="manifesto">
+                    <div class="sidebar-label">Manifesto</div>
+                    <div class="sidebar-title">Non solo per riconoscersi. Anche per dichiararsi.</div>
+                </a>
+            </nav>
 
-            <!-- Entry 2: Nota di Progetto -->
-            <div class="text-entry">
-                <div class="entry-meta">
-                    <span class="entry-label">Nota di Progetto</span>
-                    <span class="entry-date">Mar 2026</span>
+            <div class="texts-content">
+                <!-- Artist Statement -->
+                <div class="text-panel active" id="statement">
+                    <div class="entry-meta">
+                        <span class="entry-label">Artist Statement</span>
+                        <span class="entry-date">Mar 2026</span>
+                    </div>
+                    <h2 class="entry-title">Dove vive questo lavoro</h2>
+                    <div class="entry-body">
+                        <p>La scintilla nasce quando un'emozione diventa propria. Non da concetti da illustrare né da messaggi da trasmettere. Inizia quando qualcosa si manifesta in modo viscerale, prima ancora di essere compreso razionalmente, nello scarto tra ciò che sento e ciò che riesco a nominare.</p>
+                        <p>Il flusso è esplorativo. Parte da una sensazione che va ricostruita dall'interno, attraverso riflessione, empatia, tentativo. Quando diventa abbastanza precisa, inizia la ricerca visiva. Da quel punto ogni elemento è costruito per sostenere ciò che l'opera contiene, non per abbellirlo. Luce, materia, ritmo, composizione. L'estetica non è decorazione, è ciò che permette alla tensione di assumere forma visibile.</p>
+                        <p>Tutto esiste in uno spazio digitale, CGI, perché dà il livello di controllo che il lavoro richiede. Non uso AI generativa, non per ideologia, ma perché non è all'altezza di ciò che questo lavoro richiede. Ogni fotogramma è una decisione, ogni movimento è autoriale. Non è un punto di vendita, è una condizione.</p>
+                        <p>Le opere sono mute, concepite così. Ciò che portano non ha bisogno di accompagnamento, ha bisogno di spazio. L'opera non spiega. Attiva un innesco, un passaggio dallo stomaco alla mente.</p>
+                        <p>Cerco opere che non possano essere guardate in modo neutro, che generino un attrito interno, una tensione tra sensazione e comprensione.</p>
+                        <p>Non c'è mai stato momento o ragione migliore per creare arte. Mancano connessioni umane, e quelle che ci sono faticano. Infiniti mezzi di comunicazione e l'incomprensione è quotidiana, anche con chi ci dovrebbe conoscere meglio. La connessione vera stenta perché le emozioni, quello che veramente ci anima, non riusciamo a tradurle. Non passano mai dirette.</p>
+                        <p>Il desiderio più profondo è che l'opera possa farsi linguaggio tra le persone, una forma condivisibile per stati interiori che non trovano parole. Che qualcuno possa dire, attraverso un'opera: <em>questo è quello che sento</em>. Non solo per riconoscersi, ma per dichiararsi.</p>
+                        <p>Non ci eravamo persi. Eravamo solo sconnessi.</p>
+                    </div>
                 </div>
-                <h2 class="entry-title">Un silenzio che non si lascia leggere</h2>
-                <p class="entry-excerpt">Tre atti. Tre territori in cui ciò che separa l'interiorità dal mondo circostante prende forma visibile.</p>
-                <a href="https://paragraph.com/@pricaldone/a-silence-that-cannot-be-read" class="entry-link" target="_blank" rel="noopener">Leggi su Paragraph <span class="arrow">&rarr;</span></a>
-            </div>
 
-            <!-- Entry 3: Artist Statement -->
-            <div class="text-entry">
-                <div class="entry-meta">
-                    <span class="entry-label">Artist Statement</span>
-                    <span class="entry-date">Mar 2026</span>
+                <!-- Manifesto -->
+                <div class="text-panel" id="manifesto">
+                    <div class="entry-meta">
+                        <span class="entry-label">Manifesto</span>
+                        <span class="entry-date">Mar 2026</span>
+                    </div>
+                    <h2 class="entry-title">Non solo per riconoscersi. Anche per dichiararsi.</h2>
+                    <div class="entry-body">
+                        <p>Viviamo circondati da mezzi di comunicazione, eppure la connessione profonda tra esseri umani continua a mancare.</p>
+                        <p>Le emozioni, ciò che veramente ci anima, non riusciamo a trasmetterle davvero. Per quanto ci esprimiamo bene, passano verso una mente che le decodifica, le aggiusta, le modula in base a chi ci sta intorno. Non passano mai dirette.</p>
+                        <p>Eppure le emozioni sono la bussola, il carburante e il motore di ciò che faccio. Quando qualcosa fa vibrare lo stomaco, nel bene o nel male, è lì che reagisco per primo, prima della mente, prima delle parole.</p>
+                        <p>Per questo cerco di dare forme visuali a territori emotivi, non per spiegarli ma per avvicinarli a un passaggio più immediato. Un ponte tra mondi interiori, da sentire prima ancora che da comprendere.</p>
+                        <p>Non mi interessa l'opera come codice da decifrare, ma come innesco, come possibilità di contatto, come forma capace di portare qualcosa dove il linguaggio da solo non arriva.</p>
+                        <p>Ma il ponte non si esaurisce tra l'opera e chi guarda.</p>
+                        <p>Il desiderio più profondo è che un'opera possa servire anche a questo: che qualcuno si senta visto in un'immagine, in un ritmo, in una tensione, e trovi lì un modo per dire:</p>
+                        <span class="voice">io mi sento così<br>sto attraversando questo<br>vorrei che tu capissi questa condizione</span>
+                        <p>Non come sostituzione del linguaggio, ma come ponte.</p>
+                        <p>Le mie opere video 1/1 sono interamente create con cura in digitale. Nessuna AI generativa. Ogni elemento esiste per sostenere la tensione emotiva dell'opera, mai per decorarla.</p>
+                    </div>
                 </div>
-                <h2 class="entry-title">Dove vive questo lavoro</h2>
-                <p class="entry-excerpt">La scintilla nasce quando un'emozione diventa propria. Nello scarto tra ciò che sento e ciò che riesco a nominare, inizia il lavoro.</p>
-                <a href="https://paragraph.com/@pricaldone/where-this-work-lives" class="entry-link" target="_blank" rel="noopener">Leggi su Paragraph <span class="arrow">&rarr;</span></a>
-            </div>
 
-            <!-- Entry 4: Nota sull'Atto -->
-            <div class="text-entry">
-                <div class="entry-meta">
-                    <span class="entry-label">Nota sull'Atto</span>
-                    <span class="entry-date">Mar 2026</span>
+                <div class="texts-footer">
+                    <a href="https://paragraph.com/@pricaldone" target="_blank" rel="noopener">Iscriviti su Paragraph &rarr;</a>
                 </div>
-                <h2 class="entry-title">Una parola che costa</h2>
-                <p class="entry-excerpt">Tanto rumore, e la sensazione che qualcosa di semplice potrebbe fermare tutto.</p>
-                <a href="https://paragraph.com/@pricaldone/the-cost-of-a-simple-word" class="entry-link" target="_blank" rel="noopener">Leggi su Paragraph <span class="arrow">&rarr;</span></a>
             </div>
-        </div>
-
-        <!-- Micro Footer -->
-        <div class="texts-footer">
-            <a href="https://paragraph.com/@pricaldone" target="_blank" rel="noopener">Testi completi pubblicati su Paragraph &rarr;</a>
         </div>
     </div>
 
     <script src="../js/main.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var items = document.querySelectorAll('.sidebar-item');
+            items.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    items.forEach(function(i) { i.classList.remove('active'); });
+                    document.querySelectorAll('.text-panel').forEach(function(p) { p.classList.remove('active'); });
+                    item.classList.add('active');
+                    document.getElementById(item.getAttribute('data-target')).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
