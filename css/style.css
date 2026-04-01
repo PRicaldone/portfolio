@@ -536,6 +536,26 @@ nav {
 }
 
 /* ============================================
+   Site Footer
+   ============================================ */
+.site-footer {
+    padding: 4rem 3rem 2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    opacity: 0.4;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 3rem 1.5rem 1.5rem;
+    }
+}
+
+/* ============================================
    Reduced Motion
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
