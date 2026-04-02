@@ -157,17 +157,20 @@
         }
 
         .work-title {
-            font-size: 2rem;
-            font-weight: 200;
+            font-size: 2.4rem;
+            font-weight: 300;
             margin-bottom: 2rem;
             color: var(--text-primary);
             line-height: 1.3;
+            letter-spacing: 0.01em;
         }
 
+        /* Vimeo Embed — cinematic */
         .video-embed {
             margin-bottom: 2rem;
+            margin-left: -3rem;
+            margin-right: -3rem;
             background: #000;
-            border-radius: 2px;
             overflow: hidden;
             position: relative;
         }
@@ -203,32 +206,34 @@
             color: var(--text-tertiary);
         }
 
+        /* Collect Link */
         .collect-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            display: inline-block;
             margin-top: 1.5rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.85rem;
             letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: color 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 0.25rem;
+        }
+
+        [data-theme="light"] .collect-link {
+            border-bottom-color: rgba(0,0,0,0.15);
         }
 
         .collect-link:hover {
             color: var(--text-primary);
-            gap: 0.75rem;
+            border-bottom-color: var(--text-primary);
         }
 
-        .collect-link::after {
-            content: '\2192';
-            transition: transform 0.3s ease;
-        }
-
-        .collect-link:hover::after {
-            transform: translateX(3px);
+        /* Work Status (upcoming acts) */
+        .work-status {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-weight: 300;
+            letter-spacing: 0.05em;
         }
 
         .coming-soon {
@@ -294,19 +299,19 @@
                     <p>CGI, 2026</p>
                     <p class="fruition">Da vivere su uno schermo grande, in uno spazio silenzioso</p>
                 </div>
-                <a href="https://foundation.app/mint/eth/0xD4670E009095aBe0dF7a254C26FE502B590D87d3/4" class="collect-link" target="_blank" rel="noopener">Colleziona su Foundation</a>
+                <a href="https://foundation.app/mint/eth/0xD4670E009095aBe0dF7a254C26FE502B590D87d3/4" class="collect-link" target="_blank" rel="noopener">Originale disponibile su Foundation</a>
             </div>
 
             <div class="work-block">
                 <div class="work-act">Act II</div>
                 <h3 class="work-title">I Could</h3>
-                <p class="coming-soon">In arrivo</p>
+                <p class="work-status">— 2026</p>
             </div>
 
             <div class="work-block">
                 <div class="work-act">Act III</div>
                 <h3 class="work-title">I Don't</h3>
-                <p class="coming-soon">In arrivo</p>
+                <p class="work-status">— 2026</p>
             </div>
         </div>
     </div>
