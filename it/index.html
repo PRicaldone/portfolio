@@ -120,27 +120,19 @@
             -webkit-text-fill-color: #000 !important;
         }
 
-        .word {
+        .letter {
             display: inline-block;
             opacity: 0;
-            animation: fadeWord 0.8s ease forwards;
-            margin-right: 0.3em;
+            animation: fadeLetter 1s ease forwards;
         }
 
-        .word.no-space {
-            margin-left: -0.3em;
-            margin-right: 0;
+        .letter.space {
+            width: 0.3em;
         }
 
-        @keyframes fadeWord {
-            from {
-                opacity: 0;
-                transform: translateY(4px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeLetter {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Emphasis */
@@ -349,16 +341,11 @@
 
         <div class="statement-container">
             <h2 class="statement-main">
-                <span class="word" style="animation-delay: 1.0s">Video</span>
-                <span class="word" style="animation-delay: 1.2s">arte</span>
-                <span class="word" style="animation-delay: 1.4s">da</span>
-                <span class="word emphasis" style="animation-delay: 1.6s">sentire</span><span class="word no-space" style="animation-delay: 1.6s">,</span>
+                <span class="letter-line" data-delay="1.0">Video arte da sentire,</span>
             </h2>
 
             <p class="statement-secondary">
-                <span class="word emphasis" style="animation-delay: 2.4s">non</span>
-                <span class="word emphasis" style="animation-delay: 2.6s">da</span>
-                <span class="word emphasis" style="animation-delay: 2.8s">decifrare</span><span class="word no-space" style="animation-delay: 2.8s">.</span>
+                <span class="letter-line" data-delay="2.6">non da decifrare.</span>
             </p>
 
         </div>
@@ -367,6 +354,29 @@
 
     <script src="../js/main.js"></script>
     <script>
+        // Letter-by-letter reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.letter-line').forEach(line => {
+                const baseDelay = parseFloat(line.dataset.delay) || 0;
+                const sourceHTML = line.textContent;
+                let letterIndex = 0;
+                const fragment = document.createDocumentFragment();
+
+                for (let i = 0; i < sourceHTML.length; i++) {
+                    const ch = sourceHTML[i];
+                    const delay = (baseDelay + letterIndex * 0.04).toFixed(2);
+                    const span = document.createElement('span');
+                    span.className = ch === ' ' ? 'letter space' : 'letter';
+                    span.textContent = ch === ' ' ? '\u00A0' : ch;
+                    span.style.animationDelay = delay + 's';
+                    fragment.appendChild(span);
+                    letterIndex++;
+                }
+                line.textContent = '';
+                line.appendChild(fragment);
+            });
+        });
+
         // Homepage parallax
         (function() {
             const statementMains = document.querySelectorAll('.statement-main, .statement-secondary');
