@@ -366,7 +366,7 @@
     <script>
         // Homepage-specific: parallax on statement
         document.addEventListener('DOMContentLoaded', () => {
-            const statements = document.querySelectorAll('.statement-main');
+            const statements = document.querySelectorAll('.statement-main, .statement-secondary');
             document.addEventListener('mousemove', (e) => {
                 if (window.innerWidth > 768) {
                     const xAxis = (window.innerWidth / 2 - e.pageX) / 100;
