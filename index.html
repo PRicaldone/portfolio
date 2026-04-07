@@ -132,6 +132,41 @@
             to { opacity: 1; }
         }
 
+        .hoverable {
+            position: relative;
+            cursor: default;
+            transition: color 0.4s ease, text-shadow 0.4s ease;
+        }
+
+        .hoverable::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.05em;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s var(--transition-out);
+            opacity: 0.5;
+        }
+
+        .hoverable:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .hoverable:hover {
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        [data-theme="light"] .hoverable:hover {
+            color: #000;
+            text-shadow: 0 0 15px rgba(0,0,0,0.15);
+        }
+
         /* Emphasis */
         .emphasis {
             font-style: italic;
@@ -343,11 +378,11 @@
         <!-- English Content -->
         <div class="statement-container">
             <h2 class="statement-main">
-                <span class="letter-line" data-delay="2.2">Video art meant to be felt,</span>
+                <span class="letter-line" data-delay="2.2">Video art meant to be </span><span class="letter-line hoverable" data-delay="3.1">felt</span><span class="letter-line" data-delay="3.3">,</span>
             </h2>
 
             <p class="statement-secondary">
-                <span class="letter-line" data-delay="4.2">not decoded.</span>
+                <span class="letter-line hoverable" data-delay="4.2">not decoded</span><span class="letter-line" data-delay="4.6">.</span>
             </p>
 
         </div>
