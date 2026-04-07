@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P.Ricaldone — Video Art</title>
-    <meta name="description" content="Do forma visiva a territori emotivi, cercando un ponte verso l'altro. Da sentire. Non da decifrare.">
+    <meta name="description" content="Video arte da sentire, non da decifrare.">
     <meta name="author" content="Paolo Ricaldone">
     <meta property="og:title" content="P.Ricaldone — Video Art">
-    <meta property="og:description" content="Do forma visiva a territori emotivi, cercando un ponte verso l'altro. Da sentire. Non da decifrare.">
+    <meta property="og:description" content="Video arte da sentire, non da decifrare.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://pricaldone.art/og-image.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
@@ -165,27 +165,31 @@
             opacity: 0.5;
         }
 
-        .statement-line:hover .emphasis::after {
+        .statement-line:hover .emphasis::after,
+        .statement-secondary:hover .emphasis::after {
             transform: scaleX(1);
             transform-origin: left;
         }
 
-        .statement-line:hover .emphasis {
+        .statement-line:hover .emphasis,
+        .statement-secondary:hover .emphasis {
             color: var(--accent);
             text-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
 
-        [data-theme="light"] .statement-line:hover .emphasis {
+        [data-theme="light"] .statement-line:hover .emphasis,
+        [data-theme="light"] .statement-secondary:hover .emphasis {
             color: #000;
             text-shadow: 0 0 15px rgba(0,0,0,0.15);
         }
 
         /* Secondary Statement */
         .statement-secondary {
-            font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-            font-weight: 300;
-            line-height: 1.6;
-            color: var(--text-secondary);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 200;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
             margin-bottom: 3rem;
             margin-top: -1.5rem;
             opacity: 0;
@@ -347,16 +351,12 @@
         <div class="statement-container">
             <h2 class="statement-main">
                 <span class="statement-line">
-                    <span>Do forma visiva</span>
-                </span>
-                <span class="statement-line">
-                    <span>a <em class="emphasis">reazioni di stomaco</em>.</span>
+                    <span>Video arte da <em class="emphasis">sentire</em>,</span>
                 </span>
             </h2>
 
             <p class="statement-secondary">
-                <span>Da sentire.</span>
-                <span>Non da decifrare.</span>
+                <span><em class="emphasis">non da decifrare</em>.</span>
             </p>
 
         </div>
@@ -367,7 +367,7 @@
     <script>
         // Homepage parallax
         (function() {
-            const statementMains = document.querySelectorAll('.statement-main');
+            const statementMains = document.querySelectorAll('.statement-main, .statement-secondary');
             const glow = document.querySelector('.glow');
 
             document.addEventListener('mousemove', (e) => {
