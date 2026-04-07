@@ -162,17 +162,20 @@
             opacity: 0.5;
         }
 
-        .statement-line:hover .emphasis::after {
+        .statement-line:hover .emphasis::after,
+        .statement-secondary:hover .emphasis::after {
             transform: scaleX(1);
             transform-origin: left;
         }
 
-        .statement-line:hover .emphasis {
+        .statement-line:hover .emphasis,
+        .statement-secondary:hover .emphasis {
             color: var(--accent);
             text-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
 
-        [data-theme="light"] .statement-line:hover .emphasis {
+        [data-theme="light"] .statement-line:hover .emphasis,
+        [data-theme="light"] .statement-secondary:hover .emphasis {
             color: #000;
             text-shadow: 0 0 15px rgba(0,0,0,0.15);
         }
@@ -355,7 +358,7 @@
             </h2>
 
             <p class="statement-secondary">
-                <span>not decoded.</span>
+                <span>not <em class="emphasis">decoded</em>.</span>
             </p>
 
         </div>
