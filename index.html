@@ -117,24 +117,25 @@
             -webkit-text-fill-color: #000 !important;
         }
 
-        .statement-line {
-            display: block;
-            overflow: hidden;
-            padding: 0.1em 0;
-        }
-
-        .statement-line span {
+        .word {
             display: inline-block;
-            transform: translateY(100%);
-            animation: revealLine 1.4s var(--transition-out) forwards;
+            opacity: 0;
+            animation: fadeWord 0.8s ease forwards;
+            margin-right: 0.3em;
         }
 
-        .statement-line:nth-child(1) span { animation-delay: 1.2s; }
-        .statement-line:nth-child(2) span { animation-delay: 1s; }
-        .statement-line:nth-child(3) span { animation-delay: 1.2s; }
+        .word.no-space {
+            margin-left: -0.3em;
+            margin-right: 0;
+        }
 
-        @keyframes revealLine {
+        @keyframes fadeWord {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
             to {
+                opacity: 1;
                 transform: translateY(0);
             }
         }
@@ -189,8 +190,6 @@
             color: var(--text-primary);
             margin-bottom: 3rem;
             margin-top: -1.5rem;
-            opacity: 0;
-            animation: fadeInSubtle 1.2s ease 1.8s forwards;
             position: relative;
         }
 
@@ -352,13 +351,17 @@
         <!-- English Content -->
         <div class="statement-container">
             <h2 class="statement-main">
-                <span class="statement-line">
-                    <span>Video art meant to be <em class="emphasis">felt</em>,</span>
-                </span>
+                <span class="word" style="animation-delay: 1.0s">Video</span>
+                <span class="word" style="animation-delay: 1.2s">art</span>
+                <span class="word" style="animation-delay: 1.4s">meant</span>
+                <span class="word" style="animation-delay: 1.6s">to</span>
+                <span class="word" style="animation-delay: 1.8s">be</span>
+                <span class="word emphasis" style="animation-delay: 2.0s">felt</span><span class="word no-space" style="animation-delay: 2.0s">,</span>
             </h2>
 
             <p class="statement-secondary">
-                <span><em class="emphasis">not decoded</em>.</span>
+                <span class="word emphasis" style="animation-delay: 2.8s">not</span>
+                <span class="word emphasis" style="animation-delay: 3.0s">decoded</span><span class="word no-space" style="animation-delay: 3.0s">.</span>
             </p>
 
         </div>
