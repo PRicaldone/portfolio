@@ -238,6 +238,36 @@
             color: var(--text-secondary);
         }
 
+        /* Page intro */
+        .texts-intro {
+            max-width: 650px;
+            margin-bottom: 4rem;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-secondary);
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .texts-intro p {
+            margin-bottom: 1.5rem;
+        }
+
+        .texts-intro p:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-item.method-item {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        @media (max-width: 768px) {
+            .texts-sidebar { flex-wrap: wrap; }
+            .sidebar-item.method-item { margin-top: 0; border-top: none; }
+        }
+
         /* Mobile: stack */
         @media (max-width: 768px) {
             .container {
@@ -318,58 +348,122 @@
             <h1>Texts</h1>
         </div>
 
+        <div class="texts-intro">
+            <p>My works are born from instinct, when something becomes visceral. What I create is not a message to deliver, nor a code to decipher.</p>
+            <p>I perceive emotion, in its essence, as natural energy: a charge that propagates through space and time.</p>
+            <p>I give this energy body by staging space, matter, light, and time.</p>
+            <p>The emotional state staged is present from the first instant and isolated from what generated it: its cause does not interest me.</p>
+            <p>The energy propagates like a wave toward the observer, with a dynamic force. The <em>felt emotion</em> is the shift in charge that the force ignites in the body, an expansion or a contraction, before the mind is involved. Each person receives it with their own body, and with the memory that the body itself has layered over time.</p>
+            <p>The visual treatment does not steer toward a specific interpretation: the work is delivered without instruction, and everyone projects their own experience onto it. What interests me is sparking an ignition, that the work takes hold before it makes itself understood.</p>
+            <p>From here a firm principle: the works are not explained, only the frame is declared. I can say where the work comes from and what it seeks, not offer a key, because explaining a work is closing it.</p>
+        </div>
+
         <div class="texts-layout">
             <!-- Sidebar -->
             <nav class="texts-sidebar">
-                <a class="sidebar-item active" data-target="statement">
-                    <div class="sidebar-label">Artist Statement</div>
-                    <div class="sidebar-title">Where This Work Lives</div>
+                <a class="sidebar-item active" data-target="t1">
+                    <div class="sidebar-title">Where the Work Is Born, and Why: Instinct</div>
                 </a>
-                <a class="sidebar-item" data-target="manifesto">
-                    <div class="sidebar-label">Manifesto</div>
-                    <div class="sidebar-title">Not Only to Recognize Oneself. Also to Declare Oneself.</div>
+                <a class="sidebar-item" data-target="t2">
+                    <div class="sidebar-title">Emotion: Energy and Force</div>
+                </a>
+                <a class="sidebar-item" data-target="t3">
+                    <div class="sidebar-title">Living Paintings</div>
+                </a>
+                <a class="sidebar-item" data-target="t4">
+                    <div class="sidebar-title">How the Work Is Felt</div>
+                </a>
+                <a class="sidebar-item" data-target="t5">
+                    <div class="sidebar-title">Isolated Emotional State</div>
+                </a>
+                <a class="sidebar-item" data-target="t6">
+                    <div class="sidebar-title">Silence</div>
+                </a>
+                <a class="sidebar-item" data-target="t7">
+                    <div class="sidebar-title">Synthesis and the Realistic Anchor</div>
+                </a>
+                <a class="sidebar-item method-item" data-target="method">
+                    <div class="sidebar-label">Method</div>
+                    <div class="sidebar-title">My Material Categories</div>
                 </a>
             </nav>
 
             <!-- Content -->
             <div class="texts-content">
-                <!-- Artist Statement (default) -->
-                <div class="text-panel active" id="statement">
-                    <div class="entry-meta">
-                        <span class="entry-label">Artist Statement</span>
-                        <span class="entry-date">Mar 2026</span>
-                    </div>
-                    <h2 class="entry-title">Where This Work Lives</h2>
+                <div class="text-panel active" id="t1">
+                    <h2 class="entry-title">Where the Work Is Born, and Why: Instinct</h2>
                     <div class="entry-body">
-                        <p>The spark begins when an emotion becomes truly mine. It does not come from a concept to illustrate or a message to deliver. It begins when something manifests viscerally, before it can be rationally understood, in the gap between what I feel and what I can name.</p>
-                        <p>The process is exploratory. It starts from a sensation that has to be reconstructed from within, through reflection, empathy, attempt. When it becomes precise enough, the visual search begins. From that point on, every element is built to sustain what the work contains, not to embellish it. Light, matter, rhythm, composition. Aesthetics are not decoration. They are what allow tension to take visible form.</p>
-                        <p>Everything exists within a digital environment, CGI, because it gives the work the level of control it demands. I do not use generative AI, not out of ideology, but because it is not equal to what this work requires. Every frame is a decision, every movement intentionally shaped. That is not a selling point but a condition.</p>
-                        <p>The works are silent, conceived that way. What they carry does not need accompaniment, it needs space. The work does not explain. It activates a trigger, a passage from the stomach to the mind.</p>
-                        <p>I seek works that resist neutral viewing, that generate internal friction, a tension between sensation and understanding.</p>
-                        <p>There has never been a better moment or reason to make art. Human connection is scarce, and even the connections we do have are strained. Endless means of communication, and still misunderstanding is daily, even with those who should know us best. Real connection falters because emotions resist translation. They never pass through directly.</p>
-                        <p>The deepest desire is for the work to become a language between people, a shareable form for inner states that find no words. That someone might say, through a piece: <em>this is what I feel</em>. Not only to recognize themselves, but to declare themselves.</p>
-                        <p>We were not lost. We were just disconnected.</p>
+                        <p>The works do not illustrate concepts: they are born when something becomes visceral, an emotion of mine, one I observe in another and feel as my own, a sensation that does not yet have a name, sometimes an image that arrives already defined. Emotions, for me, are not a theme: they are compass, fuel, and engine. When something truly resonates, it is the stomach that reacts first, before the mind and before words: I follow that flow, and the stomach remains the judge until the last frame.</p>
+                        <p>My drive to create has a relational root. I create the works to make people feel, physically. I cannot hold emotions back: I want those close to me to feel them. I start from my own, but I know the reading belongs to whoever watches, open, theirs; and I like it when a work sets off emotions different from the ones I had imagined. <em>I want to make people feel, not make them understand.</em> I like to astonish, but in the sense of the unexpected that takes hold of the viewer, the surprise that opens the body, not the dazzle.</p>
+                        <p>The craft begins only afterwards: once I have defined in detail <em>what</em> to stage and <em>how</em>. I never start from a technique and force an idea into it; the direction is always the opposite: the emotion asks for its form, and I build it.</p>
+                        <p>The choice of medium comes from here. The time of video lets me vary the intensity and the direction of the charge of energy, which can emerge, rise, change direction, settle, with no predictable order or sequence. Long ago I chose to work in CGI, to have no limits on what can be communicated and to abstract without being bound by reality. Today I do not use generative AI in my work: not out of opposition to the tool, but because it does not offer the control and the authorial responsibility I seek, down to the final pixel.</p>
                     </div>
                 </div>
 
-                <!-- Manifesto -->
-                <div class="text-panel" id="manifesto">
-                    <div class="entry-meta">
-                        <span class="entry-label">Manifesto</span>
-                        <span class="entry-date">Mar 2026</span>
-                    </div>
-                    <h2 class="entry-title">Not Only to Recognize Oneself. Also to Declare Oneself.</h2>
+                <div class="text-panel" id="t2">
+                    <h2 class="entry-title">Emotion: Energy and Force</h2>
                     <div class="entry-body">
-                        <p>We live surrounded by means of communication, and yet deep human connection continues to fail.</p>
-                        <p>Emotions are never easy to transmit. However clearly we express ourselves, they still pass through a mind that decodes them, adjusts them, modulates them according to who is listening. They never arrive directly.</p>
-                        <p>And yet emotions are the compass, the fuel, and the engine of what I do. When something truly resonates, for better or worse, it is the stomach that reacts first, before the mind, before words.</p>
-                        <p>That is why I seek visual forms for emotional territories, not to explain them but to bring them closer to a more immediate passage. A bridge between inner worlds, meant to be felt before they are understood.</p>
-                        <p>I am not interested in the work as a code to be decoded but as a trigger, a possibility of contact, a form capable of carrying something where language alone cannot reach.</p>
-                        <p>But the bridge does not end with the relationship between the work and the viewer.</p>
-                        <p>My deeper hope is that a work may also serve this purpose: that someone may feel seen in an image, in a rhythm, in a tension, and find there a way to say:</p>
-                        <span class="voice">this is how I feel<br>this is what I am going through<br>I wish I could make you understand this condition</span>
-                        <p>Not as a substitute for language, but as a bridge.</p>
-                        <p>My 1/1 video works are entirely crafted with care in digital form. No generative AI. Every element exists to sustain the emotional tension of the work, never to decorate it.</p>
+                        <p>Energy is the substance of emotion: a natural charge, present in the scene as in whoever watches. Not a content to explain, but something that is there, before words.</p>
+                        <p>Force is the way that energy is transmitted. Since the work is a living painting, that energy propagates like a flow that arrives, with a rhythm and an intensity set by the timing of the work: the viewer is like a body still in the sea, receiving the movement of the waves as they arrive, one or many, for the whole duration. And the energy itself can move: within a single work it can contract and then expand, like a breath. To receive the work is to feel this variation move through one's own body, in time.</p>
+                        <p>When it reaches the body, the force ignites a shift in charge: I expand or I contract, my power rises or falls. This shift is the <em>felt emotion</em>. It has two magnitudes at once: <em>how much</em> charge, the intensity, and in <em>which</em> direction, expansion or contraction. Fear and anger can carry the same high charge in opposite directions.</p>
+                        <p>I do not stage the felt emotion: that is born in whoever watches. I stage the means, space, matter, light, time, to <em>charge</em> the scene, so that the energy radiates and arrives.</p>
+                        <p>What is met first is not neutral data (colors, shapes, sounds) to which a meaning is then added. It is a whole already full of sense that takes hold of the viewer. This <em>sense</em> is not a meaning to decipher, not a key the work hides: it is the immediate grip of the whole, the fact that the work says something to the viewer before they know what. The meaning that lets itself be put into words comes later, and is already something else. The separate pieces, the isolated structures, come <em>after</em>: they are extracted through analysis and words. This is why explaining a work betrays it: segmenting it into labeled elements comes after the encounter, and is secondary to the sense the work has already delivered as a whole.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="t3">
+                    <h2 class="entry-title">Living Paintings</h2>
+                    <div class="entry-body">
+                        <p>My works are living paintings, with a state from which I remove the external cause, leaving only the movement in time of the work itself.</p>
+                        <p>The work is not read like a single frame. The energy of the work does not strike in an instant: it is transmitted as a wave bound to the timing with which the work unfolds, and the viewer does not receive a single impact, but a movement that passes through them and lasts.</p>
+                        <p>The work gives its fullest in immersion: in the dark, in quiet, from beginning to end, without looping. The force is a wave that builds up over the duration; in a distracted glance it does not build, and the work does not happen. It is the ideal condition I declare, not a rule I can impose.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="t4">
+                    <h2 class="entry-title">How the Work Is Felt</h2>
+                    <div class="entry-body">
+                        <p>The energy does not fill space uniformly: it radiates from the staged means that embody it and propagates like a wave, reaching whoever watches as force. And like every radiation it fades with distance, here an <em>affective</em> distance: closer, the crossing is stronger and sharper; farther, fainter, until it does not arrive. The work does not only emit: it calls, draws toward itself, and not everyone equally, but more strongly those already attuned to it. It is the body, reading matter, light, rhythm, that places each person near or far.</p>
+                        <p>And as it radiates through space, the wave unfolds in time: it does not arrive once, but returns with its rhythm for the whole duration of the work. If nearness decides <em>how strongly</em> the force arrives, time decides <em>how</em> it arrives and how it builds, wave after wave. And along the duration the energy can change: the same encounter can contract me and then expand me. So it is not distance alone that says how the work is felt, but distance <em>and</em> time together.</p>
+                        <p>I give form to that energy so that it radiates and reaches: this I seek, I do not guarantee it. Whether the impact arrives or not, and with how much force, I do not govern: it is an encounter. It is not a flaw in whoever watches, nor a merit or a fault of mine. I can only build the source so that it radiates as much as possible, and calls. And that it does not reach everyone the same way is not a limit: a work that took hold of everyone equally would be flat.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="t5">
+                    <h2 class="entry-title">Isolated Emotional State: the Work Without External Cause</h2>
+                    <div class="entry-body">
+                        <p>Each work gives body to a single emotional energy, present from the first frame: its course in time, with no fixed sequence (it can emerge, evolve, settle, stay in a single phase, or change direction), but not the external cause (who, what, when, why). The viewer does not enter a story: they enter a force already in motion and inhabit it with their own. If the work showed the precise situation that generated it, it would close into a single reading.</p>
+                        <p>What this does not mean: it is not stillness nor contemplative slowness (short works, 30 to 90 seconds, with an internal arc); it is not immobility; the <em>internal</em> drive (the pressure that builds, the gesture that becomes necessary) is alive and can even change direction (contract and then expand, like a breath): it is not one fixed direction. What stays out is the cause. This holds for every work.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="t6">
+                    <h2 class="entry-title">Silence</h2>
+                    <div class="entry-body">
+                        <p>My works are silent, and not because they came out that way: it is a choice of principle. It holds for every work. Any soundtrack would be a key: a sonic caption that imposes a reading and closes the position I want to leave open. Music says <em>how</em> to feel; and even the realistic sound the scene would produce (the chisel carving, the sound of wind) orients and imposes. So I remove sound, and as a rule even the realistic kind, though here I leave myself a margin.</p>
+                        <p>Silence, though, is not an absence that subtracts: it is the empty condition that lets space, matter, light, and time act, like the black backdrop of the stage. It does not guide the way sound does, because it does not say what to feel: it leaves room to feel. It opens, it does not impose.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="t7">
+                    <h2 class="entry-title">Synthesis and the Realistic Anchor</h2>
+                    <div class="entry-body">
+                        <p>In my works I sometimes remove (a subject that is missing), sometimes push beyond the real (an impossible image), but always to one end: to condense a state to its essence. It is not escape from the real, it is synthesis. The impossible image is admitted on one precise condition, <em>only when it synthesizes a true emotion</em>: the dreamlike for its own sake does not interest me, nor does the metaphysical, the enigma of an elsewhere without time or place.</p>
+                        <p>So that the synthesis does not float in a dream, every work carries a realistic anchor: a recognizable element of the real world, general and impersonal, that does two things at once: it keeps the work in our world and makes the emotion graspable by the life of whoever watches. The anchor is a register, not a cause: it says "this is real" without saying <em>which</em> situation produced the state (the universal real admitted, the particular and generative real excluded, as in the isolated emotional state). The stage is the current anchor of <em>The Stage</em>; but which anchor is needed depends on the work, it is not a fixed rule. This holds for every work.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="method">
+                    <h2 class="entry-title">My Material Categories</h2>
+                    <div class="entry-body">
+                        <p>I have said that I give energy body by staging space, matter, light, and time. On the side of matter I do not work only with objects or figures, but also with authorial material categories: lenses through which I articulate the way I read being, and through which matter, on its own, brings a state onto the stage without representing it.</p>
+                        <p>So far I have founded three. I read them as three faces of the self: substance, relation, act. Two name the subject as matter (substance and relation), one names the act of the subject.</p>
+                        <p><strong>Mineral flesh · the subject as substance.</strong><br>Mineral flesh is matter that embodies both corporality and emotion. It names the state of being as a dialectic between a plastic pole (fleshly, malleable, transformable) and a lithified pole (mineral, stratified, immutable), crossed by a continuous process of progressive mineralization of consolidated experience.</p>
+                        <p>In its mineral component it carries our stratified history, with a part of ourselves by now lithified, the core in some ways unchangeable, the slow mineralizing of what has consolidated, that from which we can never distance ourselves; and in the fleshly part the portion still plastic, viscoelastic, our share of malleability, adaptability, capacity for change. When consolidated experiences become deeply our own, they slowly turn into the mineral part.</p>
+                        <p><strong>Emotional fabric · the subject as relation.</strong><br>Emotional fabric names the subject as weave: the cloth of the self, sensitive and reactive, exposed to the world and its context. It is my category of relation, distinct from mineral flesh (substance, depth, what I am) and from trace (the act, the sign I leave). It is not containment: what encloses an inside is a container, and remains outside; emotional fabric is the surface that <em>feels</em> and <em>reacts</em> to an outside.</p>
+                        <p><strong>Trace · the act of the subject.</strong><br>Trace is the irreversible act of leaving a sign that carries meaning on a support. Act and matter are inseparable: the support is constitutive, and dictates the energy of the gesture (its cost, which is my force), the duration of the sign, and the meaning that binds to it. Without matter the trace would not exist.</p>
+                        <p>The three are also three regimes of the same energy: trace spends it (the cost of the act), mineral flesh deposits it (sedimentation), fabric exchanges it (the relation with the world).</p>
+                        <p>They are an open set, not a closed table: these three so far, others will be born when a work calls for them. The same category can return in different works.</p>
                     </div>
                 </div>
 
