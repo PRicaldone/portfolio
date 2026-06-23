@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - P.Ricaldone</title>
+    <meta name="description" content="Notes by P.Ricaldone. Travel notes through the world of silence between people.">
+    <meta name="author" content="Paolo Ricaldone">
+    <meta property="og:title" content="Notes - P.Ricaldone">
+    <meta property="og:description" content="Travel notes through the world of silence between people. Meant to be felt, not understood.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pricaldone.art/og-image.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        header {
+            background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 80%, transparent 100%);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s ease 0.5s forwards;
+        }
+        .container {
+            min-height: 100vh;
+            padding: 8rem 3rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .page-title {
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+        .page-title h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 150;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        .texts-layout {
+            display: flex;
+            gap: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+        }
+        .texts-sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 8rem;
+            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+        }
+        .series-group-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 0.5rem;
+            padding-top: 0.25rem;
+        }
+        .sidebar-item {
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .sidebar-item:first-of-type {
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .sidebar-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+        .sidebar-title {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+        .sidebar-item.active .sidebar-label { color: var(--text-secondary); }
+        .sidebar-item.active .sidebar-title { color: var(--text-primary); }
+        .sidebar-item.active {
+            border-left: 2px solid rgba(255,255,255,0.15);
+            padding-left: 1rem;
+        }
+        .texts-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 650px;
+        }
+        .text-panel { display: none; }
+        .text-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        .entry-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .entry-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+        .entry-title {
+            font-size: 1.75rem;
+            font-weight: 200;
+            line-height: 1.3;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+        }
+        .entry-body {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-secondary);
+            font-weight: 300;
+            position: relative;
+        }
+        .entry-body p { margin-bottom: 1.5rem; }
+        .entry-body p:last-child { margin-bottom: 0; }
+        .cornice-body {
+            font-size: 1.15rem;
+            line-height: 2.1;
+            font-weight: 200;
+            color: var(--text-secondary);
+        }
+        .cornice-body p { margin: 0; }
+        @media (max-width: 768px) {
+            .container { padding: 8rem 1.5rem 4rem; }
+            .page-title h1 { font-size: 2.5rem; }
+            .texts-layout { flex-direction: column; gap: 2rem; }
+            .texts-sidebar {
+                width: 100%;
+                position: static;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                padding-bottom: 1rem;
+            }
+            .entry-title { font-size: 1.4rem; }
+            .entry-body { font-size: 1rem; line-height: 1.85; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading"><p class="loading-text">Loading</p></div>
+    <div class="particles"></div>
+    <div class="cursor-dot"></div>
+    <div class="corner-detail top-left"></div>
+    <div class="corner-detail bottom-right"></div>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><img src="logo2.svg" alt="P.Ricaldone" /></a>
+            <div class="nav-right">
+                <div class="lang-toggle">
+                    <a class="active">EN</a>
+                    <a href="it/notes.html">IT</a>
+                </div>
+                <div class="nav-links">
+                    <a href="works.html">Works</a>
+                    <a href="texts.html">Texts</a>
+                    <a href="notes.html" class="active">Notes</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>Notes</h1>
+        </div>
+
+        <div class="texts-layout">
+            <nav class="texts-sidebar">
+                <div class="series-group-label">Silences</div>
+                <a class="sidebar-item active" data-target="cornice">
+                    <div class="sidebar-title">The series</div>
+                </a>
+                <a class="sidebar-item" data-target="s001">
+                    <div class="sidebar-label">Silence #001</div>
+                    <div class="sidebar-title">The Silence That Becomes</div>
+                </a>
+            </nav>
+
+            <div class="texts-content">
+                <div class="text-panel active" id="cornice">
+                    <h2 class="entry-title">Silences</h2>
+                    <div class="cornice-body">
+                        <p>A series of travel notes through the world of silence between people.</p>
+                        <p>Each note experiences a kind of silence and the emotion it carries.</p>
+                        <p>They are meant to be felt, not understood.</p>
+                    </div>
+                </div>
+
+                <div class="text-panel" id="s001">
+                    <div class="entry-meta">
+                        <span class="entry-label">Silence #001</span>
+                    </div>
+                    <h2 class="entry-title">The Silence That Becomes</h2>
+                    <div class="entry-body">
+                        <p>There's a silence I don't remember choosing. At first it was yours: your withdrawal, a word I was waiting for that never came, and me there, counting the days. I endured it, and it hurt in a sharp, recognizable way.</p>
+                        <p>Then something shifts, and I can't say when. I stop waiting. Not by decision: there was no moment when I said enough. It's just that one day I realize the silence I was enduring has become mine too. I exercise it without having decided to.</p>
+                        <p>This is where the two blur. From the outside, and often from the inside too, I can no longer tell whether I'm imposing that silence or still enduring it. Perhaps this is always what happens in a couple: each person believes they're suffering the other's silence while cultivating their own, and neither of them knows any longer where their part ends.</p>
+                        <p>I don't say this as blame, nor as a lament. I say it because it's exact: certain silences are neither imposed nor endured. They become. And when I realize it, I am already made of the same matter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var items = document.querySelectorAll('.sidebar-item');
+            items.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    items.forEach(function(i) { i.classList.remove('active'); });
+                    document.querySelectorAll('.text-panel').forEach(function(p) { p.classList.remove('active'); });
+                    item.classList.add('active');
+                    document.getElementById(item.getAttribute('data-target')).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
