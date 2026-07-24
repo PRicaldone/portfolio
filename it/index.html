@@ -13,415 +13,254 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* Homepage-specific: line-height override */
-        body {
-            line-height: 1;
+        /* ============================================
+           Home — il palco come soglia.
+           Autocontenuta: non usa css/style.css.
+           Buio caldo, luce che respira, prima l'opera.
+           ============================================ */
+        :root{
+            --bg:#131211;
+            --ink:#eae6e0;
+            --muted:#a09a92;
+            --faint:#7c766f;
+            --line:rgba(234,230,224,.12);
+            --line-soft:rgba(234,230,224,.06);
+            --halo:rgba(240,234,224,.10);
+            --font:'Helvetica Neue',-apple-system,BlinkMacSystemFont,sans-serif;
+            --ease:cubic-bezier(.22,.61,.21,1);
+        }
+        *,*::before,*::after{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            margin:0;
+            overflow-x:hidden;
+            background:var(--bg);
+            color:var(--ink);
+            font-family:var(--font);
+            font-size:1.125rem;
+            line-height:1.7;
+            -webkit-font-smoothing:antialiased;
+            text-rendering:optimizeLegibility;
+        }
+        ::selection{background:#eae6e0;color:#131211}
+        a{color:inherit;text-decoration:none}
+        p{margin:0}
+        figure{margin:0}
+        :focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+
+        .grain{
+            position:fixed; inset:0; z-index:90; pointer-events:none;
+            opacity:.05;
+            background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.82'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='180'%20height='180'%20filter='url(%23n)'/%3E%3C/svg%3E");
+            animation:grainmove .7s steps(1) infinite;
+        }
+        @keyframes grainmove{
+            0%{background-position:0 0}
+            20%{background-position:-64px 38px}
+            40%{background-position:42px -70px}
+            60%{background-position:-30px -52px}
+            80%{background-position:58px 24px}
+            100%{background-position:0 0}
         }
 
-        /* Homepage header delayed reveal */
-        header {
-            animation-delay: 2.2s;
+        .site-head{
+            position:fixed; top:0; left:0; right:0; z-index:80;
+            display:flex; justify-content:space-between; align-items:center;
+            padding:1.35rem 1.6rem;
+            font-size:.95rem; letter-spacing:.05em;
+        }
+        .logo{display:flex; align-items:center; opacity:.8; transition:opacity .5s var(--ease)}
+        .logo:hover{opacity:1}
+        .logo img{width:24px; height:24px; filter:invert(1); opacity:.9}
+        .nav-right{display:flex; align-items:baseline; gap:1.8rem}
+        .lang-toggle{display:flex; gap:.7rem; font-size:.85rem; letter-spacing:.14em}
+        .lang-toggle a{color:var(--faint); transition:color .5s var(--ease)}
+        .lang-toggle a:hover{color:var(--ink)}
+        .lang-toggle a.active{color:var(--muted); pointer-events:none}
+        .nav-links{display:flex; align-items:baseline; gap:1.5rem}
+        .nav-links a{color:var(--muted); transition:color .5s var(--ease)}
+        .nav-links a:hover{color:var(--ink)}
+
+        .quiet-link{
+            font-size:1.05rem; letter-spacing:.04em; color:var(--muted);
+            border-bottom:1px solid var(--line);
+            padding-bottom:.2rem;
+            transition:color .5s var(--ease), border-color .5s var(--ease);
+        }
+        .quiet-link:hover{color:var(--ink); border-color:var(--ink)}
+
+        .stage{
+            position:relative;
+            min-height:100vh; min-height:100svh;
+            display:flex; flex-direction:column; align-items:center; justify-content:center;
+            gap:2.4rem;
+            padding:6rem 1.5rem 4rem;
+            animation:settle 1.8s var(--ease) both;
+        }
+        @keyframes settle{from{opacity:0}to{opacity:1}}
+
+        .halo{
+            position:absolute; left:50%; top:52%;
+            width:min(135vw,150vh); aspect-ratio:1/1;
+            transform:translate(-50%,-50%);
+            border-radius:50%;
+            background:radial-gradient(closest-side, var(--halo), rgba(240,234,224,.04) 46%, transparent 70%);
+            filter:blur(56px);
+            animation:breathe 12s var(--ease) infinite;
+            will-change:transform,opacity;
+        }
+        @keyframes breathe{
+            0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}
+            50%{transform:translate(-50%,-50%) scale(1.06);opacity:1}
         }
 
-        /* Grid background */
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 3rem;
-            position: relative;
-            z-index: 2;
+        .frame{position:relative; z-index:1; text-align:center}
+        .video-box{
+            position:relative;
+            aspect-ratio:4/3;
+            width:min(86vw,68vh);
+            margin-inline:auto;
+            background:linear-gradient(158deg,#181613 0%,#100f0d 58%,#14120f 100%);
+            border:1px solid var(--line-soft);
+            box-shadow:0 30px 90px rgba(0,0,0,.45);
+        }
+        .video-box iframe{
+            position:absolute; inset:0;
+            width:100%; height:100%;
+            border:0;
+        }
+        .frame-caption{
+            margin-top:1.4rem;
+            font-size:.95rem; letter-spacing:.08em; color:var(--muted);
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0;
-            animation: fadeInSubtle 2s ease 1s forwards;
-            pointer-events: none;
+        .texts{
+            padding:26vh 1.5rem 22vh;
+            max-width:64rem; margin-inline:auto;
+            display:flex; flex-direction:column; align-items:center;
+        }
+        .stage + .texts{padding-top:18vh; padding-bottom:14vh}
+        .fragment{
+            max-width:26ch;
+            margin-inline:auto;
+            padding-left:1.2ch;
+            font-size:clamp(1.9rem,1.1rem + 3.4vw,3.5rem);
+            font-weight:300;
+            line-height:1.28;
+            letter-spacing:-0.018em;
+        }
+        .fragment + .fragment{margin-top:20vh}
+
+        .site-foot{
+            border-top:1px solid var(--line-soft);
+            padding:3.5rem 1.6rem 3rem;
+            display:flex; flex-direction:column; align-items:center;
+            text-align:center;
+        }
+        .colophon{font-size:.85rem; letter-spacing:.08em; color:var(--faint)}
+
+        .js .reveal{
+            opacity:0; transform:translateY(24px);
+            transition:opacity 1.6s var(--ease), transform 1.6s var(--ease);
+        }
+        .js .reveal.in{opacity:1; transform:none}
+
+        @media (max-width:640px){
+            .site-head{flex-wrap:wrap; row-gap:.35rem; padding:1.1rem 1.2rem; font-size:.9rem}
+            .nav-links{gap:1.1rem}
+            .video-box{width:min(88vw,calc(58svh * 4 / 3))}
+            .texts{padding:18vh 1.25rem 16vh}
+            .fragment{font-size:clamp(1.7rem,1.3rem + 2.4vw,2.2rem); max-width:24ch}
+            .fragment + .fragment{margin-top:min(14vh,8rem)}
+            .js .reveal{transform:translateY(12px); transition-duration:1.1s}
+            .halo{filter:none; will-change:auto; width:min(120vw,110svh); animation-name:breathe-small}
+            .grain{animation:none}
+        }
+        @keyframes breathe-small{
+            0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}
+            50%{transform:translate(-50%,-50%) scale(1.03);opacity:1}
         }
 
-        [data-theme="light"] .container::before {
-            background-image:
-                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-        }
-
-        /* Artist Name */
-        .artist-name {
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            margin-bottom: 5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: revealUp 1.2s var(--transition-out) 0.3s forwards;
-            color: var(--text-secondary);
-        }
-
-        [data-theme="light"] .artist-name {
-            color: #666 !important;
-            -webkit-text-fill-color: #666 !important;
-            background: none !important;
-            -webkit-background-clip: unset !important;
-            background-clip: unset !important;
-            text-fill-color: #666 !important;
-            filter: none !important;
-            opacity: 1 !important;
-        }
-
-        @keyframes gentleBreathe {
-            0%, 100% { opacity: 1; transform: translateY(0) scale(1); }
-            50% { opacity: 0.9; transform: translateY(-1px) scale(1.01); }
-        }
-
-        .artist-name.breathing {
-            animation: revealUp 1.2s var(--transition-out) 0.3s forwards,
-                      gentleBreathe 3.5s ease-in-out 2s infinite;
-        }
-
-        [data-theme="light"] .artist-name.breathing {
-            animation: revealUp 1.2s var(--transition-out) 0.3s forwards;
-        }
-
-        /* Statement */
-        .statement-container {
-            max-width: 720px;
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .statement-main {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-weight: 200;
-            line-height: 1.4;
-            letter-spacing: 0.02em;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        [data-theme="light"] .statement-main {
-            color: #000 !important;
-            -webkit-text-fill-color: #000 !important;
-        }
-
-        [data-theme="light"] .statement-main * {
-            color: #000 !important;
-            -webkit-text-fill-color: #000 !important;
-        }
-
-        .letter {
-            display: inline-block;
-            opacity: 0;
-            animation: fadeLetter 1s ease forwards;
-        }
-
-        .letter.space {
-            width: 0.3em;
-        }
-
-        @keyframes fadeLetter {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hoverable {
-            position: relative;
-            cursor: default;
-            font-style: italic;
-            transition: color 0.4s ease, text-shadow 0.4s ease;
-        }
-
-        .hoverable::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0.05em;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.6s var(--transition-out);
-            opacity: 0.5;
-        }
-
-        .hoverable:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .hoverable:hover {
-            color: var(--accent);
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
-
-        [data-theme="light"] .hoverable:hover {
-            color: #000;
-            text-shadow: 0 0 15px rgba(0,0,0,0.15);
-        }
-
-        /* Emphasis */
-        .emphasis {
-            font-style: italic;
-            font-weight: 300;
-            position: relative;
-            display: inline-block;
-            transition: all 0.4s var(--transition-smooth);
-        }
-
-        .emphasis::after {
-            content: '';
-            position: absolute;
-            left: -10%;
-            right: -10%;
-            bottom: 0.1em;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.6s var(--transition-out);
-            opacity: 0.5;
-        }
-
-        .statement-line:hover .emphasis::after,
-        .statement-secondary:hover .emphasis::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .statement-line:hover .emphasis,
-        .statement-secondary:hover .emphasis {
-            color: var(--accent);
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
-
-        [data-theme="light"] .statement-line:hover .emphasis,
-        [data-theme="light"] .statement-secondary:hover .emphasis {
-            color: #000;
-            text-shadow: 0 0 15px rgba(0,0,0,0.15);
-        }
-
-        /* Secondary Statement */
-        .statement-secondary {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-weight: 200;
-            line-height: 1.4;
-            letter-spacing: 0.02em;
-            color: var(--text-primary);
-            margin-bottom: 3rem;
-            margin-top: -1.5rem;
-            position: relative;
-        }
-
-        .statement-secondary::before {
-            display: none;
-            opacity: 0.3;
-        }
-
-        .statement-secondary span {
-            display: inline-block;
-            transition: all 0.3s var(--transition-smooth);
-        }
-
-        .statement-secondary span:hover {
-            transform: translateY(-2px);
-            color: var(--text-primary);
-        }
-
-        .statement-secondary span:nth-child(1):hover ~ span:nth-child(2) {
-            opacity: 0.5;
-        }
-
-        .statement-secondary span:nth-child(2):hover ~ span:nth-child(1) {
-            opacity: 0.5;
-        }
-
-        /* Signature */
-        .signature {
-            font-size: 0.875rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            opacity: 0;
-            animation: fadeInSubtle 1s ease 2.5s forwards;
-            font-weight: 400;
-        }
-
-        [data-theme="light"] .signature {
-            color: var(--text-secondary);
-        }
-
-        .signature span {
-            display: inline-block;
-            position: relative;
-            margin: 0 0.5em;
-            transition: transform 0.3s ease;
-        }
-
-        .signature:hover span {
-            animation: wave 0.5s ease-in-out;
-            animation-delay: calc(var(--i) * 0.1s);
-        }
-
-        .signature span:nth-child(1) { --i: 0; }
-        .signature span:nth-child(2) { --i: 1; }
-        .signature span:nth-child(3) { --i: 2; }
-
-        @keyframes wave {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        .signature span:not(:last-child)::after {
-            content: '\00b7';
-            position: absolute;
-            right: -0.85em;
-            color: var(--text-secondary);
-            opacity: 0.4;
-        }
-
-        /* Konami */
-        .konami-active .artist-name {
-            animation: rainbow 2s linear infinite;
-        }
-
-        @keyframes rainbow {
-            0% { color: #ff0000; }
-            16.66% { color: #ff8800; }
-            33.33% { color: #ffff00; }
-            50% { color: #00ff00; }
-            66.66% { color: #0088ff; }
-            83.33% { color: #8800ff; }
-            100% { color: #ff0000; }
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem;
-                padding-top: 6rem;
-            }
-
-            .artist-name {
-                margin-bottom: 3rem;
-            }
-
-            .statement-main {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .signature {
-                font-size: 0.65rem;
-                letter-spacing: 0.15em;
-            }
+        @media (prefers-reduced-motion:reduce){
+            html{scroll-behavior:auto}
+            *,*::before,*::after{animation:none !important; transition:none !important}
+            .stage{animation:none}
+            .js .reveal{opacity:1; transform:none}
+            .halo{opacity:.9}
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-
-    <!-- Subtle glow -->
-    <div class="glow"></div>
-
-    <!-- Loading -->
-    <div class="loading">
-        <p class="loading-text">Caricamento</p>
-    </div>
+    <div class="grain" aria-hidden="true"></div>
 
     <!-- Header -->
-    <header>
-        <nav>
-            <a href="index.html" class="logo"><img src="../logo2.svg" alt="P.Ricaldone" /></a>
-            <div class="nav-right">
-                <div class="lang-toggle">
-                    <a href="../index.html">EN</a>
-                    <a class="active">IT</a>
-                </div>
-                <div class="nav-links">
-                    <a href="works.html">Opere</a>
-                    <a href="texts.html">Testi</a>
-                    <a href="notes.html">Appunti</a>
-                    <a href="about.html">Chi Sono</a>
-                    <a href="contact.html">Contatti</a>
-                </div>
+    <header class="site-head">
+        <a href="index.html" class="logo">
+            <img src="../logo2.svg" alt="P.Ricaldone" />
+        </a>
+        <div class="nav-right">
+            <div class="lang-toggle">
+                <a href="../index.html">EN</a>
+                <a class="active">IT</a>
             </div>
-        </nav>
+            <nav class="nav-links">
+                <a href="works.html">Opere</a>
+                <a href="texts.html">Testi</a>
+                <a href="notes.html">Appunti</a>
+                <a href="about.html">Chi Sono</a>
+                <a href="contact.html">Contatti</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Corner Details -->
-    <div class="corner-detail top-left"></div>
-    <div class="corner-detail bottom-right"></div>
+    <main>
+        <!-- La soglia: l'opera, presente dal primo istante -->
+        <section class="stage" aria-label="Opera in evidenza">
+            <div class="halo" aria-hidden="true"></div>
+            <figure class="frame">
+                <div class="video-box">
+                    <iframe src="https://player.vimeo.com/video/1179249583?background=1&autopause=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="I Have To"></iframe>
+                </div>
+                <figcaption class="frame-caption">The Stage — Acts of a Lucid Silence · Act I</figcaption>
+            </figure>
+            <a class="quiet-link" href="works.html#act-i">Entra in The Stage <span aria-hidden="true">→</span></a>
+        </section>
 
-    <!-- Main Content -->
-    <main class="container">
-        <h1 class="artist-name breathing">Paolo Ricaldone</h1>
-
-        <div class="statement-container">
-            <h2 class="statement-main">
-                <span class="letter-line" data-delay="2.2">Video arte da </span><span class="letter-line hoverable" data-delay="2.7">sentire</span><span class="letter-line" data-delay="3.0">,</span>
-            </h2>
-
-            <p class="statement-secondary">
-                <span class="letter-line hoverable" data-delay="3.8">non da decifrare</span><span class="letter-line" data-delay="4.4">.</span>
-            </p>
-
-        </div>
+        <!-- Un assaggio del pensiero — la sequenza completa vive in Testi -->
+        <section class="texts" aria-label="Pensiero">
+            <p class="fragment reveal">Percepisco l'emozione, nella sua essenza, come energia naturale: una carica che si propaga nello spazio e nel tempo. Do corpo a questa energia mettendo in scena spazio, materia, luce e tempo.</p>
+            <p class="fragment reveal">Quello che mi interessa è provocare un'accensione, che l'opera prenda prima di farsi capire.</p>
+            <p class="fragment reveal">Le opere non si spiegano, si dichiara solo la cornice.</p>
+        </section>
     </main>
 
+    <footer class="site-foot">
+        <p class="colophon">© 2026 Paolo Ricaldone · pricaldone.art</p>
+    </footer>
 
-    <script src="../js/main.js"></script>
     <script>
-        // Letter-by-letter reveal
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.letter-line').forEach(line => {
-                const baseDelay = parseFloat(line.dataset.delay) || 0;
-                const sourceHTML = line.textContent;
-                let letterIndex = 0;
-                const fragment = document.createDocumentFragment();
-
-                for (let i = 0; i < sourceHTML.length; i++) {
-                    const ch = sourceHTML[i];
-                    const delay = (baseDelay + letterIndex * 0.04).toFixed(2);
-                    const span = document.createElement('span');
-                    span.className = ch === ' ' ? 'letter space' : 'letter';
-                    span.textContent = ch === ' ' ? '\u00A0' : ch;
-                    span.style.animationDelay = delay + 's';
-                    fragment.appendChild(span);
-                    letterIndex++;
-                }
-                line.textContent = '';
-                line.appendChild(fragment);
-            });
-        });
-
-        // Homepage parallax
-        (function() {
-            const statementMains = document.querySelectorAll('.statement-main, .statement-secondary');
-            const glow = document.querySelector('.glow');
-
-            document.addEventListener('mousemove', (e) => {
-                if (window.innerWidth > 768) {
-                    const xAxis = (window.innerWidth / 2 - e.pageX) / 100;
-                    const yAxis = (window.innerHeight / 2 - e.pageY) / 100;
-
-                    statementMains.forEach(statement => {
-                        statement.style.transform = `translateX(${xAxis}px) translateY(${yAxis}px)`;
-                    });
-                }
-            });
+        /* La classe .js si mette qui — solo se lo script gira davvero.
+           Se il JS è bloccato, .reveal non scatta e tutto resta visibile. */
+        document.documentElement.classList.add('js');
+        (function () {
+            'use strict';
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+            if (!items.length) return;
+            if (reduce || !('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+            items.forEach(function (el) { io.observe(el); });
         })();
     </script>
 </body>
