@@ -69,46 +69,7 @@ body::before {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii45IiBudW1PY3RhdmVzPSI0IiBzZWVkPSI1Ii8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
 }
 
-/* ============================================
-   Custom Cursor — only on precise pointer devices
-   ============================================ */
-@media (pointer: fine) {
-    body {
-        cursor: none;
-    }
-
-    a, button {
-        cursor: none;
-    }
-
-    .cursor-dot {
-        position: fixed;
-        width: 5px;
-        height: 5px;
-        background: var(--accent);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        mix-blend-mode: difference;
-        transition: transform 0.15s var(--transition-smooth),
-                   opacity 0.15s var(--transition-smooth);
-    }
-
-    [data-theme="light"] .cursor-dot {
-        background: #000;
-        mix-blend-mode: normal;
-        box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
-    }
-
-    .cursor-dot.hover {
-        transform: scale(3);
-        opacity: 0.5;
-    }
-
-    .cursor-dot.click {
-        transform: scale(0.5);
-    }
-}
+/* Custom cursor rimosso (25 lug 2026): cursore nativo, registro sobrio */
 
 /* ============================================
    Loading Screen
@@ -439,49 +400,12 @@ nav {
     }
 }
 
-/* ============================================
-   Background Particles (used on works page)
-   ============================================ */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: var(--text-tertiary);
-    opacity: 0;
-    animation: floatParticle 20s linear infinite;
-}
-
-@keyframes floatParticle {
-    0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.3;
-    }
-    90% {
-        opacity: 0.3;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(100px);
-        opacity: 0;
-    }
-}
+/* Particles rimosse (25 lug 2026): registro sobrio */
 
 /* ============================================
    No selection for decorative elements
    ============================================ */
-.logo, button, .corner-detail, .float-element, .float-accent, .particles {
+.logo, button, .corner-detail, .float-element, .float-accent {
     user-select: none;
     -webkit-user-select: none;
 }
