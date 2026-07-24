@@ -131,9 +131,34 @@
             color: var(--text-secondary);
             font-weight: 300;
             position: relative;
+            transition: all 0.5s var(--transition-smooth);
         }
         .entry-body p { margin-bottom: 1.5rem; }
         .entry-body p:last-child { margin-bottom: 0; }
+        /* Hover slide — come Testi */
+        .entry-body::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--text-tertiary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .text-panel:hover .entry-body {
+            transform: translateX(0.5rem);
+        }
+        .text-panel:hover .entry-body::before {
+            opacity: 0.3;
+        }
+        .entry-title {
+            transition: transform 0.3s ease, letter-spacing 0.3s ease;
+        }
+        .text-panel:hover .entry-title {
+            transform: translateX(5px);
+        }
         .cornice-body {
             font-size: 1.15rem;
             line-height: 2.1;
