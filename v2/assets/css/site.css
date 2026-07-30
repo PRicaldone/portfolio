@@ -261,6 +261,12 @@ cite{ font-style:normal; }
   height:calc(var(--header-height) + 1.5rem);
   margin-top:calc(-1 * (var(--header-height) + 1.5rem));
 }
+/* L'ultima sezione non puo salire sotto la barra perche sotto di lei la pagina
+   finisce: le si riserva l'altezza necessaria, cosi anche il suo link aggancia
+   nello stesso punto degli altri. */
+.page--reading .entry:last-of-type{
+  min-height:calc(100svh - var(--header-height) - 7rem);
+}
 .entry h2{ margin:0 0 1.1rem; font-size:1rem; font-weight:400; letter-spacing:.01em; }
 
 /* --------------------------------------------------------------- About */
