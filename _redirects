@@ -1,0 +1,44 @@
+# Reindirizzamenti — da pubblicare in radice al momento dello switch.
+#
+# Gli indirizzi del sito attuale non devono morire: chi ha salvato un link lo
+# perde e non te lo dice (Somalo, DOC NYC, in ricerca-sito-curatori § 1.2).
+# Formato Netlify: origine  destinazione  codice. 301 = spostato per sempre.
+
+# --- pagine inglesi -------------------------------------------------------
+/works            /works/            301
+/works.html       /works/            301
+/texts            /writing/thought/  301
+/texts.html       /writing/thought/  301
+/notes            /writing/          301
+/notes.html       /writing/          301
+/about            /about/            301
+/about.html       /about/            301
+/contact          /contact/          301
+/contact.html     /contact/           301
+/index.html       /                  301
+
+# --- pagine italiane ------------------------------------------------------
+/it/works         /it/works/            301
+/it/works.html    /it/works/            301
+/it/texts         /it/writing/thought/  301
+/it/texts.html    /it/writing/thought/  301
+/it/notes         /it/writing/          301
+/it/notes.html    /it/writing/          301
+/it/about         /it/about/            301
+/it/about.html    /it/about/            301
+/it/contact       /it/contact/          301
+/it/contact.html  /it/contact/          301
+/it/index.html    /it/                  301
+
+# --- vecchia struttura a collezioni (residuo del 2026) --------------------
+/collections/the-stage/works/work-01.html      /works/i-have-to/     301
+/collections/the-stage/works/work-01_it.html   /it/works/i-have-to/  301
+/collections/the-stage/index.html              /works/              301
+/collections/the-stage/index_it.html           /it/works/           301
+/collections/*                                 /works/              301
+
+# --- ancore d'opera gia condivise -----------------------------------------
+# Il frammento non arriva al server, ma il browser se lo porta dietro attraverso
+# il reindirizzamento: /works#act-i diventa /works/#act-i. Nell'indice Works le
+# righe conservano gli id storici act-i, act-ii e act-iii, quindi i link gia
+# condivisi atterrano ancora sull'opera giusta.

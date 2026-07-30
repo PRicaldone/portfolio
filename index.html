@@ -1,427 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P.Ricaldone — Video Art</title>
-    <meta name="description" content="Video art meant to be felt, not decoded.">
-    <meta name="author" content="Paolo Ricaldone">
-    <meta property="og:title" content="P.Ricaldone — Video Art">
-    <meta property="og:description" content="Video art meant to be felt, not decoded.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://pricaldone.art/og-image.jpg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* ============================================
-           Homepage-specific styles
-           ============================================ */
-
-        /* Main Container */
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Subtle grid background */
-        .container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0;
-            animation: fadeInSubtle 2s ease 1s forwards;
-            pointer-events: none;
-        }
-
-        [data-theme="light"] .container::before {
-            background-image:
-                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-        }
-
-        /* Artist Name */
-        .artist-name {
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            margin-bottom: 5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: revealUp 1.2s var(--transition-out) 0.3s forwards;
-            color: var(--text-secondary);
-        }
-
-        [data-theme="light"] .artist-name {
-            color: #666 !important;
-            -webkit-text-fill-color: #666 !important;
-            background: none !important;
-            -webkit-background-clip: unset !important;
-            background-clip: unset !important;
-            -webkit-text-fill-color: #666 !important;
-            text-fill-color: #666 !important;
-            filter: none !important;
-            opacity: 1 !important;
-        }
-
-        /* Breathing animation for artist name */
-        @keyframes gentleBreathe {
-            0%, 100% { opacity: 1; transform: translateY(0) scale(1); }
-            50% { opacity: 0.9; transform: translateY(-1px) scale(1.01); }
-        }
-
-        .artist-name.breathing {
-            animation: revealUp 1.2s var(--transition-out) 0.3s forwards,
-                      gentleBreathe 3.5s ease-in-out 2s infinite;
-        }
-
-        [data-theme="light"] .artist-name.breathing {
-            animation: revealUp 1.2s var(--transition-out) 0.3s forwards;
-        }
-
-        /* Main Statement */
-        .statement-container {
-            max-width: 720px;
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .statement-main {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-weight: 200;
-            line-height: 1.4;
-            letter-spacing: 0.02em;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        [data-theme="light"] .statement-main {
-            color: #000 !important;
-            -webkit-text-fill-color: #000 !important;
-        }
-
-        [data-theme="light"] .statement-main * {
-            color: #000 !important;
-            -webkit-text-fill-color: #000 !important;
-        }
-
-        .letter {
-            display: inline-block;
-            opacity: 0;
-            animation: fadeLetter 1s ease forwards;
-        }
-
-        .letter.space {
-            width: 0.3em;
-        }
-
-        @keyframes fadeLetter {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hoverable {
-            position: relative;
-            cursor: default;
-            font-style: italic;
-            transition: color 0.4s ease, text-shadow 0.4s ease;
-        }
-
-        .hoverable::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0.05em;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.6s var(--transition-out);
-            opacity: 0.5;
-        }
-
-        .hoverable:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .hoverable:hover {
-            color: var(--accent);
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
-
-        [data-theme="light"] .hoverable:hover {
-            color: #000;
-            text-shadow: 0 0 15px rgba(0,0,0,0.15);
-        }
-
-        /* Emphasis */
-        .emphasis {
-            font-style: italic;
-            font-weight: 300;
-            position: relative;
-            display: inline-block;
-            transition: all 0.4s var(--transition-smooth);
-        }
-
-        .emphasis::after {
-            content: '';
-            position: absolute;
-            left: -10%;
-            right: -10%;
-            bottom: 0.1em;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.6s var(--transition-out);
-            opacity: 0.5;
-        }
-
-        .statement-line:hover .emphasis::after,
-        .statement-secondary:hover .emphasis::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .statement-line:hover .emphasis,
-        .statement-secondary:hover .emphasis {
-            color: var(--accent);
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
-
-        [data-theme="light"] .statement-line:hover .emphasis,
-        [data-theme="light"] .statement-secondary:hover .emphasis {
-            color: #000;
-            text-shadow: 0 0 15px rgba(0,0,0,0.15);
-        }
-
-        /* Secondary Statement */
-        .statement-secondary {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-weight: 200;
-            line-height: 1.4;
-            letter-spacing: 0.02em;
-            color: var(--text-primary);
-            margin-bottom: 3rem;
-            margin-top: -1.5rem;
-            position: relative;
-        }
-
-        .statement-secondary::before {
-            display: none;
-            opacity: 0.3;
-        }
-
-        .statement-secondary span {
-            display: inline-block;
-            transition: all 0.3s var(--transition-smooth);
-        }
-
-        .statement-secondary span:hover {
-            transform: translateY(-2px);
-            color: var(--text-primary);
-        }
-
-        /* Easter Egg - Secret hover on secondary text */
-        .statement-secondary span:nth-child(1):hover ~ span:nth-child(2) {
-            opacity: 0.5;
-        }
-
-        .statement-secondary span:nth-child(2):hover ~ span:nth-child(1) {
-            opacity: 0.5;
-        }
-
-        /* Signature */
-        .signature {
-            font-size: 0.875rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            opacity: 0;
-            animation: fadeInSubtle 1s ease 2.5s forwards;
-            font-weight: 400;
-        }
-
-        [data-theme="light"] .signature {
-            color: var(--text-secondary);
-        }
-
-        .signature span {
-            display: inline-block;
-            position: relative;
-            margin: 0 0.5em;
-            transition: transform 0.3s ease;
-        }
-
-        /* Easter Egg - Signature hover */
-        .signature:hover span {
-            animation: wave 0.5s ease-in-out;
-            animation-delay: calc(var(--i) * 0.1s);
-        }
-
-        .signature span:nth-child(1) { --i: 0; }
-        .signature span:nth-child(2) { --i: 1; }
-        .signature span:nth-child(3) { --i: 2; }
-
-        @keyframes wave {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        .signature span:not(:last-child)::after {
-            content: '\00B7';
-            position: absolute;
-            right: -0.85em;
-            color: var(--text-secondary);
-            opacity: 0.4;
-        }
-
-        /* Easter Egg - Konami Code */
-        .konami-active .artist-name {
-            animation: rainbow 2s linear infinite;
-        }
-
-        @keyframes rainbow {
-            0% { color: #ff0000; }
-            16.66% { color: #ff8800; }
-            33.33% { color: #ffff00; }
-            50% { color: #00ff00; }
-            66.66% { color: #0088ff; }
-            83.33% { color: #8800ff; }
-            100% { color: #ff0000; }
-        }
-
-        /* Homepage mobile overrides */
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem;
-                padding-top: 6rem;
-            }
-
-            .artist-name {
-                margin-bottom: 3rem;
-            }
-
-            .statement-main {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .signature {
-                font-size: 0.65rem;
-                letter-spacing: 0.15em;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paolo Ricaldone — I Have To</title>
+<meta name="description" content="Paolo Ricaldone — silent single-channel video, made entirely in CGI.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="alternate" hreflang="it" href="it/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Paolo Ricaldone — I Have To">
+<meta property="og:description" content="Paolo Ricaldone — silent single-channel video, made entirely in CGI.">
+<meta property="og:image" content="https://pricaldone.art/og-image.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-
-    <!-- Subtle glow -->
-    <div class="glow"></div>
-
-    <!-- Loading -->
-    <div class="loading">
-        <p class="loading-text">Loading</p>
+<body class="home-page">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-name" href="index.html">Paolo Ricaldone</a>
+    <nav class="site-nav" aria-label="Works">
+      <a class="site-nav__link" href="works/index.html">Works</a>
+      <a class="site-nav__link" href="writing/index.html">Writing</a>
+      <a class="site-nav__link" href="about/index.html">About</a>
+      <a class="site-nav__link" href="contact/index.html">Contact</a>
+    </nav>
+    <a class="language-link" href="it/index.html" hreflang="it" lang="it">IT</a>
+  </div>
+</header>
+<main id="content" class="site-main">
+  <section class="home-stage" aria-labelledby="home-work-title">
+    <div class="home-stage__media">
+      <video class="home-stage__video" id="home-video" src="assets/act-i-home.mp4"
+             poster="assets/act-i-poster.jpg" autoplay muted loop playsinline
+             aria-label="Act I — I Have To, Silent video, single-channel, CGI, 01:18"></video>
     </div>
-
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="index.html" class="logo">
-                <img src="logo2.svg" alt="P.Ricaldone" />
-            </a>
-            <div class="nav-right">
-                <div class="lang-toggle">
-                    <a class="active">EN</a>
-                    <a href="it/index.html">IT</a>
-                </div>
-                <div class="nav-links">
-                    <a href="works.html">Works</a>
-                    <a href="texts.html">Texts</a>
-                    <a href="notes.html">Notes</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Corner Details -->
-    <div class="corner-detail top-left"></div>
-    <div class="corner-detail bottom-right"></div>
-
-    <!-- Main Content -->
-    <main class="container">
-        <h1 class="artist-name breathing">Paolo Ricaldone</h1>
-
-        <!-- English Content -->
-        <div class="statement-container">
-            <h2 class="statement-main">
-                <span class="letter-line" data-delay="2.2">Video art meant to be </span><span class="letter-line hoverable" data-delay="3.1">felt</span><span class="letter-line" data-delay="3.3">,</span>
-            </h2>
-
-            <p class="statement-secondary">
-                <span class="letter-line hoverable" data-delay="4.2">not decoded</span><span class="letter-line" data-delay="4.6">.</span>
-            </p>
-
-        </div>
-    </main>
-
-
-    <script src="js/main.js" defer></script>
-    <script>
-        // Letter-by-letter reveal
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.letter-line').forEach(line => {
-                const baseDelay = parseFloat(line.dataset.delay) || 0;
-                const sourceHTML = line.textContent;
-                let letterIndex = 0;
-                const fragment = document.createDocumentFragment();
-
-                for (let i = 0; i < sourceHTML.length; i++) {
-                    const ch = sourceHTML[i];
-                    const delay = (baseDelay + letterIndex * 0.04).toFixed(2);
-                    const span = document.createElement('span');
-                    span.className = ch === ' ' ? 'letter space' : 'letter';
-                    span.textContent = ch === ' ' ? '\u00A0' : ch;
-                    span.style.animationDelay = delay + 's';
-                    fragment.appendChild(span);
-                    letterIndex++;
-                }
-                line.textContent = '';
-                line.appendChild(fragment);
-            });
-        });
-
-        // Homepage-specific: parallax on statement
-        document.addEventListener('DOMContentLoaded', () => {
-            const statements = document.querySelectorAll('.statement-main, .statement-secondary');
-            document.addEventListener('mousemove', (e) => {
-                if (window.innerWidth > 768) {
-                    const xAxis = (window.innerWidth / 2 - e.pageX) / 100;
-                    const yAxis = (window.innerHeight / 2 - e.pageY) / 100;
-                    statements.forEach(s => {
-                        s.style.transform = `translateX(${xAxis}px) translateY(${yAxis}px)`;
-                    });
-                }
-            });
-        });
-    </script>
+    <p class="media-toggle-row">
+      <button class="media-toggle" type="button" id="home-video-toggle"
+              aria-controls="home-video" aria-pressed="true"
+              data-play="Play" data-pause="Pause" hidden>
+        <span class="media-toggle__icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Pause</span>
+      </button>
+    </p>
+    <div class="home-stage__caption">
+      <p class="eyebrow">The Stage — Acts of a Lucid Silence</p>
+      <h1 id="home-work-title"><span>Act I</span><cite>I Have To</cite></h1>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><small>© Paolo Ricaldone. All rights reserved.</small></footer>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
