@@ -15,6 +15,17 @@
   --content-width:72rem;
   --reading-width:38rem;
   --font:"Helvetica Neue",-apple-system,BlinkMacSystemFont,sans-serif;
+
+  /* Scala tipografica — sette gradini, ognuno con un mestiere preciso.
+     Prima erano ventidue misure diverse, molte a un centesimo l'una dall'altra. */
+  --fs-page:clamp(1.8rem,3.2vw,2.4rem);   /* titolo di pagina */
+  --fs-section:clamp(1.3rem,2.2vw,1.6rem);/* titolo di sezione: Pensiero, Appunti, opera */
+  --fs-sub:1.15rem;                       /* sottosezione: serie, cornice di collezione */
+  --fs-base:1rem;                         /* testo corrente */
+  --fs-list:.94rem;                       /* titoli nelle liste */
+  --fs-note:.86rem;                       /* dati, note tecniche, didascalie */
+  --fs-sm:.78rem;                         /* navigazione */
+  --fs-xs:.68rem;                         /* etichette in maiuscoletto */
 }
 
 *{ box-sizing:border-box; }
@@ -23,7 +34,7 @@ body{
   display:flex; flex-direction:column;
   min-width:18rem; min-height:100svh; margin:0;
   background:var(--background); color:var(--text);
-  font-family:var(--font); font-size:1rem; font-weight:300; line-height:1.6;
+  font-family:var(--font); font-size:var(--fs-base); font-weight:300; line-height:1.6;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
 
@@ -57,12 +68,12 @@ img{ max-width:100%; height:auto; }
   margin:0 auto; padding:0 var(--page-gutter);
 }
 .site-name, .site-nav__link, .language-link{ text-decoration:none; }
-.site-name{ justify-self:start; font-size:.83rem; font-weight:400; letter-spacing:.01em; }
+.site-name{ justify-self:start; font-size:var(--fs-sm); font-weight:400; letter-spacing:.01em; }
 .site-nav{
   display:flex; grid-column:2; gap:clamp(1rem,2.4vw,2.5rem);
   align-items:center; justify-content:center;
 }
-.site-nav__link, .language-link{ color:var(--soft-text); font-size:.75rem; letter-spacing:.04em; }
+.site-nav__link, .language-link{ color:var(--soft-text); font-size:var(--fs-sm); letter-spacing:.04em; }
 .site-nav__link:hover, .language-link:hover{ color:var(--text); }
 .site-nav__link[aria-current="page"]{ color:var(--text); }
 .language-link{ grid-column:3; justify-self:end; }
@@ -112,15 +123,15 @@ img{ max-width:100%; height:auto; }
 }
 .home-stage__caption h1{
   display:flex; gap:.65rem; align-items:baseline; justify-self:end; margin:0;
-  font-size:clamp(.86rem,1.2vw,1.05rem); font-weight:400; letter-spacing:-.01em;
+  font-size:var(--fs-list); font-weight:400; letter-spacing:-.01em;
 }
 .home-stage__caption h1 span{
-  color:var(--muted); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); font-size:var(--fs-xs); letter-spacing:.08em; text-transform:uppercase;
 }
 cite{ font-style:normal; }
 
 .eyebrow, .type-label{
-  margin:0; color:var(--muted); font-size:.68rem; letter-spacing:.08em;
+  margin:0; color:var(--muted); font-size:var(--fs-xs); letter-spacing:.08em;
   line-height:1.4; text-transform:uppercase;
 }
 
@@ -133,15 +144,15 @@ cite{ font-style:normal; }
 .page--reading, .page--about, .page--contact, .page--work{ max-width:none; }
 .page--reading{ max-width:calc(var(--reading-width) + (2 * var(--page-gutter))); }
 .page-heading h1, .page-title{
-  margin:0 0 3rem; font-size:1.5rem; font-weight:300; letter-spacing:-.01em;
+  margin:0 0 3rem; font-size:var(--fs-page); font-weight:300; letter-spacing:-.01em;
 }
-.crumb{ margin:0 0 2.2rem; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.crumb{ margin:0 0 2.2rem; font-size:var(--fs-xs); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
 .crumb a{ color:var(--muted); text-decoration:none; }
 .crumb a:hover{ color:var(--text); }
 
 /* --------------------------------------------------------------- Works */
 
-.collection__title{ margin:0 0 .8rem; font-size:.95rem; font-weight:400; }
+.collection__title{ margin:0 0 .8rem; font-size:var(--fs-sub); font-weight:400; }
 .collection__frame{
   max-width:var(--reading-width); margin:0 0 3.5rem; color:var(--soft-text);
 }
@@ -154,9 +165,9 @@ cite{ font-style:normal; }
 }
 .work-row__still img{ display:block; width:100%; aspect-ratio:4 / 3; object-fit:cover; }
 .work-row__text{ display:block; }
-.work-row__title{ display:block; margin:.5rem 0 .4rem; font-size:1.15rem; }
+.work-row__title{ display:block; margin:.5rem 0 .4rem; font-size:var(--fs-sub); }
 .work-row__link:hover .work-row__title{ color:var(--accent); }
-.work-row__meta{ display:block; color:var(--muted); font-size:.8rem; }
+.work-row__meta{ display:block; color:var(--muted); font-size:var(--fs-note); }
 .work-row--announced{
   border-top:1px solid var(--line); padding:2rem 0; color:var(--muted);
 }
@@ -168,7 +179,7 @@ cite{ font-style:normal; }
   max-width:calc(76rem + (2 * var(--page-gutter)));
   margin:0 auto;
 }
-.work-detail__heading h1{ margin:.6rem 0 2rem; font-size:1.4rem; font-weight:300; }
+.work-detail__heading h1{ margin:.6rem 0 2rem; font-size:var(--fs-section); font-weight:300; }
 .work-detail__video{
   position:relative; width:100%; aspect-ratio:4 / 3;
   background:#000; margin:0 0 2.5rem;
@@ -178,11 +189,11 @@ cite{ font-style:normal; }
 }
 .spec{
   display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
-  gap:1rem 2.5rem; max-width:60rem; margin:0 0 2rem; font-size:.85rem;
+  gap:1rem 2.5rem; max-width:60rem; margin:0 0 2rem; font-size:var(--fs-note);
 }
-.spec__row dt{ color:var(--muted); font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; }
+.spec__row dt{ color:var(--muted); font-size:var(--fs-xs); letter-spacing:.07em; text-transform:uppercase; }
 .spec__row dd{ margin:.25rem 0 0; }
-.behaviour, .viewing{ margin:0 0 .4rem; color:var(--muted); font-size:.82rem; }
+.behaviour, .viewing{ margin:0 0 .4rem; color:var(--muted); font-size:var(--fs-note); }
 
 /* ------------------------------------------------------------- Writing */
 
@@ -202,33 +213,33 @@ cite{ font-style:normal; }
 }
 .wkind{
   display:block; margin:0 0 .8rem; color:var(--muted);
-  font-size:.66rem; letter-spacing:.11em; text-transform:uppercase;
+  font-size:var(--fs-xs); letter-spacing:.11em; text-transform:uppercase;
 }
-.wcol-title{ margin:0 0 1.8rem; font-size:clamp(1.6rem,3.2vw,2.6rem); font-weight:200; letter-spacing:-.02em; }
+.wcol-title{ margin:0 0 1.8rem; font-size:var(--fs-section); font-weight:200; letter-spacing:-.02em; }
 .wcol-title a{ text-decoration:none; }
 .wcol-title a:hover{ color:var(--accent); }
 
 .wsections{ list-style:none; margin:0; padding:0; max-width:24rem; }
 .wsections a{
   display:flex; gap:1rem; align-items:baseline;
-  padding:.42rem 0; text-decoration:none; color:var(--soft-text); font-size:.88rem;
+  padding:.42rem 0; text-decoration:none; color:var(--soft-text); font-size:var(--fs-list);
 }
 .wsections a:hover{ color:var(--accent); }
-.sec-n{ flex:0 0 1.6rem; color:var(--muted); font-size:.68rem; letter-spacing:.08em; }
+.sec-n{ flex:0 0 1.6rem; color:var(--muted); font-size:var(--fs-xs); letter-spacing:.08em; }
 
 .wseries{ margin:2.4rem 0 0; padding:0; border:0; }
 .wseries-title{
   display:flex; gap:.9rem; align-items:baseline; margin:0 0 .9rem;
-  font-size:1.15rem; font-weight:300;
+  font-size:var(--fs-sub); font-weight:300;
 }
 .wseries-title .wkind{ display:inline; margin:0; }
-.wframe{ max-width:var(--reading-width); margin:0 0 1.6rem; color:var(--soft-text); font-size:.9rem; }
+.wframe{ max-width:var(--reading-width); margin:0 0 1.6rem; color:var(--soft-text); font-size:var(--fs-note); }
 .wframe p{ margin:0 0 .3rem; }
 .wlist{ list-style:none; margin:0; padding:0; }
 .wlist li + li{ border-top:1px solid var(--line); }
 .wlist a{ display:flex; gap:1.5rem; align-items:baseline; padding:.85rem 0; text-decoration:none; }
-.idx{ flex:0 0 8rem; color:var(--muted); font-size:.7rem; letter-spacing:.13em; text-transform:uppercase; }
-.ttl{ font-size:.94rem; }
+.idx{ flex:0 0 8rem; color:var(--muted); font-size:var(--fs-xs); letter-spacing:.13em; text-transform:uppercase; }
+.ttl{ font-size:var(--fs-list); }
 .wlist a:hover .ttl{ color:var(--accent); }
 
 @media (max-width:899px){
@@ -238,18 +249,18 @@ cite{ font-style:normal; }
 
 /* ------------------------------------------------------ lettura lunga */
 
-.page--reading h1{ margin:.6rem 0 2.4rem; font-size:1.4rem; font-weight:300; }
+.page--reading h1{ margin:.6rem 0 2.4rem; font-size:var(--fs-page); font-weight:300; }
 .page--reading p{ margin:0 0 1.15rem; }
 .lede{ margin:0 0 .8rem; }
-.lede p{ color:var(--text); font-size:1.12em; line-height:1.6; margin:0 0 1.35rem; }
+.lede p{ color:var(--text); font-size:calc(var(--fs-base) * 1.12); line-height:1.6; margin:0 0 1.35rem; }
 .toc{ margin:2.4rem 0 3.2rem; padding-left:1.1rem; border-left:1px solid var(--line); }
 .toc ol{ list-style:none; margin:0; padding:0; counter-reset:toc; }
 .toc li{ counter-increment:toc; }
 .toc li::before{
   content:counter(toc,decimal-leading-zero);
-  margin-right:.9rem; font-size:.72rem; letter-spacing:.1em; color:var(--muted);
+  margin-right:.9rem; font-size:var(--fs-xs); letter-spacing:.1em; color:var(--muted);
 }
-.toc a{ font-size:.92rem; color:var(--soft-text); line-height:2; text-decoration:none; }
+.toc a{ font-size:var(--fs-list); color:var(--soft-text); line-height:2; text-decoration:none; }
 .toc a:hover{ color:var(--accent); }
 /* L'ancora aggancia il bordo alto della sezione, che con la barra fissa finisce
    coperto. Lo spazio invisibile in testa, tirato su della stessa misura, sposta
@@ -267,7 +278,7 @@ cite{ font-style:normal; }
 .page--reading .entry:last-of-type{
   min-height:calc(100svh - var(--header-height) - 7rem);
 }
-.entry h2{ margin:0 0 1.1rem; font-size:1rem; font-weight:400; letter-spacing:.01em; }
+.entry h2{ margin:0 0 1.1rem; font-size:var(--fs-sub); font-weight:400; letter-spacing:.01em; }
 
 /* --------------------------------------------------------------- About */
 
@@ -281,7 +292,7 @@ cite{ font-style:normal; }
 .about p{ margin:0 0 1.15rem; }
 .facts{
   margin-top:3rem; padding-top:1.6rem; border-top:1px solid var(--line);
-  font-size:.86rem; color:var(--soft-text);
+  font-size:var(--fs-note); color:var(--soft-text);
 }
 .facts p{ margin:0 0 .35rem; }
 .facts em{ font-style:normal; color:var(--text); }
@@ -298,17 +309,17 @@ cite{ font-style:normal; }
    sinistra — etichette e valori incolonnati. Forma presa dalla versione di Kimi. */
 .page--contact{ display:flex; flex-direction:column; align-items:center; }
 .page--contact .page-heading{ align-self:center; }
-.contact-list{ font-size:1rem; line-height:2.2; text-align:left; }
+.contact-list{ font-size:var(--fs-base); line-height:2.2; text-align:left; }
 .contact-list p{ margin:0; }
 .c-label{
   display:inline-block; min-width:8.5rem;
-  color:var(--muted); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); font-size:var(--fs-xs); letter-spacing:.14em; text-transform:uppercase;
 }
 .contact-list a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--line); }
 .contact-list a:hover{ color:var(--accent); border-color:var(--accent); }
 .contact-sale{
   margin:3.5rem 0 0; max-width:32rem;
-  color:var(--muted); font-size:.88rem; text-align:center;
+  color:var(--muted); font-size:var(--fs-note); text-align:center;
 }
 
 /* -------------------------------------------------------------- mobile */
@@ -337,6 +348,6 @@ cite{ font-style:normal; }
   max-width:calc(var(--content-width) + (2 * var(--page-gutter)));
   margin:0 auto; padding:3rem var(--page-gutter) 2.5rem;
   border-top:1px solid var(--line);
-  color:var(--muted); font-size:.68rem; letter-spacing:.04em; text-align:center;
+  color:var(--muted); font-size:var(--fs-xs); letter-spacing:.04em; text-align:center;
 }
 .home-page .site-footer{ display:none; }
