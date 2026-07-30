@@ -256,7 +256,16 @@ cite{ font-style:normal; }
 }
 .toc a{ font-size:.92rem; color:var(--soft-text); line-height:2; text-decoration:none; }
 .toc a:hover{ color:var(--accent); }
+/* L'ancora aggancia il bordo alto della sezione, che con la barra fissa finisce
+   coperto. Lo spazio invisibile in testa, tirato su della stessa misura, sposta
+   il punto d'aggancio senza cambiare il layout: funziona ovunque, anche dove
+   scroll-margin e scroll-padding non bastano. */
 .entry{ margin:0 0 3rem; }
+.entry::before{
+  content:""; display:block; pointer-events:none;
+  height:calc(var(--header-height) + 2.5rem);
+  margin-top:calc(-1 * (var(--header-height) + 2.5rem));
+}
 .entry h2{ margin:0 0 1.1rem; font-size:1rem; font-weight:400; letter-spacing:.01em; }
 
 /* --------------------------------------------------------------- About */
