@@ -43,6 +43,10 @@ img{ max-width:100%; height:auto; }
 
 .site-main{ flex:1 0 auto; }
 
+/* Quando si arriva da un'ancora, il bersaglio non deve finire sotto la barra
+   fissa: si riserva l'altezza della testata piu un respiro. */
+[id]{ scroll-margin-top:calc(var(--header-height) + 2.5rem); }
+
 /* ------------------------------------------------------------- testata */
 
 .site-header{
