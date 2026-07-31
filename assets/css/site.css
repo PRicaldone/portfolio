@@ -225,7 +225,7 @@ cite{ font-style:normal; }
    schermo, dove il respiro si può permettere. */
 .work-detail__video{
   position:relative; width:100%; aspect-ratio:4 / 3;
-  background:#000; margin:0 0 clamp(5rem,9vh,8rem);
+  background:#000; margin:0 0 clamp(3.5rem,6vh,5.5rem);
 }
 .work-detail__video iframe{
   position:absolute; inset:0; width:100%; height:100%; border:0;
