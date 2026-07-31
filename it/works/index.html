@@ -40,7 +40,11 @@
       <ul class="work-list">
         <li class="work-row" id="act-i">
           <a class="work-row__link" href="i-have-to/index.html">
-            <span class="work-row__still"><img src="../../assets/act-i-poster.jpg" alt="" loading="lazy"></span>
+            <!-- Niente loading="lazy" sui fermi immagine dell'indice: sono due file da una
+                 decina di kilobyte, e il rinvio non risparmiava banda ma faceva comparire il
+                 secondo still un istante dopo il primo. Il posto è già riservato dal CSS
+                 (aspect-ratio 4/3), quindi non c'è salto di impaginazione. -->
+            <span class="work-row__still"><img src="../../assets/act-i-poster.jpg" alt=""></span>
             <span class="work-row__text">
               <span class="eyebrow">Act I</span>
               <cite class="work-row__title">I Have To</cite>
@@ -50,7 +54,11 @@
         </li>
         <li class="work-row" id="act-ii">
           <a class="work-row__link" href="i-could/index.html">
-            <span class="work-row__still"><img src="../../assets/act-ii-poster.jpg" alt="" loading="lazy"></span>
+            <!-- Niente loading="lazy" sui fermi immagine dell'indice: sono due file da una
+                 decina di kilobyte, e il rinvio non risparmiava banda ma faceva comparire il
+                 secondo still un istante dopo il primo. Il posto è già riservato dal CSS
+                 (aspect-ratio 4/3), quindi non c'è salto di impaginazione. -->
+            <span class="work-row__still"><img src="../../assets/act-ii-poster.jpg" alt=""></span>
             <span class="work-row__text">
               <span class="eyebrow">Act II</span>
               <cite class="work-row__title">I Could</cite>
