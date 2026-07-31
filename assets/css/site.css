@@ -220,9 +220,12 @@ cite{ font-style:normal; }
   margin:0 auto;
 }
 .work-detail__heading h1{ margin:.6rem 0 2rem; font-size:var(--fs-section); font-weight:300; }
+/* Lo stacco fra l'opera e la targa: l'opera deve finire prima che cominci il dato,
+   come il muro bianco fra il quadro e il cartellino. Cresce con l'altezza dello
+   schermo, dove il respiro si può permettere. */
 .work-detail__video{
   position:relative; width:100%; aspect-ratio:4 / 3;
-  background:#000; margin:0 0 2.5rem;
+  background:#000; margin:0 0 clamp(3.5rem,6vh,5.5rem);
 }
 .work-detail__video iframe{
   position:absolute; inset:0; width:100%; height:100%; border:0;
