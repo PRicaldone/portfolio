@@ -227,9 +227,17 @@ cite{ font-style:normal; }
 .work-detail__video iframe{
   position:absolute; inset:0; width:100%; height:100%; border:0;
 }
+/* La scheda tecnica è larga quanto l'opera che descrive, e ogni colonna è larga
+   quanto il dato che porta: la durata occupa lo spazio di 01:18, l'edizione quello
+   di una frase intera. Prima erano cinque colonne uguali dentro una fascia più
+   stretta del video, quindi l'edizione andava a capo mentre la durata sprecava
+   spazio. Lo spazio che avanza finisce nei corridoi, così la riga tocca i due bordi. */
 .spec{
   display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
-  gap:1rem 2.5rem; max-width:60rem; margin:0 0 2rem; font-size:var(--fs-note);
+  gap:1rem 2.5rem; margin:0 0 2rem; font-size:var(--fs-note);
+}
+@media (min-width:1120px){
+  .spec{ grid-template-columns:repeat(5,max-content); justify-content:space-between; }
 }
 .spec__row dt{ color:var(--muted); font-size:var(--fs-xs); letter-spacing:.07em; text-transform:uppercase; }
 .spec__row dd{ margin:.25rem 0 0; }
