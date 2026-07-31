@@ -200,7 +200,7 @@ cite{ font-style:normal; }
 .work-row + .work-row{ border-top:1px solid var(--line); }
 .work-row__link{
   display:grid; grid-template-columns:minmax(12rem,22rem) 1fr;
-  gap:clamp(1.2rem,4vw,3rem); align-items:center;
+  gap:clamp(1.6rem,5vw,6rem); align-items:center;
   padding:2rem 0; text-decoration:none;
 }
 .work-row__still img{ display:block; width:100%; aspect-ratio:4 / 3; object-fit:cover; }
