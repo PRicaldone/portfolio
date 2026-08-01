@@ -189,11 +189,15 @@ FACTS = {
 
 # Opere — dati dai record del vault. Nessun dato dedotto.
 WORKS = [
+ # Un file per opera, lo stesso in Home e nella pagina opera: cambia solo chi
+ # preme play. Via l'embed Vimeo (1 ago 2026) — il player di terzi non garantisce
+ # la tenuta sull'ultimo fotogramma, che dipendeva da un'impostazione nel loro
+ # pannello, e ricomprime il file a parametri che non decidiamo noi.
  {"slug": "i-have-to", "act": "Act I", "title": "I Have To", "year": "2026",
-  "anchor": "act-i", "vimeo": "1179249583", "home_video": "act-i-home.mp4", "poster": "act-i-poster.jpg",
+  "anchor": "act-i", "video": "act-i-site.mp4", "poster": "act-i-poster.jpg",
   "duration": "01:18", "res": "3840 × 2880 (4:3)", "fps": "25 fps"},
  {"slug": "i-could", "act": "Act II", "title": "I Could", "year": "2026",
-  "anchor": "act-ii", "vimeo": "1213339083", "home_video": None, "poster": "act-ii-poster.jpg",
+  "anchor": "act-ii", "video": "act-ii-site.mp4", "poster": "act-ii-poster.jpg",
   "duration": "00:38", "res": "3840 × 2880 (4:3)", "fps": "25 fps"},
 ]
 ANNOUNCED = {"act": "Act III", "title": "I Don't", "anchor": "act-iii"}
@@ -216,7 +220,10 @@ T = {
    # Una parola sola, nessuna data e nessuna cadenza: quelle sono promesse.
    "announced": "In production",
    "edition": "Single original, certified by the artist",
-   "behaviour": "silent · single-channel · 4:3 · shown looped, with a hold on the final frame",
+   "behaviour": "silent · single-channel · 4:3 · plays once, holding on the final frame",
+   # Dichiarare cosa si sta guardando: senza questa riga il visitatore crede che
+   # la versione pubblicata sia l'opera. Dato, non argomento di vendita.
+   "shown": "shown at 2560 × 1920 · original 3840 × 2880, ProRes 422 HQ",
    "viewing": "Best experienced on a large screen in a quiet space",
    "spec": ["Medium", "Duration", "Resolution", "Edition", "Year"],
    "works": "Works", "writing": "Writing", "about": "About", "contact": "Contact",
@@ -233,7 +240,8 @@ T = {
    "medium": "Video muto, single-channel, CGI",
    "announced": "In produzione",
    "edition": "Originale unico, certificato dall'artista",
-   "behaviour": "muto · single-channel · 4:3 · mostrato in loop, con una tenuta sull'ultimo fotogramma",
+   "behaviour": "muto · single-channel · 4:3 · si riproduce una volta, con tenuta sull'ultimo fotogramma",
+   "shown": "presentato a 2560 × 1920 · originale 3840 × 2880, ProRes 422 HQ",
    "viewing": "Da vivere su uno schermo grande, in uno spazio silenzioso",
    "spec": ["Medium", "Durata", "Risoluzione", "Edizione", "Anno"],
    "works": "Opere", "writing": "Scritti", "about": "Chi sono", "contact": "Contatti",
@@ -318,7 +326,7 @@ def build(lang):
     w = HOME_WORK
     body = f"""  <section class="home-stage" aria-labelledby="home-work-title">
     <div class="home-stage__media">
-      <video class="home-stage__video" id="home-video" src="{up(d)}assets/{w['home_video']}"
+      <video class="home-stage__video" id="home-video" src="{up(d)}assets/{w['video']}"
              poster="{up(d)}assets/{w['poster']}" autoplay muted playsinline
              aria-label="{w['act']} — {w['title']}, {t['medium']}, {w['duration']}"></video>
     </div>
@@ -390,14 +398,15 @@ def build(lang):
       <h1><cite>{x['title']}</cite></h1>
     </div>
     <div class="work-detail__video">
-      <iframe src="https://player.vimeo.com/video/{x['vimeo']}?badge=0&amp;autopause=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;loop=1&amp;dnt=1"
-              title="{x['act']} — {x['title']}" loading="lazy"
-              allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <video class="work-detail__player" src="{up(d + 2)}assets/{x['video']}"
+             poster="{up(d + 2)}assets/{x['poster']}" controls preload="metadata" playsinline
+             aria-label="{x['act']} — {x['title']}, {t['medium']}, {x['duration']}"></video>
     </div>
     <dl class="spec">
 {rowsx}
     </dl>
     <p class="behaviour">{t['behaviour']}</p>
+    <p class="behaviour behaviour--shown">{t['shown']}</p>
     <p class="viewing">{t['viewing']}</p>
   </div>"""
         emit(pre + f"works/{x['slug']}/index.html",

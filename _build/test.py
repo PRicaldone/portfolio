@@ -88,8 +88,11 @@ for rel, path in ALL.items():
         check(re.search(rf"\b{w}\b", testate) is None,
               f"{rel}: lessico di mercato in una posizione identitaria → «{w}»")
     check(re.search(r"[€$]\s?\d", visible) is None, f"{rel}: sembra esserci un prezzo")
-    # nessuna data morta: gli anni ammessi sono quelli delle opere, dentro le schede
-    for y in re.findall(r"\b(19\d\d|20\d\d)\b", visible):
+    # nessuna data morta: gli anni ammessi sono quelli delle opere, dentro le schede.
+    # Le misure in pixel non sono date: "2560 × 1920" contiene un 1920 che non è
+    # un anno, e va tolto prima di cercare, altrimenti la targa fa fallire il test.
+    senza_misure = re.sub(r"\d{3,4}\s*×\s*\d{3,4}", "", visible)
+    for y in re.findall(r"\b(19\d\d|20\d\d)\b", senza_misure):
         check(y in ("2026", "1968"), f"{rel}: anno inatteso in pagina → {y}")
 
 # ------------------------------------------------------------ struttura viva
@@ -101,7 +104,7 @@ check("muted" in t, "il video della Home non è muto per attributo")
 # Dall'1 ago 2026 la Home non ripete: l'opera finisce e resta sull'ultimo
 # fotogramma, come nella pagina opera. Il replay lo decide chi guarda.
 check(" loop" not in t, "la Home è tornata in loop: l'opera deve finire e restare sull'ultimo fotogramma")
-check("act-i-home.mp4" in t, "la Home non usa il file dell'opera")
+check("act-i-site.mp4" in t, "la Home non usa il file dell'opera")
 check("home-video-toggle" in t, "manca il comando Play/Pausa")
 
 works = open(ALL["works/index.html"], encoding="utf-8").read()
@@ -116,11 +119,15 @@ for slug in ("i-have-to", "i-could"):
     check(p is not None, f"manca la pagina opera {slug}")
     if p:
         w = open(p, encoding="utf-8").read()
-        check("player.vimeo.com" in w, f"{slug}: manca l'embed Vimeo")
+        # Dall'1 ago 2026 il player è nativo: niente terzi fra l'opera e chi guarda,
+        # e la tenuta sull'ultimo fotogramma non dipende dal pannello di nessuno.
+        check("player.vimeo.com" not in w, f"{slug}: è tornato un embed di terzi")
+        check("<video" in w, f"{slug}: manca il player nativo")
         check("autoplay" not in w, f"{slug}: il player parte da solo, non deve")
-        check("loop=1" in w, f"{slug}: manca il loop nel player")
-        check("title=0" in w and "byline=0" in w and "portrait=0" in w,
-              f"{slug}: il player mostra titolo, autore o avatar")
+        check(" loop" not in w, f"{slug}: il video è in loop, deve finire e restare")
+        check("controls" in w, f"{slug}: mancano i controlli, lo spettatore non può avviare")
+        check("2560" in w and "3840" in w,
+              f"{slug}: la targa non dichiara risoluzione mostrata e originale")
 
 for n in ("001", "002", "003", "004", "005"):
     check(f"writing/silences/{n}/index.html" in ALL, f"l'appunto {n} non ha una pagina propria")

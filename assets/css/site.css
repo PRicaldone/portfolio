@@ -240,9 +240,14 @@ cite{ font-style:normal; }
   position:relative; width:100%; aspect-ratio:4 / 3;
   background:#000; margin:0 0 clamp(3.5rem,6vh,5.5rem);
 }
-.work-detail__video iframe{
+.work-detail__video iframe,
+.work-detail__player{
   position:absolute; inset:0; width:100%; height:100%; border:0;
+  background:#000; display:block;
 }
+/* La riga sulla risoluzione sta sotto il comportamento, un gradino più tenue:
+   è un dato di servizio, non una dichiarazione sull'opera. */
+.behaviour--shown{ margin-top:-.55rem; opacity:.72; }
 /* La scheda tecnica è larga quanto l'opera che descrive, e ogni colonna è larga
    quanto il dato che porta: la durata occupa lo spazio di 01:18, l'edizione quello
    di una frase intera. Prima erano cinque colonne uguali dentro una fascia più
