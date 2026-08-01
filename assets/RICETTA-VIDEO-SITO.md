@@ -106,14 +106,20 @@ autoplay** — lì è lo spettatore che comincia.
 
 ```
 silent · single-channel · 4:3 · plays once, holding on the final frame
-shown at 2560 × 1920 · original 3840 × 2880, ProRes 422 HQ
+shown here at 2560 × 1920 · the single certified original is 3840 × 2880, ProRes 422 HQ
 ```
 
-E in italiano: *si riproduce una volta, con tenuta sull'ultimo fotogramma* · *presentato a
-2560 × 1920 · originale 3840 × 2880, ProRes 422 HQ*.
+E in italiano: *si riproduce una volta, con tenuta sull'ultimo fotogramma* · *presentato qui a
+2560 × 1920 · l'originale unico certificato è 3840 × 2880, ProRes 422 HQ*.
 
 La seconda riga è un **dato**, non un argomento di vendita: senza, chi guarda crede che la
 versione pubblicata sia l'opera. È lo stesso gesto della riga che dichiara uno still come still.
+
+**Perché nomina anche l'unicità e il certificato** *(2 ago 2026)*. La scheda tecnica porta già
+la riga *Edition · Single original, certified by the artist*, ma sta in un'altra cella e il
+legame fra le due informazioni non arrivava: chi legge «2560, l'originale è 3840» pensa a un
+file più grande da qualche parte, non a un esemplare unico. Le due cose vanno dette insieme,
+nel punto in cui chi guarda si chiede cosa ha davanti.
 
 ## Quando la Home cambia opera
 

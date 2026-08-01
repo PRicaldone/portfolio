@@ -223,7 +223,7 @@ T = {
    "behaviour": "silent · single-channel · 4:3 · plays once, holding on the final frame",
    # Dichiarare cosa si sta guardando: senza questa riga il visitatore crede che
    # la versione pubblicata sia l'opera. Dato, non argomento di vendita.
-   "shown": "shown at 2560 × 1920 · original 3840 × 2880, ProRes 422 HQ",
+   "shown": "shown here at 2560 × 1920 · the single certified original is 3840 × 2880, ProRes 422 HQ",
    "viewing": "Best experienced on a large screen in a quiet space",
    "spec": ["Medium", "Duration", "Resolution", "Edition", "Year"],
    "works": "Works", "writing": "Writing", "about": "About", "contact": "Contact",
@@ -241,7 +241,7 @@ T = {
    "announced": "In produzione",
    "edition": "Originale unico, certificato dall'artista",
    "behaviour": "muto · single-channel · 4:3 · si riproduce una volta, con tenuta sull'ultimo fotogramma",
-   "shown": "presentato a 2560 × 1920 · originale 3840 × 2880, ProRes 422 HQ",
+   "shown": "presentato qui a 2560 × 1920 · l'originale unico certificato è 3840 × 2880, ProRes 422 HQ",
    "viewing": "Da vivere su uno schermo grande, in uno spazio silenzioso",
    "spec": ["Medium", "Durata", "Risoluzione", "Edizione", "Anno"],
    "works": "Opere", "writing": "Scritti", "about": "Chi sono", "contact": "Contatti",
