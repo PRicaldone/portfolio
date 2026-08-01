@@ -319,7 +319,7 @@ def build(lang):
     body = f"""  <section class="home-stage" aria-labelledby="home-work-title">
     <div class="home-stage__media">
       <video class="home-stage__video" id="home-video" src="{up(d)}assets/{w['home_video']}"
-             poster="{up(d)}assets/{w['poster']}" autoplay muted loop playsinline
+             poster="{up(d)}assets/{w['poster']}" autoplay muted playsinline
              aria-label="{w['act']} — {w['title']}, {t['medium']}, {w['duration']}"></video>
     </div>
     <p class="media-toggle-row">

@@ -98,8 +98,10 @@ home = ALL["index.html"]
 t = open(home, encoding="utf-8").read()
 check("autoplay" in t, "la Home non parte da sola senza JavaScript")
 check("muted" in t, "il video della Home non è muto per attributo")
-check("loop" in t, "il video della Home non è in loop")
-check("act-i-home.mp4" in t, "la Home non usa il file con la coda sul finale")
+# Dall'1 ago 2026 la Home non ripete: l'opera finisce e resta sull'ultimo
+# fotogramma, come nella pagina opera. Il replay lo decide chi guarda.
+check(" loop" not in t, "la Home è tornata in loop: l'opera deve finire e restare sull'ultimo fotogramma")
+check("act-i-home.mp4" in t, "la Home non usa il file dell'opera")
 check("home-video-toggle" in t, "manca il comando Play/Pausa")
 
 works = open(ALL["works/index.html"], encoding="utf-8").read()
