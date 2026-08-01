@@ -52,5 +52,7 @@ paragrafo, verbatim, senza CTA e senza rimandi alle opere.
 
 ## Il video della Home
 
-Vedi `assets/RICETTA-VIDEO-HOME.md`: dove stanno i master, come si produce il derivato, e la
-trappola del fotogramma nero in coda all'export di Act I.
+Vedi `assets/RICETTA-VIDEO-LOOP.md`: è lo **standard di consegna per ogni opera di ogni
+collezione**, non solo per la Home — dissolvenza di 0,75 s su un fotogramma clonato dopo la
+fine, due secondi di nero, niente tenuta e niente fade in ingresso. Dentro anche dove stanno i
+master e la trappola del fotogramma nero in coda all'export di Act I.
