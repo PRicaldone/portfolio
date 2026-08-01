@@ -3,8 +3,8 @@
 # mano: senza di loro l'HTML qui accanto non è più rifacibile. Ma non devono
 # essere serviti — _source/ contiene versioni vecchie delle pagine, che
 # indicizzate diventerebbero doppioni morti del sito vivo.
-/_source/*   /404   404
-/_build/*    /404   404
+/_source/*   /404   404!
+/_build/*    /404   404!
 
 # Reindirizzamenti — da pubblicare in radice al momento dello switch.
 #
