@@ -207,7 +207,7 @@ SOCIAL = [("Instagram", "https://www.instagram.com/pricaldone.art/", "@pricaldon
 T = {
  "en": {"other": "IT",
    "nav": [("works/", "Works"), ("writing/", "Writing"), ("about/", "About"), ("contact/", "Contact")],
-   "skip": "Skip to content", "play": "Play", "pause": "Pause",
+   "skip": "Skip to content", "play": "Play", "pause": "Pause", "replay": "Play again",
    "collection_title": "The Stage — Acts of a Lucid Silence",
    "collection_frame": "A trilogy of 1/1 video works on a bare stage. Each act stages a single emotional state, present from the first frame, isolated from its cause.",
    "medium": "Silent video, single-channel, CGI",
@@ -227,7 +227,7 @@ T = {
    "copyright": "© Paolo Ricaldone. All rights reserved."},
  "it": {"other": "EN",
    "nav": [("works/", "Opere"), ("writing/", "Scritti"), ("about/", "Chi sono"), ("contact/", "Contatti")],
-   "skip": "Vai al contenuto", "play": "Riproduci", "pause": "Metti in pausa",
+   "skip": "Vai al contenuto", "play": "Riproduci", "pause": "Metti in pausa", "replay": "Rivedi",
    "collection_title": "The Stage — Acts of a Lucid Silence",
    "collection_frame": "Una trilogia di opere video 1/1 su un palco spoglio. Ogni atto mette in scena un singolo stato emotivo, presente dal primo istante, isolato dalla sua causa.",
    "medium": "Video muto, single-channel, CGI",
@@ -325,7 +325,7 @@ def build(lang):
     <p class="media-toggle-row">
       <button class="media-toggle" type="button" id="home-video-toggle"
               aria-controls="home-video" aria-pressed="true"
-              data-play="{t['play']}" data-pause="{t['pause']}" hidden>
+              data-play="{t['play']}" data-pause="{t['pause']}" data-replay="{t['replay']}" hidden>
         <span class="media-toggle__icon" aria-hidden="true"></span>
         <span class="visually-hidden">{t['pause']}</span>
       </button>

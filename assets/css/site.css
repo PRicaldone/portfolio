@@ -156,6 +156,19 @@ img{ max-width:100%; height:auto; }
   border-left:.56rem solid currentColor; border-right:0;
   margin-left:.16rem;
 }
+/* Terzo stato: a opera finita il comando non è un play, è un "rivedi". Cerchio
+   aperto con la punta, disegnato come gli altri due senza immagini. */
+.media-toggle[data-ended="true"] .media-toggle__icon,
+.media-toggle[data-ended="true"][aria-pressed="false"] .media-toggle__icon{
+  position:relative; width:.66rem; height:.66rem; margin:0;
+  border:2px solid currentColor; border-radius:50%;
+  border-top-color:transparent; transform:rotate(-30deg);
+}
+.media-toggle[data-ended="true"] .media-toggle__icon::after{
+  content:""; position:absolute; top:-.2rem; right:-.1rem;
+  width:0; height:0; border:.2rem solid transparent;
+  border-left-color:currentColor; transform:rotate(30deg);
+}
 
 .home-stage__caption{
   display:grid; grid-template-columns:minmax(14rem,1fr) auto; align-items:end;
