@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - P.Ricaldone</title>
+    <meta name="description" content="Emotions are the compass, the fuel, and the engine of my work. 1/1 video works crafted with care in digital form.">
+    <meta name="author" content="Paolo Ricaldone">
+    <meta property="og:title" content="About - P.Ricaldone">
+    <meta property="og:description" content="Emotions are the compass, the fuel, and the engine of my work. 1/1 video works crafted with care in digital form.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pricaldone.art/og-image.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============================================
+           About page-specific styles
+           ============================================ */
+
+        /* Main Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem;
+        }
+
+        /* About Layout */
+        .about-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1px 2fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        /* Vertical Separator */
+        .separator {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                transparent,
+                var(--text-tertiary) 20%,
+                var(--text-tertiary) 80%,
+                transparent);
+            opacity: 0.2;
+        }
+
+        /* Left Side - Name */
+        .name-section {
+            text-align: right;
+            margin-top: -3rem;
+        }
+
+        .artist-name {
+            font-size: 3rem;
+            font-weight: 200;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInLeft 1.2s ease forwards;
+            letter-spacing: -0.02em;
+            color: #999;
+        }
+
+        [data-theme="light"] .artist-name {
+            color: #666;
+        }
+
+        .artist-name .first-name {
+            display: block;
+            font-size: 4rem;
+            font-weight: 100;
+            margin-bottom: -0.2em;
+        }
+
+        /* Artist Photo */
+        .artist-photo {
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 280px;
+            margin-left: auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 0.5s;
+        }
+
+        .artist-photo img {
+            width: 100%;
+            display: block;
+            filter: grayscale(0.2);
+            transition: filter 0.6s ease;
+        }
+
+        .artist-photo img:hover {
+            filter: grayscale(0);
+        }
+
+        /* Right Side - Text */
+        .text-section {
+            position: relative;
+        }
+
+        .text-block {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInRight 1.2s ease forwards;
+            transition: transform 0.8s var(--transition-smooth);
+            transform-origin: left center;
+        }
+
+        .text-block:nth-child(1) { animation-delay: 0.3s; }
+        .text-block:nth-child(2) { animation-delay: 0.5s; }
+        .text-block:nth-child(3) { animation-delay: 0.7s; }
+        .text-block:nth-child(4) { animation-delay: 0.9s; }
+        .text-block:nth-child(5) { animation-delay: 1.1s; }
+
+        .text-line {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            display: block;
+            position: relative;
+            padding-left: 0;
+            transition: padding-left 0.8s var(--transition-smooth);
+        }
+
+        .text-block:hover {
+            transform: scale(1.05);
+        }
+
+        .text-block:hover .text-line {
+            padding-left: 2rem;
+        }
+
+        /* Highlight words */
+        .highlight {
+            color: #b5b5b5;
+            font-weight: 400;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] .highlight {
+            color: #4a4a4a;
+        }
+
+        /* On hover, highlight words match the rest of the text */
+        .text-block:hover .text-line .highlight {
+            color: #bbb;
+        }
+
+        [data-theme="light"] .text-block:hover .text-line .highlight {
+            color: #3a3a3a;
+        }
+
+        /* Underline animation on hover */
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #bbb;
+            transition: width 0.6s var(--transition-smooth);
+            transition-delay: 0.2s;
+        }
+
+        [data-theme="light"] .highlight::after {
+            background: #3a3a3a;
+        }
+
+        .text-block:hover .highlight::after {
+            width: 100%;
+        }
+
+        /* Side accent lines */
+        .text-block::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5em;
+            width: 1px;
+            height: 0;
+            background: var(--text-tertiary);
+            transition: height 0.6s var(--transition-smooth);
+        }
+
+        .text-block:hover::before {
+            height: 100%;
+        }
+
+        /* Final statement */
+        .signature {
+            margin-top: 6rem;
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.5s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .signature::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--text-tertiary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s var(--transition-smooth);
+        }
+
+        .signature:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Subtle floating element */
+        .float-element {
+            position: absolute;
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--text-tertiary), transparent);
+            opacity: 0;
+            top: 50%;
+            right: -120px;
+            animation:
+                fadeInFloat 2s ease forwards 2s,
+                float 10s infinite ease-in-out 2s;
+        }
+
+        @keyframes fadeInFloat {
+            from { opacity: 0; }
+            to { opacity: 0.3; }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-30px) translateX(-20px);
+            }
+        }
+
+        /* Responsive — Tablet */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .separator {
+                display: none;
+            }
+
+            .name-section {
+                text-align: center;
+                margin-top: 0;
+            }
+
+            .artist-name {
+                font-size: 2.5rem;
+            }
+
+            .artist-name .first-name {
+                font-size: 3rem;
+            }
+
+            .artist-photo {
+                margin: 0 auto 1.5rem;
+                max-width: 220px;
+            }
+
+            .text-block::before {
+                display: none;
+            }
+
+            .text-block:hover {
+                transform: none;
+            }
+
+            .text-block:hover .text-line {
+                padding-left: 0;
+            }
+
+            .text-block:hover .highlight::after {
+                width: 0;
+            }
+
+            .float-element {
+                display: none;
+            }
+        }
+
+        /* Responsive — Mobile */
+        @media (max-width: 768px) {
+            .text-line {
+                font-size: 1.125rem;
+            }
+
+            .text-block {
+                margin-bottom: 2rem;
+            }
+
+            .signature {
+                margin-top: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a class='logo' href='/'>
+                <img src="logo2.svg" alt="P.Ricaldone" />
+            </a>
+            <div class="nav-right">
+                <div class="lang-toggle">
+                    <a class="active">EN</a>
+                    <a href='/it/about'>IT</a>
+                </div>
+                <div class="nav-links">
+                    <a href='/works'>Works</a>
+                    <a href='/texts'>Texts</a>
+                    <a href='/notes'>Notes</a>
+                    <a class='active' href='/about'>About</a>
+                    <a href='/contact'>Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="about-content">
+            <!-- Left: Name -->
+            <div class="name-section">
+                <div class="artist-photo">
+                    <img src="foto3.jpeg?v=2" alt="Paolo Ricaldone" />
+                </div>
+                <h1 class="artist-name">
+                    <span class="first-name">Paolo</span>
+                    Ricaldone
+                </h1>
+            </div>
+
+            <!-- Separator -->
+            <div class="separator"></div>
+
+            <!-- Right: Text -->
+            <div class="text-section">
+                <div class="text-block">
+                    <span class="text-line">
+                        Emotions are the compass, the fuel, and the <span class="highlight">engine</span> of my work.<br>
+                        When something truly resonates, it is the stomach that reacts first, before the mind and before words.
+                    </span>
+                </div>
+
+                <div class="text-block">
+                    <span class="text-line">
+                        My works do not begin from concepts to illustrate: they begin when something becomes <span class="highlight">visceral</span>, before it can be classified.<br>
+                        I perceive emotion, in its essence, as <span class="highlight">natural energy</span>, and I give it body by staging space, matter, light, and time. It reaches the body as force, and ignites a shift in charge, an expansion or a contraction, before the mind is involved.<br>
+                        I do not accompany the works with interpretive keys: I declare the <span class="highlight">ground</span> they come from, and leave open where they land.
+                    </span>
+                </div>
+
+                <div class="text-block">
+                    <span class="text-line">
+                        The craft begins only afterwards. I never start from a technique and force an idea into it: the emotion asks for its <span class="highlight">form</span>, and I build it.<br>
+                        I create the works entirely in CGI, to have no limits on what can be communicated and to abstract without being bound by reality. Every frame is a <span class="highlight">decision</span>, every movement is felt.
+                    </span>
+                </div>
+
+                <div class="text-block">
+                    <span class="text-line">
+                        Today I do not use generative AI in my work: not out of opposition to the tool, but because it does not offer the control and the <span class="highlight">authorial responsibility</span> I seek, down to the final pixel.
+                    </span>
+                </div>
+
+                <div class="text-block">
+                    <span class="text-line">
+                        Each work is a single original, one piece with <span class="highlight">no editions</span>.
+                    </span>
+                </div>
+
+                <div class="float-element"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/main.js" defer></script>
+    <script>
+        // About page-specific: parallax on .float-element
+        document.addEventListener('DOMContentLoaded', () => {
+            let mouseX = 0, mouseY = 0;
+            let ticking = false;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const floatElement = document.querySelector('.float-element');
+                        if (floatElement) {
+                            const x = (mouseX / window.innerWidth - 0.5) * 20;
+                            const y = (mouseY / window.innerHeight - 0.5) * 20;
+                            floatElement.style.transform = `translateX(${x}px) translateY(${y}px)`;
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
