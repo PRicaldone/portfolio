@@ -399,7 +399,8 @@ def build(lang):
     </div>
     <div class="work-detail__video">
       <video class="work-detail__player" src="{up(d + 2)}assets/{x['video']}"
-             poster="{up(d + 2)}assets/{x['poster']}" controls preload="metadata" playsinline
+             poster="{up(d + 2)}assets/{x['poster']}" controls controlsList="nodownload"
+             preload="metadata" playsinline
              aria-label="{x['act']} — {x['title']}, {t['medium']}, {x['duration']}"></video>
     </div>
     <dl class="spec">

@@ -50,9 +50,11 @@ il testo è nel raccordo `Studio/output/appunti/{serie}/{serie-sing}-NNN.md` del
 IT **e** EN; qui si dichiara un blocco `SNNN` sul modello di `S006`, un elemento di lista per
 paragrafo, verbatim, senza CTA e senza rimandi alle opere.
 
-## Il video della Home
+## I video delle opere
 
-Vedi `assets/RICETTA-VIDEO-LOOP.md`: è lo **standard di consegna per ogni opera di ogni
-collezione**, non solo per la Home — dissolvenza di 0,75 s su un fotogramma clonato dopo la
-fine, due secondi di nero, niente tenuta e niente fade in ingresso. Dentro anche dove stanno i
-master e la trappola del fotogramma nero in coda all'export di Act I.
+Vedi `assets/RICETTA-VIDEO-SITO.md`: è lo **standard di consegna per ogni opera di ogni
+collezione**. Un file solo per opera, `…_SITE_2560x1920`, lo stesso in Home e nella pagina
+opera; l'opera finisce e resta sull'ultimo fotogramma, il replay lo decide chi guarda. Dentro
+anche il preset Resolve, le verifiche obbligatorie prima di pubblicare e le trappole già
+incontrate — il doppio job in coda che corrompe il file, l'in/out del Deliver che sposta la
+durata.
