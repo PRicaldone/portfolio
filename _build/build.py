@@ -500,7 +500,7 @@ def build(lang):
     # ---- About
     body = f"""  <div class="page page--about">
     <figure class="portrait">
-      <img src="{up(d + 1)}assets/paolo-ricaldone.jpg" alt="Paolo Ricaldone">
+      <img src="{up(d + 1)}assets/paolo-ricaldone.jpg" alt="Paolo Ricaldone" width="400" height="300" decoding="async">
     </figure>
     <article class="about">
       <h1 class="page-title">Paolo Ricaldone</h1>
