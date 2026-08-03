@@ -68,6 +68,21 @@ for rel, path in ALL.items():
         target = os.path.normpath(os.path.join(d, m.split("#")[0]))
         check(os.path.isfile(target), f"{rel}: riferimento rotto → {m}")
 
+    # ogni link di pagina resta nella propria lingua. L'unica uscita ammessa è
+    # il cambio lingua: il <link rel="alternate"> e l'ancora nell'intestazione.
+    # Senza questo controllo un link che esiste ma porta all'altra lingua passa
+    # inosservato: era il caso di tutta la navigazione italiana fino al 3 ago 2026.
+    for tag in re.findall(r'<(?:a|link)\b[^>]*href="[^"]+"[^>]*>', t):
+        if 'rel="alternate"' in tag or 'language-link' in tag:
+            continue
+        href = re.search(r'href="([^"]+)"', tag).group(1)
+        if href.startswith(("http", "mailto:", "#")) or not href.endswith(".html"):
+            continue
+        dest = os.path.relpath(os.path.normpath(os.path.join(d, href.split("#")[0])),
+                               ROOT).replace(os.sep, "/")
+        check(("it" if dest.startswith("it/") else "en") == lang,
+              f"{rel}: link fuori lingua ({lang}) → {href}")
+
     check(f'<html lang="{lang}"' in t, f"{rel}: attributo lang mancante o sbagliato")
     check('rel="alternate"' in t, f"{rel}: manca il link alla gemella nell'altra lingua")
     check('class="site-nav"' in t, f"{rel}: manca la barra di navigazione")

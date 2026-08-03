@@ -266,9 +266,13 @@ def shell(lang, depth, title, desc, body, alt, body_class="", current="", script
     t = T[lang]
     u = up(depth)
     other = "it" if lang == "en" else "en"
+    # up() risale alla radice del sito, che è la radice dell'inglese: senza il
+    # prefisso della lingua la barra di navigazione di una pagina italiana
+    # riporta all'inglese, e il cambio lingua vale solo per la pagina a video.
+    home = u + ("it/" if lang == "it" else "")
     nav = "\n".join(
-        '      <a class="site-nav__link"{cur} href="{u}{href}index.html">{label}</a>'.format(
-            cur=' aria-current="page"' if current == href else "", u=u, href=href, label=label)
+        '      <a class="site-nav__link"{cur} href="{home}{href}index.html">{label}</a>'.format(
+            cur=' aria-current="page"' if current == href else "", home=home, href=href, label=label)
         for href, label in t["nav"])
     js = f'\n<script src="{u}assets/js/site.js"></script>' if script else ""
     robots = '\n<meta name="robots" content="noindex, nofollow">' if PREVIEW else ""
@@ -295,7 +299,7 @@ def shell(lang, depth, title, desc, body, alt, body_class="", current="", script
 <a class="skip-link" href="#content">{t['skip']}</a>
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-name" href="{u}index.html">Paolo Ricaldone</a>
+    <a class="site-name" href="{home}index.html">Paolo Ricaldone</a>
     <nav class="site-nav" aria-label="{t['works']}">
 {nav}
     </nav>
@@ -426,13 +430,13 @@ def build(lang):
                   "body": S006[lang]})
     frame = pan.get("cornice", [])
     items = "\n".join(f"""          <li>
-            <a href="{up(d + 1)}writing/silences/{n['slug']}/index.html">
+            <a href="{up(d + 1)}{pre}writing/silences/{n['slug']}/index.html">
               <span class="idx">{n['label']}</span><span class="ttl">{n['title']}</span>
             </a>
           </li>""" for n in notes)
     tx_titles = TX[lang][1]
     sections = "\n".join(
-        f"""          <li><a href="{up(d + 1)}writing/thought/index.html#{tid}">
+        f"""          <li><a href="{up(d + 1)}{pre}writing/thought/index.html#{tid}">
             <span class="sec-n">{i:02d}</span><span class="sec-t">{tx_titles[tid][1]}</span></a></li>"""
         for i, tid in enumerate([x for x in TX_ORDER if x in TX[lang][2]], start=1))
     body = f"""  <div class="page page--writing">
@@ -441,7 +445,7 @@ def build(lang):
 
       <section class="wcol wcol--essay">
         <p class="wkind">{t['essay']}</p>
-        <h2 class="wcol-title"><a href="{up(d + 1)}writing/thought/index.html">{t['thought']}</a></h2>
+        <h2 class="wcol-title"><a href="{up(d + 1)}{pre}writing/thought/index.html">{t['thought']}</a></h2>
         <ul class="wsections">
 {sections}
         </ul>
