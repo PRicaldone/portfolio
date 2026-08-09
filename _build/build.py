@@ -134,6 +134,23 @@ S006 = {
     ],
 }
 
+S007 = {
+    "label": {"en": "Silence #007", "it": "Silenzio #007"},
+    "title": {"en": "The Silence That Never Gets It Wrong", "it": "Il silenzio che non sbaglia"},
+    "en": [
+        "I've had the answer ready for three seconds and I don't give it. I turn it over, I shorten it, I take out the part that might not hold, and what comes out is something anyone could have said.",
+        "With you I measure. It isn't that I have nothing to say: it's that you hear a wrong sentence right away, and what I had to say, said badly, is worth less than silence. Better too few words than one too many.",
+        "So for months I've given you the short version, and you've learned to call it the way I am. Once you even paid me a compliment for it: that I never talk just to talk.",
+        "I never talk just to talk, it's true. I've never yet told you anything that cost me.",
+    ],
+    "it": [
+        "Ho la risposta pronta da tre secondi e non la do. La giro, la accorcio, le tolgo la parte che potrebbe non stare in piedi, e quando esce è una cosa che poteva dire chiunque.",
+        "Con te misuro. Non è che non abbia niente da dire: è che una frase storta tu la senti subito, e quello che avevo da dire, detto male, vale meno del silenzio. Meglio poche parole che una di troppo.",
+        "Così da mesi ti do la versione corta, e tu hai imparato a chiamarla il mio modo di essere. Una volta me ne hai anche fatto un complimento: che non parlo mai a vuoto.",
+        "Non parlo mai a vuoto, è vero. Non ti ho ancora detto niente che mi costasse.",
+    ],
+}
+
 # ------------------------------------------------------------ ordini e testi
 
 ORDER = {
@@ -428,6 +445,8 @@ def build(lang):
                   "body": S005[lang]})
     notes.append({"slug": "006", "label": S006["label"][lang], "title": S006["title"][lang],
                   "body": S006[lang]})
+    notes.append({"slug": "007", "label": S007["label"][lang], "title": S007["title"][lang],
+                  "body": S007[lang]})
     frame = pan.get("cornice", [])
     items = "\n".join(f"""          <li>
             <a href="{up(d + 1)}{pre}writing/silences/{n['slug']}/index.html">
