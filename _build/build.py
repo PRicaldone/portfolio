@@ -151,6 +151,23 @@ S007 = {
     ],
 }
 
+S008 = {
+    "label": {"en": "Silence #008", "it": "Silenzio #008"},
+    "title": {"en": "The Silence You Answer Me With", "it": "Il silenzio con cui mi rispondi"},
+    "en": [
+        "I ask you a question and you keep eating. It isn't that the question didn't reach you: it did, you set it down beside your plate and decided to leave it there. That is a way of answering too, and in fact I'm already answering myself.",
+        "In the days that follow I ask it again, smaller. I take out the part that might have sounded like an accusation and the part that asked for a date, and I cut it down until it fits in a sentence you can ignore without seeming rude. Every time I make it smaller I give you one more way out, and every time you take it.",
+        "Are you keeping silent against me, or in front of something you can't say even to yourself?",
+        "I keep circling it, and meanwhile I fill in the blank. In the end I do have an answer. I wrote it myself.",
+    ],
+    "it": [
+        "Ti faccio una domanda e tu continui a mangiare. Non è che la domanda non sia arrivata: è arrivata, l'hai posata accanto al piatto e hai deciso di lasciarla lì. Anche quello è un modo di rispondere, e infatti sto già rispondendomi.",
+        "Nei giorni dopo la rifaccio più piccola. Tolgo la parte che poteva sembrare un'accusa e quella che chiedeva una data, e la riduco fino a farla stare in una frase che si può ignorare senza sembrare scortesi. Ogni volta che la riduco ti do una via d'uscita in più, e ogni volta tu la prendi.",
+        "Stai tacendo contro di me, o davanti a qualcosa che non sai dire nemmeno a te?",
+        "Continuo a girarci intorno, e intanto il posto vuoto lo riempio. Alla fine una risposta ce l'ho. L'ho scritta io.",
+    ],
+}
+
 # ------------------------------------------------------------ ordini e testi
 
 ORDER = {
@@ -447,6 +464,8 @@ def build(lang):
                   "body": S006[lang]})
     notes.append({"slug": "007", "label": S007["label"][lang], "title": S007["title"][lang],
                   "body": S007[lang]})
+    notes.append({"slug": "008", "label": S008["label"][lang], "title": S008["title"][lang],
+                  "body": S008[lang]})
     frame = pan.get("cornice", [])
     items = "\n".join(f"""          <li>
             <a href="{up(d + 1)}{pre}writing/silences/{n['slug']}/index.html">
