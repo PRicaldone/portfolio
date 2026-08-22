@@ -168,6 +168,23 @@ S008 = {
     ],
 }
 
+S009 = {
+    "label": {"en": "Silence #009", "it": "Silenzio #009"},
+    "title": {"en": "The Silence That Holds Us", "it": "Il silenzio che ci tiene"},
+    "en": [
+        "We haven't said anything to each other for an hour. You're reading, I'm looking at the window, the dishwasher reaches the end of its cycle and neither of us gets up to empty it.",
+        "There's no sentence stuck in my throat, we're not circling anything. I know how far along you are from the bend of your neck, you feel it when I'm about to speak and you give me the time not to.",
+        "If someone walked in now, they would count the minutes and ask whether something had happened. In here nobody's keeping count.",
+        "Every so often we say something to each other that could just as well have gone unsaid. We say it anyway, to hear that the voice works.",
+    ],
+    "it": [
+        "È un'ora che non ci diciamo niente. Tu leggi, io guardo la finestra, la lavastoviglie arriva in fondo al suo giro e nessuno si alza a svuotarla.",
+        "Non c'è una frase ferma in gola, non stiamo girando intorno a niente. So a che punto sei dalla piega del collo, tu senti quando sto per parlare e mi lasci il tempo di non farlo.",
+        "Se entrasse qualcuno adesso, conterebbe i minuti e chiederebbe se è successo qualcosa. Qui dentro il conto non lo tiene nessuno.",
+        "Ogni tanto ci diciamo una cosa che si poteva anche non dire. La diciamo lo stesso, per sentire che la voce funziona.",
+    ],
+}
+
 # ------------------------------------------------------------ ordini e testi
 
 ORDER = {
@@ -466,6 +483,8 @@ def build(lang):
                   "body": S007[lang]})
     notes.append({"slug": "008", "label": S008["label"][lang], "title": S008["title"][lang],
                   "body": S008[lang]})
+    notes.append({"slug": "009", "label": S009["label"][lang], "title": S009["title"][lang],
+                  "body": S009[lang]})
     frame = pan.get("cornice", [])
     items = "\n".join(f"""          <li>
             <a href="{up(d + 1)}{pre}writing/silences/{n['slug']}/index.html">
