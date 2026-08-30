@@ -189,16 +189,16 @@ S010 = {
     "label": {"en": "Silence #010", "it": "Silenzio #010"},
     "title": {"en": "The Silence I Bought From You", "it": "Il silenzio che ti ho comprato"},
     "en": [
-        "We've been explaining ourselves for two hours, and at some point I stop looking for the right sentence and start looking for the one that closes it. I give you the point and I watch to see if it works. It works: your voice comes down, your shoulders come down, and the room goes back to being a room.",
-        "It isn't that I think I'm wrong. It's that being right, tonight, costs two more hours, and I don't have them.",
-        "We eat late and talk about nothing in particular. You thank me for how I handled it, and I say that it was the right thing.",
-        "Now I know what a quiet evening costs. It's cheap. I haven't asked you what you understood.",
+        "We've been explaining ourselves for two hours. At some point I stop looking for the right sentence and start looking for the one that closes it. I give you the point, and to say it I hold everything else in my throat.",
+        "It works right away. Your voice comes down, your shoulders come down, the room goes back to being a room. From the outside it looks like it cost nothing.",
+        "We eat late and talk about nothing in particular. You thank me for how I handled it, and I say that it was the right thing. Then I wash the dishes it's your turn to wash.",
+        "About that evening, now, you're the one who was right, and we didn't decide it together: I handed it over, and I'm not taking it back. I gave you the point in three seconds and I'm still paying for it. I haven't asked you what you understood.",
     ],
     "it": [
-        "Sono due ore che ci spieghiamo, e a un certo punto smetto di cercare la frase giusta e cerco quella che chiude. Ti do ragione e guardo se funziona. Funziona: la voce ti scende, le spalle ti scendono, e la stanza torna una stanza.",
-        "Non è che io pensi di avere torto. È che avere ragione, stasera, costa altre due ore, e le due ore non le ho.",
-        "Ceniamo tardi e parliamo del più e del meno. Mi ringrazi per come ho gestito la cosa, e dico che era giusto così.",
-        "Adesso so quanto costa comprarsi una sera tranquilla. È poco. Non ti ho chiesto che cosa hai capito.",
+        "Sono due ore che ci spieghiamo. A un certo punto smetto di cercare la frase giusta e cerco quella che chiude. Ti do ragione, e per dirlo mi tengo in gola tutto il resto.",
+        "Funziona subito. La voce ti scende, le spalle ti scendono, la stanza torna una stanza. Da fuori sembra che non sia costato niente.",
+        "Ceniamo tardi e parliamo del più e del meno. Mi ringrazi per come ho gestito la cosa, e dico che era giusto così. Poi lavo i piatti che toccano a te.",
+        "Di quella sera, adesso, la ragione è tua, e non l'abbiamo decisa in due: te l'ho data io e non me la riprendo. Ti ho dato ragione in tre secondi e la sto ancora pagando. Non ti ho chiesto che cosa hai capito.",
     ],
 }
 
