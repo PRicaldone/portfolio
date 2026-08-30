@@ -185,6 +185,23 @@ S009 = {
     ],
 }
 
+S010 = {
+    "label": {"en": "Silence #010", "it": "Silenzio #010"},
+    "title": {"en": "The Silence I Bought From You", "it": "Il silenzio che ti ho comprato"},
+    "en": [
+        "We've been explaining ourselves for two hours, and at some point I stop looking for the right sentence and start looking for the one that closes it. I give you the point and I watch to see if it works. It works: your voice comes down, your shoulders come down, and the room goes back to being a room.",
+        "It isn't that I think I'm wrong. It's that being right, tonight, costs two more hours, and I don't have them.",
+        "We eat late and talk about nothing in particular. You thank me for how I handled it, and I say that it was the right thing.",
+        "Now I know what a quiet evening costs. It's cheap. I haven't asked you what you understood.",
+    ],
+    "it": [
+        "Sono due ore che ci spieghiamo, e a un certo punto smetto di cercare la frase giusta e cerco quella che chiude. Ti do ragione e guardo se funziona. Funziona: la voce ti scende, le spalle ti scendono, e la stanza torna una stanza.",
+        "Non è che io pensi di avere torto. È che avere ragione, stasera, costa altre due ore, e le due ore non le ho.",
+        "Ceniamo tardi e parliamo del più e del meno. Mi ringrazi per come ho gestito la cosa, e dico che era giusto così.",
+        "Adesso so quanto costa comprarsi una sera tranquilla. È poco. Non ti ho chiesto che cosa hai capito.",
+    ],
+}
+
 # ------------------------------------------------------------ ordini e testi
 
 ORDER = {
@@ -485,6 +502,8 @@ def build(lang):
                   "body": S008[lang]})
     notes.append({"slug": "009", "label": S009["label"][lang], "title": S009["title"][lang],
                   "body": S009[lang]})
+    notes.append({"slug": "010", "label": S010["label"][lang], "title": S010["title"][lang],
+                  "body": S010[lang]})
     frame = pan.get("cornice", [])
     items = "\n".join(f"""          <li>
             <a href="{up(d + 1)}{pre}writing/silences/{n['slug']}/index.html">
