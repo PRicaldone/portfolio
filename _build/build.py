@@ -272,9 +272,10 @@ ANNOUNCED = {"act": "Act III", "title": "I Don't", "anchor": "act-iii"}
 HOME_WORK = WORKS[0]        # slot d'autore: si cambia qui, e in nessun altro punto
 
 EMAIL = "studio@pricaldone.art"
-# Indirizzi presi dai record in Studio/account-profili/ (instagram.md, x.md)
-SOCIAL = [("Instagram", "https://www.instagram.com/pricaldone.art/", "@pricaldone.art"),
-          ("X", "https://x.com/pricaldone_art", "@pricaldone_art")]
+# Indirizzi presi dai record in Studio/account-profili/ (instagram.md)
+# X tolto il 1 set 2026: canale dormiente, non si alimenta più — mandarci chi arriva dal
+# sito significherebbe mandarlo su un profilo fermo. Record: Studio/account-profili/x.md.
+SOCIAL = [("Instagram", "https://www.instagram.com/pricaldone.art/", "@pricaldone.art")]
 
 T = {
  "en": {"other": "IT",
