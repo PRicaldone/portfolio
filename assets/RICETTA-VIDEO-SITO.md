@@ -76,7 +76,7 @@ Poi i parametri e i bordi:
 ffprobe -v error -show_entries stream=width,height,nb_frames -show_entries format=duration,size -of default=nw=1 <file>.mp4
 ```
 
-Il **numero di fotogrammi deve corrispondere al master** (Act I: 1940 · Act II: 945). Uno scarto
+Il **numero di fotogrammi deve corrispondere al master** (Act I: 1940 · Act II: 945 · Act III: 2800). Uno scarto
 di uno è tollerato sui derivati web; trentuno no, e vuol dire che l'in/out del Deliver è
 spostato. E l'ultimo fotogramma non deve essere nero:
 
@@ -85,7 +85,7 @@ ffmpeg -i <file>.mp4 -vf "select='gte(n,<ultimi>)',signalstats,metadata=print:ke
 ```
 
 Su video levels **16 è il nero**; il valore a piena immagine dipende dall'opera (Act I ~24,9 ·
-Act II ~19,5).
+Act II ~19,5 · Act III ~20,2).
 
 ## Il file nel sito
 

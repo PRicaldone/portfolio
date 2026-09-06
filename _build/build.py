@@ -267,8 +267,14 @@ WORKS = [
  {"slug": "i-could", "act": "Act II", "title": "I Could", "year": "2026",
   "anchor": "act-ii", "video": "act-ii-site.mp4", "poster": "act-ii-poster.jpg",
   "duration": "00:38", "res": "3840 × 2880 (4:3)", "fps": "25 fps"},
+ # Act III è uscito il 6 set 2026: entra come le altre, con la sua pagina e il suo
+ # anno. Sparisce con lui la riga d'attesa «In produzione» che teneva il posto in
+ # fondo all'indice — la trilogia è completa e non c'è più nessun atto annunciato.
+ # Durata e risoluzione misurate sul master (2800 frame a 25 fps = 112 s).
+ {"slug": "i-dont", "act": "Act III", "title": "I Don't", "year": "2026",
+  "anchor": "act-iii", "video": "act-iii-site.mp4", "poster": "act-iii-poster.jpg",
+  "duration": "01:52", "res": "3840 × 2880 (4:3)", "fps": "25 fps"},
 ]
-ANNOUNCED = {"act": "Act III", "title": "I Don't", "anchor": "act-iii"}
 HOME_WORK = WORKS[0]        # slot d'autore: si cambia qui, e in nessun altro punto
 
 EMAIL = "studio@pricaldone.art"
@@ -284,10 +290,6 @@ T = {
    "collection_title": "The Stage — Acts of a Lucid Silence",
    "collection_frame": "A trilogy of 1/1 video works on a bare stage. Each act stages a single emotional state, present from the first frame, isolated from its cause.",
    "medium": "Silent video, single-channel, CGI",
-   # Lo stato dell'atto non ancora uscito: senza questa riga il posto dello still resta
-   # vuoto e si legge come un'immagine che non carica, non come un'assenza voluta.
-   # Una parola sola, nessuna data e nessuna cadenza: quelle sono promesse.
-   "announced": "In production",
    "edition": "Single original, certified by the artist",
    "behaviour": "silent · single-channel · 4:3 · plays once, holding on the final frame",
    # Dichiarare cosa si sta guardando: senza questa riga il visitatore crede che
@@ -307,7 +309,6 @@ T = {
    "collection_title": "The Stage — Acts of a Lucid Silence",
    "collection_frame": "Una trilogia di opere video 1/1 su un palco spoglio. Ogni atto mette in scena un singolo stato emotivo, presente dal primo istante, isolato dalla sua causa.",
    "medium": "Video muto, single-channel, CGI",
-   "announced": "In produzione",
    "edition": "Originale unico, certificato dall'artista",
    "behaviour": "muto · single-channel · 4:3 · si riproduce una volta, con tenuta sull'ultimo fotogramma",
    "shown": "presentato qui a 2560 × 1920 · l'originale unico certificato è 3840 × 2880, ProRes 422 HQ",
@@ -426,9 +427,9 @@ def build(lang):
     for x in WORKS:
         rows.append(f"""        <li class="work-row" id="{x['anchor']}">
           <a class="work-row__link" href="{x['slug']}/index.html">
-            <!-- Niente loading="lazy" sui fermi immagine dell'indice: sono due file da una
-                 decina di kilobyte, e il rinvio non risparmiava banda ma faceva comparire il
-                 secondo still un istante dopo il primo. Il posto è già riservato dal CSS
+            <!-- Niente loading="lazy" sui fermi immagine dell'indice: sono tre file da una
+                 quindicina di kilobyte l'uno, e il rinvio non risparmiava banda ma faceva
+                 comparire gli still uno dopo l'altro. Il posto è già riservato dal CSS
                  (aspect-ratio 4/3), quindi non c'è salto di impaginazione. -->
             <span class="work-row__still"><img src="{up(d + 1)}assets/{x['poster']}" alt=""></span>
             <span class="work-row__text">
@@ -437,13 +438,6 @@ def build(lang):
               <span class="work-row__meta">{t['medium']} · {x['duration']} · {x['year']}</span>
             </span>
           </a>
-        </li>""")
-    rows.append(f"""        <li class="work-row work-row--announced" id="{ANNOUNCED['anchor']}">
-          <span class="work-row__text">
-            <span class="eyebrow">{ANNOUNCED['act']}</span>
-            <cite class="work-row__title">{ANNOUNCED['title']}</cite>
-            <span class="work-row__meta">{t['announced']}</span>
-          </span>
         </li>""")
     body = f"""  <div class="page">
     <div class="page-heading"><h1>{t['works']}</h1></div>

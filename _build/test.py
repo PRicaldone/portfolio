@@ -126,10 +126,14 @@ works = open(ALL["works/index.html"], encoding="utf-8").read()
 check("<video" not in works, "l'indice Works contiene un video: deve avere solo fermi immagine")
 check(works.count("<img") >= 2, "l'indice Works non mostra i fermi immagine")
 check("I Don't" in works, "Act III non è dichiarato nell'indice")
-check(re.search(r"I Don't.*?20\d\d", works, flags=re.S) is None,
-      "Act III porta una data: deve essere solo titolo e posizione")
+# Fino al 6 set 2026 qui si controllava il contrario: che Act III NON portasse una
+# data, perché era annunciato e un segnaposto con una data invecchia. Ora l'opera è
+# uscita, quindi la riga d'attesa non deve più esistere in nessuna delle due lingue —
+# una riga «in produzione» sotto un'opera pubblicata è uno strato fermo.
+check("In production" not in works and "In produzione" not in works,
+      "l'indice porta ancora la riga d'attesa di Act III")
 
-for slug in ("i-have-to", "i-could"):
+for slug in ("i-have-to", "i-could", "i-dont"):
     p = ALL.get(f"works/{slug}/index.html")
     check(p is not None, f"manca la pagina opera {slug}")
     if p:
