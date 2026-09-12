@@ -69,6 +69,8 @@ cornice vuota.
 *Originale unico, certificato dall'artista*: una riga di provenienza sotto il solo Act I
 farebbe leggere la trilogia come tre oggetti di natura diversa.
 
+> *Superato il 12 set 2026: gli Appunti sono chiusi e Writing è il saggio stesso (vedi `_build/LEGGIMI.md`). Quanto segue su Writing e § *Come cresce* vale come storia della decisione.*
+
 **Writing è su due colonne divise da un filo**: a sinistra il Pensiero, corpo chiuso che
 mostra le sue otto sezioni numerate; a destra gli Appunti, ombrello della pratica, con dentro
 la serie Silenzi e i suoi pezzi progressivi. La differenza fra materia stabile e materia in

@@ -50,3 +50,14 @@
 # il reindirizzamento: /works#act-i diventa /works/#act-i. Nell'indice Works le
 # righe conservano gli id storici act-i, act-ii e act-iii, quindi i link gia
 # condivisi atterrano ancora sull'opera giusta.
+
+# --- Appunti chiusi (12 set 2026) ------------------------------------------
+# La serie Silenzi e la sezione Appunti escono dal sito. I dieci indirizzi dei
+# pezzi e l'indirizzo del saggio restano vivi come 301: chi ha salvato un link
+# atterra su Writing, che ora è il saggio stesso.
+/writing/thought/        /writing/        301
+/writing/thought/*       /writing/        301
+/writing/silences/*      /writing/        301
+/it/writing/thought/     /it/writing/     301
+/it/writing/thought/*    /it/writing/     301
+/it/writing/silences/*   /it/writing/     301

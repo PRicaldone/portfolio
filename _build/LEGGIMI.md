@@ -21,11 +21,10 @@ deve fermarlo a mano. I controlli automatici prima, `curl` dopo, e il giudizio v
 
 - **`build.py`** — il generatore. I testi non sono scritti qui: si estraggono **verbatim**
   dagli snapshot in `_source/`, e le revisioni del master si applicano nella tabella
-  `REWRITES`. Gli appunti della serie Silenzi sono dichiarati come `S005`, `S006`, … con
-  etichetta, titolo e paragrafi nelle due lingue, copiati dal raccordo nel vault.
+  `REWRITES`. Dal 12 set 2026 non ci sono più appunti: Writing è il saggio stesso.
 - **`test.py`** — parità fra le lingue, riferimenti che risolvono, nessuna pagina senza
   barra o senza titolo, la Home che parte senza JavaScript, l'indice Works senza video,
-  una pagina per opera e per appunto, l'email solo in Contact, nessuna parola vietata,
+  una pagina per opera e nessuna pagina di appunto, l'email solo in Contact, nessuna parola vietata,
   nessun anno diverso da 2026 e 1968.
 - **`_redirects`** — la fonte; la copia in radice è quella che Netlify legge. **Si modifica
   qui**, poi si copia. Blocca anche `/_source/*` e `/_build/*`, che sono versionati ma non
@@ -43,12 +42,13 @@ da nessuna parte: il sito restava online ma non era più rifacibile se quella ca
 sparita. Adesso il programma e ciò che produce stanno nello stesso commit, e un cambio di
 `build.py` si legge insieme all'HTML che ha generato.
 
-## Aggiungere un appunto
+## Gli Appunti non ci sono più
 
-La ricetta completa vive nella skill `studio-portfolio-website` § *Sezione Writing*. In breve:
-il testo è nel raccordo `Studio/output/appunti/{serie}/{serie-sing}-NNN.md` del vault, integrale
-IT **e** EN; qui si dichiara un blocco `SNNN` sul modello di `S006`, un elemento di lista per
-paragrafo, verbatim, senza CTA e senza rimandi alle opere.
+Chiusi il 12 set 2026, con la serie Silenzi (dieci pezzi) e la sezione Appunti di Writing.
+Paolo non crea le opere dagli appunti ma da intuizioni emozionali, e una pratica di scrittura
+che non è sua non deve stare sul sito come se lo fosse. I vecchi indirizzi `/writing/silences/*`
+e `/writing/thought/` restano vivi come 301 verso `/writing/`, che ora è il saggio. Storia e
+ragioni nel vault: `Studio/strategie/architettura-social.md` § *Chiusura degli Appunti*.
 
 ## I video delle opere
 

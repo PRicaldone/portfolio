@@ -148,8 +148,13 @@ for slug in ("i-have-to", "i-could", "i-dont"):
         check("2560" in w and "3840" in w,
               f"{slug}: la targa non dichiara risoluzione mostrata e originale")
 
-for n in ("001", "002", "003", "004", "005"):
-    check(f"writing/silences/{n}/index.html" in ALL, f"l'appunto {n} non ha una pagina propria")
+# Dal 12 set 2026 gli Appunti sono chiusi: nessuna pagina di appunto deve
+# esistere, e Writing è il saggio stesso (niente più indice a due colonne).
+check(not any(k.startswith("writing/silences/") or k.startswith("it/writing/silences/") for k in ALL),
+      "esistono ancora pagine di appunti")
+check("writing/thought/index.html" not in ALL, "esiste ancora /writing/thought/: Writing è il saggio")
+w = open(ALL["writing/index.html"], encoding="utf-8").read()
+check('class="toc"' in w and 'id="t1"' in w, "Writing non porta il saggio con le sezioni")
 
 about = open(ALL["about/index.html"], encoding="utf-8").read()
 check("1968" in about, "About non porta il blocco fattuale")

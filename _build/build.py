@@ -70,19 +70,6 @@ def texts_content(fn):
         panels[pid] = paragraphs(body)
     return intro, titles, panels
 
-def notes_content(fn):
-    t = load(fn)
-    sidebar = re.search(r'<nav class="texts-sidebar">(.*?)</nav>', t, flags=re.S).group(1)
-    entries = []
-    for tid, body in re.findall(r'<a class="sidebar-item[^"]*"\s+data-target="([^"]+)">(.*?)</a>', sidebar, flags=re.S):
-        lab = re.search(r'<div class="sidebar-label">(.*?)</div>', body, flags=re.S)
-        tit = re.search(r'<div class="sidebar-title">(.*?)</div>', body, flags=re.S)
-        entries.append((tid, lab.group(1).strip() if lab else "", tit.group(1).strip() if tit else ""))
-    panels = {}
-    for pid, body in re.findall(r'<div class="text-panel[^"]*" id="([^"]+)">(.*?)(?=<div class="text-panel|\Z)', t, flags=re.S):
-        panels[pid] = paragraphs(body)
-    return entries, panels
-
 def about_paragraphs(fn):
     t = load(fn)
     block = re.search(r'<div class="text-section">(.*?)</div>\s*</div>\s*</div>', t, flags=re.S).group(1)
@@ -97,110 +84,7 @@ def about_paragraphs(fn):
     return out
 
 TX = {"en": texts_content("live_texts.html"), "it": texts_content("live_it_texts.html")}
-NT = {"en": notes_content("live_notes.html"), "it": notes_content("live_it_notes.html")}
 AB = {"en": about_paragraphs("live_about.html"), "it": about_paragraphs("live_it_about.html")}
-
-S005 = {
-    "label": {"en": "Silence #005", "it": "Silenzio #005"},
-    "title": {"en": "The Silence I Build", "it": "Il silenzio che erigo"},
-    "en": [
-        "I've stopped speaking to you, and I did it on purpose. It isn't that I can't find the words: I find them perfectly well, I chose them one by one and decided to give you none of them. I wanted you to feel the absence, to have the emptiness where my voice used to be pressing on you all day long.",
-        "For a while it worked the way I wanted. I'd watch you look for me, try a sentence, let it drop. I kept the wall straight and told myself you had it coming.",
-        "But behind the wall, now, I sit comfortably. As long as I don't speak I don't have to hear what you'd answer, I don't have to risk that you might be even a little right. What I put up to keep you out now keeps out your side of the story too: and I'm more sheltered in here than you are out there.",
-        "I keep calling it punishment. But punishment, sooner or later, ends. And I don't touch the wall.",
-    ],
-    "it": [
-        "Ho smesso di parlarti e l'ho fatto apposta. Non è che non trovo le parole: le trovo benissimo, le ho scelte una per una e ho deciso di non dartene nessuna. Volevo che sentissi l'assenza, che il vuoto dove prima c'era la mia voce ti stesse addosso tutto il giorno.",
-        "Per un po' ha funzionato come volevo. Ti vedevo cercarmi, provare una frase, lasciarla cadere. Tenevo il muro dritto e mi dicevo che te lo eri meritato.",
-        "Ma dietro il muro, adesso, ci sto comodamente. Finché non parlo non devo sentire cosa risponderesti, non devo rischiare che tu abbia anche solo un po' ragione. Quello che ho tirato su per lasciarti fuori adesso tiene fuori pure la tua versione dei fatti: e sto più al riparo io qui dentro di quanto tu lo sia là fuori.",
-        "Continuo a chiamarla punizione. Ma la punizione, prima o poi, finisce. E io il muro non lo tocco.",
-    ],
-}
-
-S006 = {
-    "label": {"en": "Silence #006", "it": "Silenzio #006"},
-    "title": {"en": "The Silence That Defends You", "it": "Il silenzio che ti difende"},
-    "en": [
-        "They're talking about you and I'm right here. It isn't an accusation: it's the light tone of someone who looked at you from a distance and has already closed the file, a sentence said with half a smile, and the others laughing just enough not to take sides. I don't say anything.",
-        "I could explain where the thing they take for a simple flaw comes from, or I could lay out the facts they don't have. But to do that I'd have to open you up in front of people who never asked you anything, and let them be the ones to decide whether my version holds. Everything I said would become theirs too. My silence is the only part of you that tonight doesn't belong to them.",
-        "That evening I see you and I don't tell you. There's no way to tell it without carrying the rest in with it, the whole sentence, the face of the one who said it. So that defense stays where it happened.",
-        "I defended you in the only way that leaves no trace. You'll never know, and to them I'm still on their side.",
-    ],
-    "it": [
-        "Stanno parlando di te e io sono qui. Non è un'accusa: è il tono leggero di chi ti ha guardato da lontano e ha già chiuso la pratica, una frase detta con mezzo sorriso, e gli altri che ridono quel tanto che basta per non prendere posizione. Io non dico niente.",
-        "Potrei spiegare da dove viene la cosa che a loro sembra soltanto un difetto oppure potrei mettere in fila i fatti che non conoscono. Ma per farlo dovrei aprirti davanti a gente che non ti ha mai chiesto niente, e lasciare che siano loro a decidere se la mia versione regge o meno. Tutto quello che dicessi diventerebbe anche loro. Il mio silenzio è l'unica parte di te che stasera non gli appartiene.",
-        "La sera ti vedo e non te lo dico. Non c'è modo di raccontarlo senza portarti dentro anche il resto, la frase intera, la faccia di chi l'ha detta. Così quella difesa resta dove è successa.",
-        "Ti ho difeso nell'unico modo che non lascia traccia. Tu non lo saprai mai, e per loro resto dalla loro parte.",
-    ],
-}
-
-S007 = {
-    "label": {"en": "Silence #007", "it": "Silenzio #007"},
-    "title": {"en": "The Silence That Never Gets It Wrong", "it": "Il silenzio che non sbaglia"},
-    "en": [
-        "I've had the answer ready for three seconds and I don't give it. I turn it over, I shorten it, I take out the part that might not hold, and what comes out is something anyone could have said.",
-        "With you I measure. It isn't that I have nothing to say: it's that you hear a wrong sentence right away, and what I had to say, said badly, is worth less than silence. Better too few words than one too many.",
-        "So for months I've given you the short version, and you've learned to call it the way I am. Once you even paid me a compliment for it: that I never talk just to talk.",
-        "I never talk just to talk, it's true. I've never yet told you anything that cost me.",
-    ],
-    "it": [
-        "Ho la risposta pronta da tre secondi e non la do. La giro, la accorcio, le tolgo la parte che potrebbe non stare in piedi, e quando esce è una cosa che poteva dire chiunque.",
-        "Con te misuro. Non è che non abbia niente da dire: è che una frase storta tu la senti subito, e quello che avevo da dire, detto male, vale meno del silenzio. Meglio poche parole che una di troppo.",
-        "Così da mesi ti do la versione corta, e tu hai imparato a chiamarla il mio modo di essere. Una volta me ne hai anche fatto un complimento: che non parlo mai a vuoto.",
-        "Non parlo mai a vuoto, è vero. Non ti ho ancora detto niente che mi costasse.",
-    ],
-}
-
-S008 = {
-    "label": {"en": "Silence #008", "it": "Silenzio #008"},
-    "title": {"en": "The Silence You Answer Me With", "it": "Il silenzio con cui mi rispondi"},
-    "en": [
-        "I ask you a question and you keep eating. It isn't that the question didn't reach you: it did, you set it down beside your plate and decided to leave it there. That is a way of answering too, and in fact I'm already answering myself.",
-        "In the days that follow I ask it again, smaller. I take out the part that might have sounded like an accusation and the part that asked for a date, and I cut it down until it fits in a sentence you can ignore without seeming rude. Every time I make it smaller I give you one more way out, and every time you take it.",
-        "Are you keeping silent against me, or in front of something you can't say even to yourself?",
-        "I keep circling it, and meanwhile I fill in the blank. In the end I do have an answer. I wrote it myself.",
-    ],
-    "it": [
-        "Ti faccio una domanda e tu continui a mangiare. Non è che la domanda non sia arrivata: è arrivata, l'hai posata accanto al piatto e hai deciso di lasciarla lì. Anche quello è un modo di rispondere, e infatti sto già rispondendomi.",
-        "Nei giorni dopo la rifaccio più piccola. Tolgo la parte che poteva sembrare un'accusa e quella che chiedeva una data, e la riduco fino a farla stare in una frase che si può ignorare senza sembrare scortesi. Ogni volta che la riduco ti do una via d'uscita in più, e ogni volta tu la prendi.",
-        "Stai tacendo contro di me, o davanti a qualcosa che non sai dire nemmeno a te?",
-        "Continuo a girarci intorno, e intanto il posto vuoto lo riempio. Alla fine una risposta ce l'ho. L'ho scritta io.",
-    ],
-}
-
-S009 = {
-    "label": {"en": "Silence #009", "it": "Silenzio #009"},
-    "title": {"en": "The Silence That Holds Us", "it": "Il silenzio che ci tiene"},
-    "en": [
-        "We haven't said anything to each other for an hour. You're reading, I'm looking at the window, the dishwasher reaches the end of its cycle and neither of us gets up to empty it.",
-        "There's no sentence stuck in my throat, we're not circling anything. I know how far along you are from the bend of your neck, you feel it when I'm about to speak and you give me the time not to.",
-        "If someone walked in now, they would count the minutes and ask whether something had happened. In here nobody's keeping count.",
-        "Every so often we say something to each other that could just as well have gone unsaid. We say it anyway, to hear that the voice works.",
-    ],
-    "it": [
-        "È un'ora che non ci diciamo niente. Tu leggi, io guardo la finestra, la lavastoviglie arriva in fondo al suo giro e nessuno si alza a svuotarla.",
-        "Non c'è una frase ferma in gola, non stiamo girando intorno a niente. So a che punto sei dalla piega del collo, tu senti quando sto per parlare e mi lasci il tempo di non farlo.",
-        "Se entrasse qualcuno adesso, conterebbe i minuti e chiederebbe se è successo qualcosa. Qui dentro il conto non lo tiene nessuno.",
-        "Ogni tanto ci diciamo una cosa che si poteva anche non dire. La diciamo lo stesso, per sentire che la voce funziona.",
-    ],
-}
-
-S010 = {
-    "label": {"en": "Silence #010", "it": "Silenzio #010"},
-    "title": {"en": "The Silence I Bought From You", "it": "Il silenzio che ti ho comprato"},
-    "en": [
-        "We've been explaining ourselves for two hours. At some point I stop looking for the right sentence and start looking for the one that closes it. I give you the point, and to say it I hold everything else in my throat.",
-        "It works right away. Your voice comes down, your shoulders come down, the room goes back to being a room. From the outside it looks like it cost nothing.",
-        "We eat late and talk about nothing in particular. You thank me for how I handled it, and I say that it was the right thing. Then I wash the dishes it's your turn to wash.",
-        "About that evening, now, you're the one who was right, and we didn't decide it together: I handed it over, and I'm not taking it back. I gave you the point in three seconds and I'm still paying for it. I haven't asked you what you understood.",
-    ],
-    "it": [
-        "Sono due ore che ci spieghiamo. A un certo punto smetto di cercare la frase giusta e cerco quella che chiude. Ti do ragione, e per dirlo mi tengo in gola tutto il resto.",
-        "Funziona subito. La voce ti scende, le spalle ti scendono, la stanza torna una stanza. Da fuori sembra che non sia costato niente.",
-        "Ceniamo tardi e parliamo del più e del meno. Mi ringrazi per come ho gestito la cosa, e dico che era giusto così. Poi lavo i piatti che toccano a te.",
-        "Di quella sera, adesso, la ragione è tua, e non l'abbiamo decisa in due: te l'ho data io e non me la riprendo. Ti ho dato ragione in tre secondi e la sto ancora pagando. Non ti ho chiesto che cosa hai capito.",
-    ],
-}
 
 # ------------------------------------------------------------ ordini e testi
 
@@ -298,8 +182,7 @@ T = {
    "viewing": "Best experienced on a large screen in a quiet space",
    "spec": ["Medium", "Duration", "Resolution", "Edition", "Year"],
    "works": "Works", "writing": "Writing", "about": "About", "contact": "Contact",
-   "thought": "Thought", "essay": "Essay", "notes": "Notes", "series": "Series",
-   "silences": "Silences", "umbrella": "Series of reflections on the themes of the works",
+   "thought": "Thought", "essay": "Essay",
    "sections": "Sections", "sale": "Works are sold privately, directly by the artist.",
    "city": "Turin, Italy", "l_email": "Email", "l_studio": "Studio",
    "copyright": "© Paolo Ricaldone. All rights reserved."},
@@ -315,8 +198,7 @@ T = {
    "viewing": "Da vivere su uno schermo grande, in uno spazio silenzioso",
    "spec": ["Medium", "Durata", "Risoluzione", "Edizione", "Anno"],
    "works": "Opere", "writing": "Scritti", "about": "Chi sono", "contact": "Contatti",
-   "thought": "Pensiero", "essay": "Saggio", "notes": "Appunti", "series": "Serie",
-   "silences": "Silenzi", "umbrella": "Serie di riflessioni sui temi delle opere",
+   "thought": "Pensiero", "essay": "Saggio",
    "sections": "Sezioni", "sale": "Le opere si vendono privatamente, direttamente dall'artista.",
    "city": "Torino, Italia", "l_email": "Email", "l_studio": "Studio",
    "copyright": "© Paolo Ricaldone. Tutti i diritti riservati."},
@@ -482,68 +364,11 @@ def build(lang):
                    f"{x['act']} — {x['title']}. {t['medium']}, {x['duration']}.",
                    body, alt_of(f"works/{x['slug']}/index.html"), current="works/"))
 
-    # ---- Writing: indice
-    ent, pan = NT[lang]
-    notes = []
-    for i, (tid, lab, tit) in enumerate([e for e in ent if e[0] != "cornice"], start=1):
-        notes.append({"slug": f"{i:03d}", "label": lab, "title": tit, "body": pan[tid]})
-    notes.append({"slug": "005", "label": S005["label"][lang], "title": S005["title"][lang],
-                  "body": S005[lang]})
-    notes.append({"slug": "006", "label": S006["label"][lang], "title": S006["title"][lang],
-                  "body": S006[lang]})
-    notes.append({"slug": "007", "label": S007["label"][lang], "title": S007["title"][lang],
-                  "body": S007[lang]})
-    notes.append({"slug": "008", "label": S008["label"][lang], "title": S008["title"][lang],
-                  "body": S008[lang]})
-    notes.append({"slug": "009", "label": S009["label"][lang], "title": S009["title"][lang],
-                  "body": S009[lang]})
-    notes.append({"slug": "010", "label": S010["label"][lang], "title": S010["title"][lang],
-                  "body": S010[lang]})
-    frame = pan.get("cornice", [])
-    items = "\n".join(f"""          <li>
-            <a href="{up(d + 1)}{pre}writing/silences/{n['slug']}/index.html">
-              <span class="idx">{n['label']}</span><span class="ttl">{n['title']}</span>
-            </a>
-          </li>""" for n in notes)
-    tx_titles = TX[lang][1]
-    sections = "\n".join(
-        f"""          <li><a href="{up(d + 1)}{pre}writing/thought/index.html#{tid}">
-            <span class="sec-n">{i:02d}</span><span class="sec-t">{tx_titles[tid][1]}</span></a></li>"""
-        for i, tid in enumerate([x for x in TX_ORDER if x in TX[lang][2]], start=1))
-    body = f"""  <div class="page page--writing">
-    <div class="page-heading"><h1>{t['writing']}</h1></div>
-    <div class="wsplit">
-
-      <section class="wcol wcol--essay">
-        <p class="wkind">{t['essay']}</p>
-        <h2 class="wcol-title"><a href="{up(d + 1)}{pre}writing/thought/index.html">{t['thought']}</a></h2>
-        <ul class="wsections">
-{sections}
-        </ul>
-      </section>
-
-      <section class="wcol wcol--notes">
-        <p class="wkind">{t['umbrella']}</p>
-        <h2 class="wcol-title">{t['notes']}</h2>
-
-        <section class="wseries">
-          <h3 class="wseries-title">{t['silences']} <span class="wkind">{t['series']}</span></h3>
-          <div class="wframe">
-{par(frame, "            ")}
-          </div>
-          <ul class="wlist">
-{items}
-          </ul>
-        </section>
-      </section>
-
-    </div>
-  </div>"""
-    emit(pre + "writing/index.html",
-         shell(lang, d + 1, f"{t['writing']} — Paolo Ricaldone", t["umbrella"],
-               body, alt_of("writing/index.html"), current="writing/"))
-
-    # ---- il saggio: una pagina, sezioni citabili per ancora
+    # ---- Writing: il saggio, una pagina sola, sezioni citabili per ancora.
+    # Dal 12 set 2026 la scrittura pubblica è il solo Pensiero: gli Appunti sono
+    # chiusi (vault, architettura-social § Chiusura degli Appunti). Senza la
+    # seconda colonna un indice che rimanda a una pagina sola era uno strato in
+    # più, quindi /writing/ è il saggio; /writing/thought/ resta come 301.
     _, titles, panels = TX[lang]
     toc = "\n".join(f'        <li><a href="#{tid}">{titles[tid][1]}</a></li>'
                     for tid in TX_ORDER if tid in panels)
@@ -552,7 +377,6 @@ def build(lang):
 {par(panels[tid], "      ")}
     </section>""" for tid in TX_ORDER if tid in panels)
     body = f"""  <article class="page page--reading">
-    <nav class="crumb"><a href="{up(d + 2)}{'it/' if lang == 'it' else ''}writing/index.html">{t['writing']}</a></nav>
     <p class="type-label">{t['essay']}</p>
     <h1>{t['thought']}</h1>
     <div class="lede">
@@ -565,22 +389,9 @@ def build(lang):
     </nav>
 {secs}
   </article>"""
-    emit(pre + "writing/thought/index.html",
-         shell(lang, d + 2, f"{t['thought']} — Paolo Ricaldone", t["thought"],
-               body, alt_of("writing/thought/index.html"), current="writing/"))
-
-    # ---- un appunto, una pagina
-    for n in notes:
-        body = f"""  <article class="page page--reading">
-    <nav class="crumb"><a href="{up(d + 3)}{'it/' if lang == 'it' else ''}writing/index.html">{t['notes']}</a> · {t['silences']}</nav>
-    <p class="type-label">{n['label']}</p>
-    <h1>{n['title']}</h1>
-{par(n['body'], "    ")}
-  </article>"""
-        emit(pre + f"writing/silences/{n['slug']}/index.html",
-             shell(lang, d + 3, f"{n['title']} — Paolo Ricaldone",
-                   f"{n['label']} — {n['title']}", body,
-                   alt_of(f"writing/silences/{n['slug']}/index.html"), current="writing/"))
+    emit(pre + "writing/index.html",
+         shell(lang, d + 1, f"{t['thought']} — Paolo Ricaldone", t["thought"],
+               body, alt_of("writing/index.html"), current="writing/"))
 
     # ---- About
     body = f"""  <div class="page page--about">
