@@ -139,6 +139,23 @@ FACTS = {
         "<em>The Stage — Acts of a Lucid Silence</em>, trilogia in tre atti iniziata nel 2026, è il corpus in corso."],
 }
 
+# Proiezioni (2 ott 2026, decisione di Paolo). Le righe vengono dal master del CV nel
+# vault, Studio/output/copy/istituzionale/cv-artistico.md: si copiano, non si riscrivono.
+# Entra solo una selezione in fascia A o B, la stessa regola del CV. Il link porta alla
+# pagina dell'ente: chi legge verifica invece di credere (ricerca-sito-curatori § 8.2).
+# Niente laurel: la pagina resta testo, come il resto di About. Intestazione al singolare
+# finché la voce è una sola.
+SCREENINGS = {
+ "en": ("Screening", [
+   '2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, London · 24 September',
+   "<em>Act I — I Have To</em>, Official Selection, public screening",
+   "curated by Liberty Antonia Sadler &amp; Jhenelle White"]),
+ "it": ("Proiezione", [
+   '2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, Londra · 24 settembre',
+   "<em>Act I — I Have To</em>, selezionato su open call internazionale, proiezione in sala",
+   "a cura di Liberty Antonia Sadler e Jhenelle White"]),
+}
+
 # Opere — dati dai record del vault. Nessun dato dedotto.
 WORKS = [
  # Un file per opera, lo stesso in Home e nella pagina opera: cambia solo chi
@@ -403,6 +420,10 @@ def build(lang):
 {par(ABOUT[lang], "      ")}
       <div class="facts">
 {par(FACTS[lang], "        ")}
+      </div>
+      <div class="facts">
+        <p class="eyebrow">{SCREENINGS[lang][0]}</p>
+{par(SCREENINGS[lang][1], "        ")}
       </div>
     </article>
   </div>"""
