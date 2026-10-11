@@ -32,10 +32,10 @@ def load(name):
 
 REWRITES = [
     ("Creo le opere interamente in CGI, per non avere limiti di possibilità comunicativa e poter astrarre senza sentirmi imbrigliato dalla realtà. Ogni fotogramma è una decisione, ogni movimento è sentito.",
-     "Creo le opere interamente in CGI, per non avere limiti di possibilità comunicativa e poter astrarre senza sentirmi imbrigliato dalla realtà: ogni fotogramma è una decisione, ogni movimento è sentito. Oggi non uso AI generativa, non per opposizione allo strumento, ma perché non mi dà il controllo e la responsabilità autoriale che cerco."),
+     "Creo le opere interamente in CGI, per non avere limiti di possibilità comunicativa e poter astrarre senza sentirmi imbrigliato dalla realtà: ogni fotogramma è una decisione, ogni movimento è sentito. Le mie opere non nascono da un prompt: le costruisco io, e il controllo e la responsabilità autoriale restano miei."),
     ("Oggi non uso AI generativa nel mio lavoro: non per opposizione allo strumento, ma perché non mi offre il controllo e la responsabilità autoriale che cerco, fino all'ultimo pixel.", ""),
     ("I create the works entirely in CGI, to have no limits on what can be communicated and to abstract without being bound by reality. Every frame is a decision, every movement is felt.",
-     "I create the works entirely in CGI, to have no limits on what can be communicated and to abstract without being bound by reality: every frame is a decision, every movement is felt. Today I do not use generative AI, not out of opposition to the tool, but because it does not offer the control and the authorial responsibility I seek."),
+     "I create the works entirely in CGI, to have no limits on what can be communicated and to abstract without being bound by reality: every frame is a decision, every movement is felt. My works do not come from a prompt: I build them, and the control and authorial responsibility remain mine."),
     ("Today I do not use generative AI in my work: not out of opposition to the tool, but because it does not offer the control and the authorial responsibility I seek, down to the final pixel.", ""),
     ("My works are born from instinct, when something becomes visceral. What I create is not a message to deliver, nor a code to decipher.",
      "What I create is not a message to deliver, nor a code to decipher."),
