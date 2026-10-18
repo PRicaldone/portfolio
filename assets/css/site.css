@@ -366,6 +366,7 @@ cite{ font-style:normal; }
 .facts p{ margin:0 0 .35rem; }
 .facts em{ font-style:normal; color:var(--text); }
 .screening + .screening{ margin-top:1.8rem; }
+.facts .eyebrow{ margin-bottom:1.8rem; }
 
 @media (min-width:820px){
   .page--about{ display:grid; grid-template-columns:11rem minmax(0,var(--reading-width));
