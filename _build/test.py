@@ -65,7 +65,7 @@ for rel, path in ALL.items():
     for m in re.findall(r'(?:href|src)="([^"]+)"', t):
         if m.startswith(("http", "mailto:", "#")):
             continue
-        target = os.path.normpath(os.path.join(d, m.split("#")[0]))
+        target = os.path.normpath(os.path.join(d, m.split("#")[0].split("?")[0]))
         check(os.path.isfile(target), f"{rel}: riferimento rotto → {m}")
 
     # ogni link di pagina resta nella propria lingua. L'unica uscita ammessa è

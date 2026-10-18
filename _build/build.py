@@ -19,6 +19,10 @@ SITE = 'https://pricaldone.art'
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_source")
+# Impronta del foglio di stile nel suo link (18 ott 2026): Netlify lo serve con
+# max-age di quattro ore, e una modifica allo stile arrivava ai browser solo dopo.
+# Lo stacco fra le proiezioni non si vedeva per questo. Cambia il file, cambia il link.
+CSS_V = __import__("hashlib").sha1(open(os.path.join(ROOT, "assets", "css", "site.css"), "rb").read()).hexdigest()[:8]
 
 # ---------------------------------------------------------------- estrazione
 
@@ -272,7 +276,7 @@ def shell(lang, depth, title, desc, body, alt, body_class="", current="", script
 <meta property="og:image" content="{SITE}/og-image.jpg">
 <meta property="og:locale" content="{'it_IT' if lang == 'it' else 'en_GB'}">
 <meta name="twitter:card" content="summary_large_image">{robots}
-<link rel="stylesheet" href="{u}assets/css/site.css">
+<link rel="stylesheet" href="{u}assets/css/site.css?v={CSS_V}">
 </head>
 <body class="{body_class}">
 <a class="skip-link" href="#content">{t['skip']}</a>
