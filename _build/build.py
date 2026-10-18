@@ -143,17 +143,27 @@ FACTS = {
 # vault, Studio/output/copy/istituzionale/cv-artistico.md: si copiano, non si riscrivono.
 # Entra solo una selezione in fascia A o B, la stessa regola del CV. Il link porta alla
 # pagina dell'ente: chi legge verifica invece di credere (ricerca-sito-curatori § 8.2).
-# Niente laurel: la pagina resta testo, come il resto di About. Intestazione al singolare
-# finché la voce è una sola.
+# Niente laurel: la pagina resta testo, come il resto di About. Una voce per selezione,
+# la più recente in testa; l'intestazione è al plurale dal 18 ott 2026, con la seconda voce.
+# L'anno in testa è quello della selezione, e la proiezione porta la sua data per intero:
+# LIMINALcinema è una selezione del 2026 con la sala a gennaio 2027 (Paolo, 18 ott 2026).
+# Il link va alla pagina dell'ente; per LIMINALcinema, finché non esce il programma, al
+# profilo Instagram che la loro mail indica per le novità (Paolo, 18 ott 2026).
+# Una sezione propria e le foto di sala si riaprono al prossimo riconoscimento (Paolo,
+# 18 ott 2026).
 SCREENINGS = {
- "en": ("Screening", [
-   '2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, London · 24 September',
+ "en": ("Screenings", [
+  ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 22–26 January 2027',
+   "<em>Act I — I Have To</em>, Official Selection, public screening"],
+  ['2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, London · 24 September',
    "<em>Act I — I Have To</em>, Official Selection, public screening",
-   "curated by Liberty Antonia Sadler &amp; Jhenelle White"]),
- "it": ("Proiezione", [
-   '2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, Londra · 24 settembre',
+   "curated by Liberty Antonia Sadler &amp; Jhenelle White"]]),
+ "it": ("Proiezioni", [
+  ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 22–26 gennaio 2027',
+   "<em>Act I — I Have To</em>, selezionato su open call internazionale, proiezione in sala"],
+  ['2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, Londra · 24 settembre',
    "<em>Act I — I Have To</em>, selezionato su open call internazionale, proiezione in sala",
-   "a cura di Liberty Antonia Sadler e Jhenelle White"]),
+   "a cura di Liberty Antonia Sadler e Jhenelle White"]]),
 }
 
 # Opere — dati dai record del vault. Nessun dato dedotto.
@@ -423,7 +433,7 @@ def build(lang):
       </div>
       <div class="facts">
         <p class="eyebrow">{SCREENINGS[lang][0]}</p>
-{par(SCREENINGS[lang][1], "        ")}
+{chr(10).join(f'        <div class="screening">{chr(10)}{par(v, "          ")}{chr(10)}        </div>' for v in SCREENINGS[lang][1])}
       </div>
     </article>
   </div>"""

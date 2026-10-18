@@ -106,8 +106,15 @@ for rel, path in ALL.items():
     # nessuna data morta: gli anni ammessi sono quelli delle opere, dentro le schede.
     # Le misure in pixel non sono date: "2560 × 1920" contiene un 1920 che non è
     # un anno, e va tolto prima di cercare, altrimenti la targa fa fallire il test.
-    senza_misure = re.sub(r"\d{3,4}\s*×\s*\d{3,4}", "", visible)
-    for y in re.findall(r"\b(19\d\d|20\d\d)\b", senza_misure):
+    # Le proiezioni portano le loro date (Paolo, 18 ott 2026): una selezione del 2026
+    # può andare in sala nel 2027, ed è una data dell'ente, non una promessa nostra.
+    # Gli anni dentro le voci di proiezione si controllano a parte: mai prima del 2026.
+    proiezioni = " ".join(re.findall(r'<div class="screening">(.*?)</div>', t, flags=re.S))
+    for y in re.findall(r"\b(19\d\d|20\d\d)\b", re.sub(r"<[^>]+>", " ", proiezioni)):
+        check(int(y) >= 2026, f"{rel}: anno di proiezione anteriore alle opere → {y}")
+    fuori = re.sub(r'<div class="screening">.*?</div>', " ", t, flags=re.S)
+    fuori = re.sub(r"\d{3,4}\s*×\s*\d{3,4}", "", re.sub(r"<[^>]+>", " ", fuori).lower())
+    for y in re.findall(r"\b(19\d\d|20\d\d)\b", fuori):
         check(y in ("2026", "1968"), f"{rel}: anno inatteso in pagina → {y}")
 
 # ------------------------------------------------------------ struttura viva
