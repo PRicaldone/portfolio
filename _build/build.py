@@ -159,12 +159,18 @@ SCREENINGS = {
  "en": ("Screenings", [
   ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 22–26 January 2027',
    "<em>Act I — I Have To</em>, Official Selection, public screening"],
+  ['2026 · <a href="https://www.instagram.com/p/DfRiJckuXih/" rel="noopener"><em>CLASSWAROOM — Artists Moving Image Screening</em></a>, Walthamstow Trades Hall, London · 8 November',
+   "<em>Act I — I Have To</em>, public screening",
+   "selected by Arash Akbari, Georgina Starr &amp; Natasha Rees"],
   ['2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, London · 24 September',
    "<em>Act I — I Have To</em>, Official Selection, public screening",
    "curated by Liberty Antonia Sadler &amp; Jhenelle White"]]),
  "it": ("Proiezioni", [
   ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 22–26 gennaio 2027',
    "<em>Act I — I Have To</em>, selezionato su open call internazionale, proiezione in sala"],
+  ['2026 · <a href="https://www.instagram.com/p/DfRiJckuXih/" rel="noopener"><em>CLASSWAROOM — Artists Moving Image Screening</em></a>, Walthamstow Trades Hall, Londra · 8 novembre',
+   "<em>Act I — I Have To</em>, selezionato su open call, proiezione in sala",
+   "a cura di Arash Akbari, Georgina Starr e Natasha Rees"],
   ['2026 · <a href="https://www.microactslondon.com/sept-2026" rel="noopener"><em>MicroActs presents Curiosity Cabinet</em></a>, Eastway Baths, Londra · 24 settembre',
    "<em>Act I — I Have To</em>, selezionato su open call internazionale, proiezione in sala",
    "a cura di Liberty Antonia Sadler e Jhenelle White"]]),
