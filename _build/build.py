@@ -136,10 +136,10 @@ for _l, _keys in (("en", ("the stomach that reacts first", "do not begin from co
 
 FACTS = {
  "en": ["Paolo Ricaldone (Turin, 1968) lives and works in Turin.",
-        "He works with silent single-channel video, made entirely in CGI.",
+        "He works with single-channel video without sound, made entirely in CGI.",
         "<em>The Stage — Acts of a Lucid Silence</em>, a trilogy in three acts begun in 2026, is the current body of work."],
  "it": ["Paolo Ricaldone (Torino, 1968) vive e lavora a Torino.",
-        "Lavora con video muti single-channel, realizzati interamente in CGI.",
+        "Lavora con video single-channel senza sonoro, realizzati interamente in CGI.",
         "<em>The Stage — Acts of a Lucid Silence</em>, trilogia in tre atti iniziata nel 2026, è il corpus in corso."],
 }
 
@@ -228,9 +228,9 @@ T = {
    "skip": "Vai al contenuto", "play": "Riproduci", "pause": "Metti in pausa", "replay": "Rivedi",
    "collection_title": "The Stage — Acts of a Lucid Silence",
    "collection_frame": "Una trilogia di opere video 1/1 su un palco spoglio. Ogni atto mette in scena un singolo stato emotivo, presente dal primo istante, isolato dalla sua causa.",
-   "medium": "Video muto, single-channel, CGI",
+   "medium": "Video senza sonoro, single-channel, CGI",
    "edition": "Originale unico, certificato dall'artista",
-   "behaviour": "muto · single-channel · 4:3 · si riproduce una volta, con tenuta sull'ultimo fotogramma",
+   "behaviour": "senza sonoro · single-channel · 4:3 · si riproduce una volta, con tenuta sull'ultimo fotogramma",
    "shown": "presentato qui a 2560 × 1920 · l'originale unico certificato è 3840 × 2880, ProRes 422 HQ",
    "viewing": "Da vivere su uno schermo grande, in uno spazio silenzioso",
    "spec": ["Medium", "Durata", "Risoluzione", "Edizione", "Anno"],
@@ -338,7 +338,7 @@ def build(lang):
   </section>"""
     emit(pre + "index.html",
          shell(lang, d, f"Paolo Ricaldone — {w['title']}",
-               "Paolo Ricaldone — silent single-channel video, made entirely in CGI.",
+               "Paolo Ricaldone — single-channel video without sound, made entirely in CGI.",
                body, alt_of("index.html"), "home-page", script=True))
 
     # ---- Works: indice a fermi immagine
@@ -449,7 +449,7 @@ def build(lang):
   </div>"""
     emit(pre + "about/index.html",
          shell(lang, d + 1, f"{t['about']} — Paolo Ricaldone",
-               "Paolo Ricaldone — Turin, 1968. Silent single-channel video, made entirely in CGI.",
+               "Paolo Ricaldone — Turin, 1968. Single-channel video without sound, made entirely in CGI.",
                body, alt_of("about/index.html"), current="about/"))
 
     # ---- Contact: elenco con etichette, forma presa dalla versione di Kimi
