@@ -157,6 +157,9 @@ FACTS = {
 # 18 ott 2026).
 SCREENINGS = {
  "en": ("Screenings", [
+  ['2026 · <a href="https://traverse-video.org/" rel="noopener"><em>30th Rencontres Internationales Traverse</em></a>, Cinéma Le Cratère, Toulouse · 25 March 2027',
+   "<em>Act II — I Could</em>, public screening",
+   "curated by Simone Dompeyre"],
   ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 22–26 January 2027',
    "<em>Act I — I Have To</em>, Official Selection, public screening"],
   ['2026 · <a href="https://www.instagram.com/p/DfRiJckuXih/" rel="noopener"><em>CLASSWAROOM — Artists Moving Image Screening</em></a>, Walthamstow Trades Hall, London · 10 January 2027',
@@ -166,6 +169,9 @@ SCREENINGS = {
    "<em>Act I — I Have To</em>, Official Selection, public screening",
    "curated by Liberty Antonia Sadler &amp; Jhenelle White"]]),
  "it": ("Proiezioni", [
+  ['2026 · <a href="https://traverse-video.org/" rel="noopener"><em>30es Rencontres Internationales Traverse</em></a>, Cinéma Le Cratère, Tolosa · 25 marzo 2027',
+   "<em>Act II — I Could</em>, selezionato su open call, proiezione in sala",
+   "a cura di Simone Dompeyre"],
   ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 22–26 gennaio 2027',
    "<em>Act I — I Have To</em>, selezionato su open call internazionale, proiezione in sala"],
   ['2026 · <a href="https://www.instagram.com/p/DfRiJckuXih/" rel="noopener"><em>CLASSWAROOM — Artists Moving Image Screening</em></a>, Walthamstow Trades Hall, Londra · 10 gennaio 2027',
