@@ -158,12 +158,12 @@ FACTS = {
 SCREENINGS = {
  "en": ("Screenings", [
   ['2026 · <a href="https://traverse-video.org/" rel="noopener"><em>30th Rencontres Internationales Traverse</em></a>, Cinéma Le Cratère, Toulouse · 25 March 2027',
-   "<em>Act II — I Could</em>, public screening",
+   "<em>Act II — I Could</em>, Official Selection, public screening",
    "curated by Simone Dompeyre"],
   ['2026 · <a href="https://www.instagram.com/_liminalcinema_/" rel="noopener"><em>LIMINALcinema: Film and Moving Image Festival</em></a>, The Beautiful New World, Foshan · 15–19 January 2027',
    "<em>Act I — I Have To</em>, Official Selection, public screening"],
   ['2026 · <a href="https://www.instagram.com/p/DfRiJckuXih/" rel="noopener"><em>CLASSWAROOM — Artists Moving Image Screening</em></a>, Walthamstow Trades Hall, London · 10 January 2027',
-   "<em>Act I — I Have To</em>, public screening",
+   "<em>Act I — I Have To</em>, Official Selection, public screening",
    "selected by Arash Akbari, Georgina Starr &amp; Natasha Rees"],
   ['2026 · <a href="https://pebblesunderground.art/" rel="noopener"><em>Pebbles Underground Film and Video Art Festival</em></a>, Canada · 17–23 December',
    "<em>Act II — I Could</em>, Official Selection, streaming"],
